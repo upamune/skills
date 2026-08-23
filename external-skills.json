@@ -1,0 +1,117 @@
+{
+  "version": 1,
+  "skills": {
+    "claude-handoff": {
+      "source": "mattpocock/skills",
+      "url": "https://github.com/mattpocock/skills.git",
+      "path": "skills/in-progress/claude-handoff",
+      "commit": "5b15a47f2d7150f545fbcacbfe381787fc0230dc",
+      "updatedAt": "2026-08-23T10:02:54.839Z"
+    },
+    "code-review": {
+      "source": "mattpocock/skills",
+      "url": "https://github.com/mattpocock/skills.git",
+      "path": "skills/engineering/code-review",
+      "commit": "5b15a47f2d7150f545fbcacbfe381787fc0230dc",
+      "updatedAt": "2026-08-23T10:02:54.795Z"
+    },
+    "codebase-design": {
+      "source": "mattpocock/skills",
+      "url": "https://github.com/mattpocock/skills.git",
+      "path": "skills/engineering/codebase-design",
+      "commit": "5b15a47f2d7150f545fbcacbfe381787fc0230dc",
+      "updatedAt": "2026-08-23T10:02:54.800Z"
+    },
+    "diagnosing-bugs": {
+      "source": "mattpocock/skills",
+      "url": "https://github.com/mattpocock/skills.git",
+      "path": "skills/engineering/diagnosing-bugs",
+      "commit": "5b15a47f2d7150f545fbcacbfe381787fc0230dc",
+      "updatedAt": "2026-08-23T10:02:54.805Z"
+    },
+    "domain-modeling": {
+      "source": "mattpocock/skills",
+      "url": "https://github.com/mattpocock/skills.git",
+      "path": "skills/engineering/domain-modeling",
+      "commit": "5b15a47f2d7150f545fbcacbfe381787fc0230dc",
+      "updatedAt": "2026-08-23T10:02:54.808Z"
+    },
+    "grill-me": {
+      "source": "mattpocock/skills",
+      "url": "https://github.com/mattpocock/skills.git",
+      "path": "skills/productivity/grill-me",
+      "commit": "5b15a47f2d7150f545fbcacbfe381787fc0230dc",
+      "updatedAt": "2026-08-23T10:02:54.848Z"
+    },
+    "grill-with-docs": {
+      "source": "mattpocock/skills",
+      "url": "https://github.com/mattpocock/skills.git",
+      "path": "skills/engineering/grill-with-docs",
+      "commit": "5b15a47f2d7150f545fbcacbfe381787fc0230dc",
+      "updatedAt": "2026-08-23T10:02:54.813Z"
+    },
+    "handoff": {
+      "source": "mattpocock/skills",
+      "url": "https://github.com/mattpocock/skills.git",
+      "path": "skills/productivity/handoff",
+      "commit": "5b15a47f2d7150f545fbcacbfe381787fc0230dc",
+      "updatedAt": "2026-08-23T10:02:54.856Z"
+    },
+    "implement": {
+      "source": "mattpocock/skills",
+      "url": "https://github.com/mattpocock/skills.git",
+      "path": "skills/engineering/implement",
+      "commit": "5b15a47f2d7150f545fbcacbfe381787fc0230dc",
+      "updatedAt": "2026-08-23T10:02:54.816Z"
+    },
+    "improve-codebase-architecture": {
+      "source": "mattpocock/skills",
+      "url": "https://github.com/mattpocock/skills.git",
+      "path": "skills/engineering/improve-codebase-architecture",
+      "commit": "5b15a47f2d7150f545fbcacbfe381787fc0230dc",
+      "updatedAt": "2026-08-23T10:02:54.819Z"
+    },
+    "loop-me": {
+      "source": "mattpocock/skills",
+      "url": "https://github.com/mattpocock/skills.git",
+      "path": "skills/in-progress/loop-me",
+      "commit": "5b15a47f2d7150f545fbcacbfe381787fc0230dc",
+      "updatedAt": "2026-08-23T10:02:54.844Z"
+    },
+    "prototype": {
+      "source": "mattpocock/skills",
+      "url": "https://github.com/mattpocock/skills.git",
+      "path": "skills/engineering/prototype",
+      "commit": "5b15a47f2d7150f545fbcacbfe381787fc0230dc",
+      "updatedAt": "2026-08-23T10:02:54.823Z"
+    },
+    "research": {
+      "source": "mattpocock/skills",
+      "url": "https://github.com/mattpocock/skills.git",
+      "path": "skills/engineering/research",
+      "commit": "5b15a47f2d7150f545fbcacbfe381787fc0230dc",
+      "updatedAt": "2026-08-23T10:02:54.826Z"
+    },
+    "resolving-merge-conflicts": {
+      "source": "mattpocock/skills",
+      "url": "https://github.com/mattpocock/skills.git",
+      "path": "skills/engineering/resolving-merge-conflicts",
+      "commit": "5b15a47f2d7150f545fbcacbfe381787fc0230dc",
+      "updatedAt": "2026-08-23T10:02:54.829Z"
+    },
+    "teach": {
+      "source": "mattpocock/skills",
+      "url": "https://github.com/mattpocock/skills.git",
+      "path": "skills/productivity/teach",
+      "commit": "5b15a47f2d7150f545fbcacbfe381787fc0230dc",
+      "updatedAt": "2026-08-23T10:02:54.860Z"
+    },
+    "writing-for-agents": {
+      "source": "mattpocock/skills",
+      "url": "https://github.com/mattpocock/skills.git",
+      "path": "skills/productivity/writing-for-agents",
+      "commit": "5b15a47f2d7150f545fbcacbfe381787fc0230dc",
+      "updatedAt": "2026-08-23T10:02:54.863Z"
+    }
+  }
+}

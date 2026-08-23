@@ -1,0 +1,11 @@
+{
+  "name": "upamune-skills",
+  "version": "0.1.0",
+  "description": "upamune の自作 agent skills",
+  "author": {
+    "name": "upamune",
+    "url": "https://github.com/upamune"
+  },
+  "repository": "https://github.com/upamune/skills",
+  "skills": []
+}

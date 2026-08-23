@@ -1,0 +1,15 @@
+{
+  "name": "upamune",
+  "owner": {
+    "name": "upamune",
+    "url": "https://github.com/upamune"
+  },
+  "description": "upamune の自作 agent skills を Claude Code plugin として配布する marketplace。",
+  "plugins": [
+    {
+      "name": "upamune-skills",
+      "source": "./",
+      "description": "upamune の自作 agent skills"
+    }
+  ]
+}
