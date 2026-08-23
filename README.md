@@ -83,6 +83,7 @@ scripts/external.ts list
 **Model-invoked**
 
 - [tagpr](./skills/engineering/tagpr/SKILL.md): Songmu/tagpr でリリース PR の自動生成・タグ付け・GitHub Release 作成を GitHub Actions に組み込む。GitHub App（actions/create-github-app-token）のトークンで動かし、タグ push で別の公開ワークフローを起動できる形にする。
+- [uv-script](./skills/engineering/uv-script/SKILL.md): uv の PEP 723 インラインメタデータで単一ファイルの Python スクリプトを書く・直す・実行する。依存を入れるときは `[tool.uv] exclude-newer` を必ず付けて再現性を保つ。
 
 ### Productivity
 

@@ -9,6 +9,7 @@
   "repository": "https://github.com/upamune/skills",
   "skills": [
     "./skills/engineering/init-project",
-    "./skills/engineering/tagpr"
+    "./skills/engineering/tagpr",
+    "./skills/engineering/uv-script"
   ]
 }
