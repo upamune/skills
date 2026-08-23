@@ -1,0 +1,3 @@
+interface:
+  display_name: "Manage Skills"
+  short_description: "upamune/skills 自身のスキル管理（外部 vendor・自作追加・リリース）"

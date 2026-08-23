@@ -1,0 +1,5 @@
+interface:
+  display_name: "Init Project"
+  short_description: "Go / TypeScript(Bun) プロジェクトの初期セットアップ"
+policy:
+  allow_implicit_invocation: false

@@ -5,11 +5,11 @@
 このリポジトリに入っている全スキルの一覧。`npx skills add upamune/skills` でインストールできる。
 再生成: `scripts/gen-skills-md.ts`（`scripts/external.ts` の add / sync / remove 後は自動で更新される）。
 
-合計 16 スキル
+合計 17 スキル
 
 | bucket | count | 用途 |
 | --- | --- | --- |
-| [engineering/](#engineering) | 0 | 日常のコード作業向け（自作） |
+| [engineering/](#engineering) | 1 | 日常のコード作業向け（自作） |
 | [productivity/](#productivity) | 0 | コード以外のワークフロー向け（自作） |
 | [in-progress/](#in-progress) | 0 | 作りかけ・試用中（自作） |
 | [deprecated/](#deprecated) | 0 | 使わなくなったもの（自作） |
@@ -19,7 +19,9 @@
 
 日常のコード作業向け（自作）
 
-（なし）
+**User-invoked**
+
+- [init-project](./skills/engineering/init-project/SKILL.md): Go または TypeScript (Bun) の新規プロジェクトを、mise / format・lint・test の CI / backlog / upamune の skills 込みで立ち上げる。新しいリポジトリで最初に一度だけ実行する。
 
 ## productivity
 

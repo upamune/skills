@@ -7,5 +7,7 @@
     "url": "https://github.com/upamune"
   },
   "repository": "https://github.com/upamune/skills",
-  "skills": []
+  "skills": [
+    "./skills/engineering/init-project"
+  ]
 }

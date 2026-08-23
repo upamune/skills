@@ -78,7 +78,7 @@ scripts/external.ts list
 
 **User-invoked**
 
-（なし）
+- [init-project](./skills/engineering/init-project/SKILL.md): Go / TypeScript (Bun) の新規プロジェクトを mise・CI（format/lint/test, pinact）・backlog・upamune/skills 込みで立ち上げる。新しいリポジトリで最初に一度だけ実行する。
 
 **Model-invoked**
 

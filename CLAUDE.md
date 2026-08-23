@@ -16,6 +16,10 @@
 
 `deprecated/` に移したスキルは frontmatter に `metadata: { internal: true }` を付け、`npx skills add` から見えないようにする。
 
+## この repo を触るときのスキル
+
+`.agents/skills/manage-skills/`（`.claude/skills/manage-skills` は symlink）に、この repo 自身のスキル管理手順（外部 vendor / 自作追加 / 昇格・廃止 / リリース）がある。`metadata.internal: true` なので `npx skills add upamune/skills` の配布対象には入らない。スキルの追加・更新を頼まれたらまずこれを使う。
+
 ## SKILLS.md
 
 `SKILLS.md` は `scripts/gen-skills-md.ts` が生成する全スキル一覧。手で編集しない。自作スキルを追加・改名・削除・説明変更したら再実行する（`scripts/external.ts` の add / sync / remove は自動で再生成する）。共通ヘルパーは `scripts/lib.ts`。
