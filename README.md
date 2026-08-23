@@ -82,7 +82,7 @@ scripts/external.ts list
 
 **Model-invoked**
 
-（なし）
+- [tagpr](./skills/engineering/tagpr/SKILL.md): Songmu/tagpr でリリース PR の自動生成・タグ付け・GitHub Release 作成を GitHub Actions に組み込む。GitHub App（actions/create-github-app-token）のトークンで動かし、タグ push で別の公開ワークフローを起動できる形にする。
 
 ### Productivity
 

@@ -5,11 +5,11 @@
 このリポジトリに入っている全スキルの一覧。`npx skills add upamune/skills` でインストールできる。
 再生成: `scripts/gen-skills-md.ts`（`scripts/external.ts` の add / sync / remove 後は自動で更新される）。
 
-合計 17 スキル
+合計 18 スキル
 
 | bucket | count | 用途 |
 | --- | --- | --- |
-| [engineering/](#engineering) | 1 | 日常のコード作業向け（自作） |
+| [engineering/](#engineering) | 2 | 日常のコード作業向け（自作） |
 | [productivity/](#productivity) | 0 | コード以外のワークフロー向け（自作） |
 | [in-progress/](#in-progress) | 0 | 作りかけ・試用中（自作） |
 | [deprecated/](#deprecated) | 0 | 使わなくなったもの（自作） |
@@ -22,6 +22,10 @@
 **User-invoked**
 
 - [init-project](./skills/engineering/init-project/SKILL.md): Go または TypeScript (Bun) の新規プロジェクトを、mise / format・lint・test の CI / backlog / upamune の skills 込みで立ち上げる。新しいリポジトリで最初に一度だけ実行する。
+
+**Model-invoked**
+
+- [tagpr](./skills/engineering/tagpr/SKILL.md): Songmu/tagpr でリリース PR の自動生成とタグ付け・GitHub Release 作成を GitHub Actions に組み込む。GitHub App（actions/create-github-app-token）のトークンで動かし、タグ push から別の公開ワークフローを起動できる形にする。「tagpr を導入して」「リリース PR を自動化したい」「タグ付けとリリースを自動化」「tagpr のワークフローを直して」「release PR が作られない」と言われたら使う。新規・既存どちらのリポジトリにも使える。
 
 ## productivity
 
