@@ -4,7 +4,18 @@
 
 import { existsSync, readdirSync } from "node:fs";
 import { basename, join, relative } from "node:path";
-import { EXTERNAL_DIR, findSkillDirs, oneLine, readFrontmatter, readManifest, REPO, SKILLS_DIR, type Manifest } from "./lib";
+import {
+  EXTERNAL_DIR,
+  findSkillDirs,
+  oneLine,
+  readFrontmatter,
+  readManifest,
+  REPO,
+  SKILLS_DIR,
+  sourceLabel,
+  sourceUrl,
+  type Manifest,
+} from "./lib";
 
 const BUCKET_ORDER = ["engineering", "productivity", "in-progress", "deprecated", "external"];
 const BUCKET_LABEL: Record<string, string> = {
@@ -58,11 +69,8 @@ function renderExternal(rows: Row[], manifest: Manifest): string[] {
   const out = ["| skill | description | source | commit |", "| --- | --- | --- | --- |"];
   for (const r of rows) {
     const e = manifest.skills[r.name];
-    const source = e
-      ? e.url.startsWith("https://github.com/")
-        ? `[${e.source}/${e.path}](${e.url.replace(/\.git$/, "")}/tree/${e.commit}/${e.path})`
-        : `${e.source}/${e.path}`
-      : "(manifest 未登録)";
+    const url = e ? sourceUrl(e) : null;
+    const source = e ? (url ? `[${sourceLabel(e)}](${url})` : sourceLabel(e)) : "(manifest 未登録)";
     const commit = e ? `\`${e.commit.slice(0, 7)}\`` : "";
     out.push(`| [${r.name}](./${r.relDir}/SKILL.md) | ${escapeCell(r.description)} | ${source} | ${commit} |`);
   }
