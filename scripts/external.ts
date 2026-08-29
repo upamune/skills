@@ -6,7 +6,8 @@
 //   scripts/external.ts remove <skill>...
 //   scripts/external.ts list
 //
-// <source> は owner/repo, https://github.com/owner/repo(/tree/<ref>/<path>), git URL のいずれか。
+// <source> は owner/repo, https://github.com/owner/repo(/tree/<ref>/<path>),
+// https://gist.github.com/<user>/<id>, git URL のいずれか。
 
 import { $ } from "bun";
 import { cpSync, existsSync, mkdtempSync, readdirSync, rmSync, statSync } from "node:fs";
@@ -20,6 +21,9 @@ import {
   readFrontmatter,
   readManifest,
   REPO,
+  SKIP_DIRS,
+  sourceLabel,
+  sourceUrl,
   writeManifest,
   type Manifest,
 } from "./lib";
@@ -40,6 +44,7 @@ Examples:
   scripts/external.ts add mattpocock/skills grilling tdd
   scripts/external.ts add vercel-labs/agent-browser agent-browser --ref main
   scripts/external.ts add https://github.com/openai/plugins/tree/main/plugins/build-ios-apps/skills/ios-debugger-agent
+  scripts/external.ts add https://gist.github.com/k16shikano/fd287c3133457c4fd8f5601d34aa817d
   scripts/external.ts sync            # 全部を最新 ref に更新
   scripts/external.ts sync --frozen   # manifest の commit で取り直す`);
   process.exit(code);
@@ -64,6 +69,13 @@ type Source = { source: string; url: string; ref?: string; path?: string };
 
 // source 文字列 → { source, url, ref?, path? }
 function resolveSource(input: string): Source {
+  // gist も git repo として clone できる（ファイルは常にルート直下）
+  const gist = input.match(/^https?:\/\/gist\.github\.com\/(?:([^/]+)\/)?([0-9a-f]+)(?:\.git)?\/?$/);
+  if (gist) {
+    const [, owner, id] = gist;
+    const slug = owner ? `${owner}/${id}` : id!;
+    return { source: `gist:${slug}`, url: `https://gist.github.com/${slug}.git` };
+  }
   const gh = input.match(/^https?:\/\/github\.com\/([^/]+)\/([^/]+?)(?:\.git)?(?:\/tree\/([^/]+)(?:\/(.+))?)?\/?$/);
   if (gh) {
     const [, owner, repo, ref, path] = gh;
@@ -337,9 +349,11 @@ async function copySkill(
   const dest = join(EXTERNAL_DIR, name);
   const before = existsSync(dest) ? await folderHash(dest) : null;
   rmSync(dest, { recursive: true, force: true });
-  cpSync(src, dest, { recursive: true });
+  // スキルが repo ルート直下（gist など）の場合に .git を持ち込まないよう除外する
+  cpSync(src, dest, { recursive: true, filter: (p) => !SKIP_DIRS.has(basename(p)) });
   const after = await folderHash(dest);
-  return { path: relative(repoDir, src), changed: before !== after };
+  // gist などスキルが repo ルート直下にある場合、relative は "" を返すので "." に正規化する
+  return { path: relative(repoDir, src) || ".", changed: before !== after };
 }
 
 async function vendor(
@@ -379,6 +393,10 @@ async function discoverSkills(repoDir: string): Promise<Discovered[]> {
 async function chooseSkills(repoDir: string, src: Source, manifest: Manifest): Promise<string[]> {
   const found = await discoverSkills(repoDir);
   if (found.length === 0) throw new Error(`${src.source} に SKILL.md が見つかりません`);
+  if (found.length === 1) {
+    console.log(`スキルが 1 つだけなので自動選択: ${found[0]!.name}`);
+    return [found[0]!.name];
+  }
   const choices: Choice[] = [];
   const indexMap: (Discovered | null)[] = [];
   let currentGroup: string | null = null;
@@ -411,9 +429,8 @@ async function writeExternalReadme(manifest: Manifest): Promise<void> {
   const names = Object.keys(manifest.skills).sort();
   const rows = names.map((n) => {
     const e = manifest.skills[n]!;
-    const link = e.url.startsWith("https://github.com/")
-      ? `[${e.source}](${e.url.replace(/\.git$/, "")}/tree/${e.commit}/${e.path})`
-      : e.source;
+    const url = sourceUrl(e);
+    const link = url ? `[${e.source}](${url})` : e.source;
     return `| [${n}](./${n}/SKILL.md) | ${link} | \`${e.ref ?? "default"}\` | \`${e.commit.slice(0, 7)}\` |`;
   });
   const body = [
@@ -482,7 +499,7 @@ async function cmdAdd(positional: string[], flags: Flags): Promise<void> {
         commit,
         updatedAt: new Date().toISOString(),
       };
-      console.log(`added   ${name}  <- ${src.source}/${result.path} @ ${commit.slice(0, 7)}`);
+      console.log(`added   ${name}  <- ${sourceLabel(manifest.skills[name]!)} @ ${commit.slice(0, 7)}`);
     }
   } finally {
     rmSync(dir, { recursive: true, force: true });
@@ -537,7 +554,7 @@ async function cmdList(): Promise<void> {
   const width = Math.max(...names.map((n) => n.length));
   for (const name of names) {
     const e = manifest.skills[name]!;
-    console.log(`${name.padEnd(width)}  ${e.source}/${e.path}  ${e.ref ?? ""}@${e.commit.slice(0, 7)}`);
+    console.log(`${name.padEnd(width)}  ${sourceLabel(e)}  ${e.ref ?? ""}@${e.commit.slice(0, 7)}`);
   }
 }
 

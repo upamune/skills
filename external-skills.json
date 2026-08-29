@@ -43,6 +43,13 @@
       "commit": "5b15a47f2d7150f545fbcacbfe381787fc0230dc",
       "updatedAt": "2026-08-23T10:02:54.800Z"
     },
+    "cognitive-rhythm-writing": {
+      "source": "gist:k16shikano/eb2929f13ed19c97188393d297be8432",
+      "url": "https://gist.github.com/k16shikano/eb2929f13ed19c97188393d297be8432.git",
+      "path": ".",
+      "commit": "a3b1e26beced71d582e13314fb6f5b179b023c76",
+      "updatedAt": "2026-08-29T01:41:14.312Z"
+    },
     "diagnosing-bugs": {
       "source": "mattpocock/skills",
       "url": "https://github.com/mattpocock/skills.git",
@@ -112,6 +119,13 @@
       "path": "skills/engineering/improve-codebase-architecture",
       "commit": "5b15a47f2d7150f545fbcacbfe381787fc0230dc",
       "updatedAt": "2026-08-23T10:02:54.819Z"
+    },
+    "japanese-tech-writing": {
+      "source": "gist:k16shikano/fd287c3133457c4fd8f5601d34aa817d",
+      "url": "https://gist.github.com/k16shikano/fd287c3133457c4fd8f5601d34aa817d.git",
+      "path": ".",
+      "commit": "c7189cdc9c2520be50418209834145bdf3a46e97",
+      "updatedAt": "2026-08-29T01:41:13.606Z"
     },
     "loop-me": {
       "source": "mattpocock/skills",

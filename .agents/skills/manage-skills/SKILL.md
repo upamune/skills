@@ -18,6 +18,7 @@ metadata:
 | 候補を見る | `scripts/external.ts add <owner/repo> --list` |
 | 追加（対話選択） | `scripts/external.ts add <owner/repo>`（TTY が無い環境では名前指定にする） |
 | 追加（名前指定） | `scripts/external.ts add <owner/repo> <skill>...`（`--ref <branch>`、tree URL も可） |
+| 追加（gist） | `scripts/external.ts add https://gist.github.com/<user>/<id>`（SKILL.md がルート直下にある gist。スキルが 1 つなら自動選択） |
 | 更新 | `scripts/external.ts sync [<skill>...]`（pin を動かさず取り直すだけなら `--frozen`） |
 | 削除 | `scripts/external.ts remove <skill>...` |
 | 一覧 | `scripts/external.ts list` |

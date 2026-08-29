@@ -28,7 +28,7 @@
 
 出所と pin（commit）は `external-skills.json` が正。`skills/external/` の中身はそこから生成されたコピーなので手で触らない。操作はすべて `scripts/external.ts` で行う:
 
-- 追加: `scripts/external.ts add <owner/repo|URL> [<skill>...] [--ref <ref>] [--path <repo内パス>]`（スキル名を省略すると対話的に選択、`--list` で一覧のみ）
+- 追加: `scripts/external.ts add <owner/repo|URL> [<skill>...] [--ref <ref>] [--path <repo内パス>]`（スキル名を省略すると対話的に選択、`--list` で一覧のみ。gist URL も可で、SKILL.md がルート直下にあれば取り込める）
 - 更新: `scripts/external.ts sync [<skill>...]`（`--frozen` で pin した commit のまま取り直し）
 - 削除: `scripts/external.ts remove <skill>...`
 - 一覧: `scripts/external.ts list`

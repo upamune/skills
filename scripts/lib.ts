@@ -82,6 +82,23 @@ export async function frontmatterName(skillDir: string): Promise<string | null> 
   return (await readFrontmatter(skillDir)).name;
 }
 
+// manifest entry の表示用ラベル（path が "." ならスキルが repo ルート直下なので source だけ）
+export function sourceLabel(e: Entry): string {
+  return e.path === "." ? e.source : `${e.source}/${e.path}`;
+}
+
+// manifest entry の pin した commit を指すブラウズ用 URL（GitHub repo / gist 以外は null）
+export function sourceUrl(e: Entry): string | null {
+  const base = e.url.replace(/\.git$/, "");
+  if (e.url.startsWith("https://github.com/")) {
+    return `${base}/tree/${e.commit}${e.path === "." ? "" : `/${e.path}`}`;
+  }
+  if (e.url.startsWith("https://gist.github.com/")) {
+    return `${base}/${e.commit}`;
+  }
+  return null;
+}
+
 export function oneLine(text: string | null): string {
   return text ? text.replace(/\s+/g, " ").trim() : "";
 }
