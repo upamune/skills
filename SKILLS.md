@@ -5,7 +5,7 @@
 このリポジトリに入っている全スキルの一覧。`npx skills add upamune/skills` でインストールできる。
 再生成: `scripts/gen-skills-md.ts`（`scripts/external.ts` の add / sync / remove 後は自動で更新される）。
 
-合計 40 スキル
+合計 41 スキル
 
 | bucket | count | 用途 |
 | --- | --- | --- |
@@ -13,7 +13,7 @@
 | [productivity/](#productivity) | 0 | コード以外のワークフロー向け（自作） |
 | [in-progress/](#in-progress) | 0 | 作りかけ・試用中（自作） |
 | [deprecated/](#deprecated) | 0 | 使わなくなったもの（自作） |
-| [external/](#external) | 37 | 外部リポジトリから vendor したもの |
+| [external/](#external) | 38 | 外部リポジトリから vendor したもの |
 
 ## engineering
 
@@ -83,6 +83,7 @@
 | [resolving-merge-conflicts](./skills/external/resolving-merge-conflicts/SKILL.md) | Use when you need to resolve an in-progress git merge/rebase conflict. | [mattpocock/skills/skills/engineering/resolving-merge-conflicts](https://github.com/mattpocock/skills/tree/5b15a47f2d7150f545fbcacbfe381787fc0230dc/skills/engineering/resolving-merge-conflicts) | `5b15a47` |
 | [review-and-ship](./skills/external/review-and-ship/SKILL.md) | Review the current branch for bugs, intent fit, and test coverage; run or write tests; commit focused work; open or update a PR. | [cursor/plugins/cursor-team-kit/skills/review-and-ship](https://github.com/cursor/plugins/tree/68836ddaf5697224520f1847d90cdb90ca8babaa/cursor-team-kit/skills/review-and-ship) | `68836dd` |
 | [review-animations](./skills/external/review-animations/SKILL.md) | Reviews animation and motion code against a high craft bar derived from Emil Kowalski's design engineering philosophy. Default to flagging; approval is earned. | [emilkowalski/skills/skills/review-animations](https://github.com/emilkowalski/skills/tree/d23d7f88a2e21c9e4b1418c7abe420f5c1052ba7/skills/review-animations) | `d23d7f8` |
+| [simplify](./skills/external/simplify/SKILL.md) | Simplify and refine recently modified code for clarity and consistency. Use after writing code to improve readability without changing functionality. | [brianlovin/agent-config/skills/simplify](https://github.com/brianlovin/agent-config/tree/1a9819ebf3fee811150fc76cbe177ea4e5f747ff/skills/simplify) | `1a9819e` |
 | [teach](./skills/external/teach/SKILL.md) | Teach the user a new skill or concept, within this workspace. | [mattpocock/skills/skills/productivity/teach](https://github.com/mattpocock/skills/tree/5b15a47f2d7150f545fbcacbfe381787fc0230dc/skills/productivity/teach) | `5b15a47` |
 | [thermo-nuclear-code-quality-review](./skills/external/thermo-nuclear-code-quality-review/SKILL.md) | Run an extremely strict maintainability review for abstraction quality, giant files, and spaghetti-condition growth. Use for a thermo-nuclear code quality review, thermonuclear review, deep code quality audit, or especially harsh maintainability review. | [cursor/plugins/cursor-team-kit/skills/thermo-nuclear-code-quality-review](https://github.com/cursor/plugins/tree/68836ddaf5697224520f1847d90cdb90ca8babaa/cursor-team-kit/skills/thermo-nuclear-code-quality-review) | `68836dd` |
 | [weekly-review](./skills/external/weekly-review/SKILL.md) | Produce a weekly synthesis of authored commits with highlights by bugfix, tech debt, and net-new work | [cursor/plugins/cursor-team-kit/skills/weekly-review](https://github.com/cursor/plugins/tree/68836ddaf5697224520f1847d90cdb90ca8babaa/cursor-team-kit/skills/weekly-review) | `68836dd` |

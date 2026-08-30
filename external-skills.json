@@ -218,6 +218,13 @@
       "commit": "d23d7f88a2e21c9e4b1418c7abe420f5c1052ba7",
       "updatedAt": "2026-08-23T10:43:46.904Z"
     },
+    "simplify": {
+      "source": "brianlovin/agent-config",
+      "url": "https://github.com/brianlovin/agent-config.git",
+      "path": "skills/simplify",
+      "commit": "1a9819ebf3fee811150fc76cbe177ea4e5f747ff",
+      "updatedAt": "2026-08-30T07:20:21.471Z"
+    },
     "teach": {
       "source": "mattpocock/skills",
       "url": "https://github.com/mattpocock/skills.git",
