@@ -18,10 +18,10 @@ $R host                                  # claude-code / codex / cursor / unknow
 | 2 | `opencode:deepseek-v4-flash` | 同上 DeepSeek V4 Flash | 同上 |
 | 3 | `codex:gpt-5.6-sol` | `codex exec -m gpt-5.6-sol`（review は `--sandbox read-only`、apply は `--full-auto`） | `codex` とログイン |
 | 4 | `claude:opus-5` | `claude -p --model opus`（apply は `sonnet`） | ホストが Claude Code でないとき |
-| 5 | `cursor:grok-4.6` | `cursor-agent --model cursor-grok-4.6-high`（review は `--mode=plan`、apply は `-f`）。長いプロンプトで空出力になる事例あり | `cursor-agent` がある |
+| 5 | `cursor:grok-4.6` | `cursor-agent --output-format json --model cursor-grok-4.6-high`（review は `--mode=plan`、apply は `-f`）。`text` 形式は長い依頼で最終出力が落ちるので json 固定 | `cursor-agent` がある |
 | 6 | `host` | ホスト自身のサブエージェント。常に使える | (なし) |
 
-実測（deslop 基準で 2 ファイルをレビュー）: GLM 59 秒で 4 件（全部妥当）、DeepSeek 16 秒で 1 件、Codex 108 秒で 1 件、Cursor 308 秒で空。順序はこの結果から。
+実測（deslop 基準で 2 ファイルをレビュー）: GLM 59 秒で 4 件（全部妥当）、DeepSeek 16 秒で 1 件、Codex 108 秒で 1 件、Cursor（Grok 4.6）255 秒で 4 件（全部妥当）。順序は速さと質のバランスから。
 
 - 個人機判定は `$USER == upamune` か `ULTRA_SHIP_PERSONAL=1`。会社機では 1・2 が落ちて Codex → Claude → Cursor → host になる
 - `ULTRA_SHIP_REVIEWERS=codex:gpt-5.6-sol,host` のように順序と対象を上書きできる
@@ -53,7 +53,7 @@ git diff --stat
 
 - 変更を論理単位（機能 / テスト / 生成物 / 設定）に分けてコミットする。コミットメッセージはその repo の慣習（言語・prefix・本文の形式）に合わせる
 - `.env`、鍵、巨大バイナリ、ローカル専用ファイルが混ざっていたら除外して報告する
-- `z/` は `.git/info/exclude` に入っているので含まれない
+- `z/` は `.git/info/exclude` に入っているので通常は含まれない。それでも `git status --short | grep '^A.*z/'` で混入が無いことを確認してからコミットする。混ざっていたら `git rm --cached -r z/`
 
 ## 2. merge
 

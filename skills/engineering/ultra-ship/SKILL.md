@@ -16,6 +16,7 @@ disable-model-invocation: true
 - **レビューは毎ラウンド別のレビュアー**で行う。`scripts/reviewers.py` の台帳（OpenCode+GLM-5.3 Flash → OpenCode+DeepSeek V4 Flash → Codex → Claude → Cursor → `host`）を上から順にローテーションし、前ラウンドの文脈を引き継がせない。Claude / Codex は台帳の下位なので、上位モデルで指摘が尽きれば呼ばれない（使用量のオフロード）。外部 CLI が一つも無い環境（各社の Cloud）では `host`（ホスト自身のサブエージェント）だけで回す。有効な指摘がゼロになったらそのスキルは終了、上限は各 4 ラウンド（超えたら `blocked` にして理由を書き、次へ進む）
 - **レビュー（読み取り専用）と適用（書き込み）を分ける**。外部レビュアーは指摘だけ返し、適用は `reviewers.py pick --role apply` で選んだ安い書き込み可能なレビュアー、無ければホストの安いサブエージェント（Claude Code なら `model: sonnet`）がやる。作業ツリーに同時に書くエージェントは常に 1 つ
 - **コードを触ったラウンドの後は必ずプロジェクトの検査（typecheck / lint / test）を通してからコミット**する
+- **`z/` 以下（チェックポイント、レビュー結果、canvas の HTML）は絶対にコミットしない**。`checkpoint.py init` が `.git/info/exclude` に `/z/` を入れるが、`git add -A` や `git add -f` で混ざらないよう、コミット前に `git status --short` に `z/` が無いことを確認する。混ざっていたら `git rm --cached -r z/` で外す
 - 破壊的な git 操作（`push --force`、`reset --hard`、`--no-verify`）はしない。履歴の書き換えは make-pr-easy-to-review の手順どおり、未 push のコミットに限る
 
 ## 手順

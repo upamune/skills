@@ -150,8 +150,6 @@ def load_findings(path: Path) -> list[dict]:
     return out
 
 
-# ---------- HTML ----------
-
 CSS = """
 @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&display=swap');
 :root {
@@ -187,12 +185,10 @@ ol.phases { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(-
 .phase > summary .n::before { content: "▸ "; font-size: 10px; }
 .phase[open] > summary .n::before { content: "▾ "; }
 .phase .detail { padding: 0 0 14px 212px; }
-.phase .n { color: var(--muted); }
 .phase .name { font-weight: 600; }
 .phase .name small { display: block; font-weight: 400; color: var(--muted); font-size: 11px; }
 .phase .body { min-width: 0; }
 .phase .desc { color: var(--muted); }
-.phase .note { margin-top: 0; }
 .phase.pending > summary { cursor: default; } .phase.pending > summary .n::before { content: "  "; }
 .pill { font-size: 11px; padding: 2px 8px; border: 1px solid currentColor; border-radius: 999px; white-space: nowrap; }
 .pending .pill { color: var(--muted); } .in_progress .pill { color: var(--work); } .done .pill { color: var(--done); }

@@ -85,9 +85,9 @@ LEDGER: list[Reviewer] = [
         "claude",
     ),
     Reviewer(
-        "cursor:grok-4.6", "Cursor CLI / Grok 4.6 (high)（長いプロンプトで空出力になることあり）", False,
-        ["cursor-agent", "-p", "--mode=plan", "--output-format", "text", "--model", "cursor-grok-4.6-high", "{prompt}"],
-        ["cursor-agent", "-p", "-f", "--output-format", "text", "--model", "cursor-grok-4.6-high", "{prompt}"],
+        "cursor:grok-4.6", "Cursor CLI / Grok 4.6 (high)", False,
+        ["cursor-agent", "-p", "--mode=plan", "--output-format", "json", "--model", "cursor-grok-4.6-high", "{prompt}"],
+        ["cursor-agent", "-p", "-f", "--output-format", "json", "--model", "cursor-grok-4.6-high", "{prompt}"],
         "cursor",
     ),
 ]
@@ -203,6 +203,15 @@ def build_prompt(prompt_file: Path, skill: Path | None) -> str:
     return f"## スキル定義（{skill.name}）\n\n{skill.read_text().strip()}\n\n## 依頼\n\n{prompt}"
 
 
+def extract_result(stdout: str) -> str:
+    """cursor-agent の --output-format json は {"type": "result", "result": "..."} を返す。それ以外はそのまま。"""
+    try:
+        d = json.loads(stdout)
+    except json.JSONDecodeError:
+        return stdout
+    return d["result"] if isinstance(d, dict) and isinstance(d.get("result"), str) else stdout
+
+
 def cmd_run(rid: str, role: str, prompt_file: Path, skill: Path | None, out: Path | None, cwd: Path | None, timeout: int) -> None:
     if rid == HOST_ID:
         sys.exit("host は run できない。ホストのサブエージェント機構でプロンプトを実行する")
@@ -213,8 +222,6 @@ def cmd_run(rid: str, role: str, prompt_file: Path, skill: Path | None, out: Pat
     if not ok:
         sys.exit(f"{rid} は使えない: {why}")
     cmd = r.command(role)
-    if cmd is None:
-        sys.exit(f"{rid} は role={role} に対応していない")
     prompt = build_prompt(prompt_file, skill)
     argv = [prompt if a == "{prompt}" else a for a in cmd]
     print(f"$ {' '.join(a if a != prompt else '<prompt>' for a in argv)}", file=sys.stderr)
@@ -222,7 +229,7 @@ def cmd_run(rid: str, role: str, prompt_file: Path, skill: Path | None, out: Pat
         p = subprocess.run(argv, cwd=cwd, capture_output=True, text=True, timeout=timeout, stdin=subprocess.DEVNULL)
     except subprocess.TimeoutExpired:
         sys.exit(f"{rid} が {timeout} 秒で応答しなかった")
-    text = p.stdout if p.stdout.strip() else p.stderr
+    text = extract_result(p.stdout) if p.stdout.strip() else p.stderr
     if out:
         out.parent.mkdir(parents=True, exist_ok=True)
         out.write_text(text if text.endswith("\n") else text + "\n")
