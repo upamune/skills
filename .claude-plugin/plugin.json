@@ -10,6 +10,7 @@
   "skills": [
     "./skills/engineering/init-project",
     "./skills/engineering/tagpr",
+    "./skills/engineering/ultra-ship",
     "./skills/engineering/uv-script"
   ]
 }

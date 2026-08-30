@@ -79,6 +79,7 @@ scripts/external.ts list
 **User-invoked**
 
 - [init-project](./skills/engineering/init-project/SKILL.md): Go / TypeScript (Bun) の新規プロジェクトを mise・CI（format/lint/test, pinact）・backlog・upamune/skills 込みで立ち上げる。新しいリポジトリで最初に一度だけ実行する。
+- [ultra-ship](./skills/engineering/ultra-ship/SKILL.md): 実装済みのブランチを、コミット → base merge と衝突解消 → thermo-nuclear / simplify / deslop / code-review を Cursor / OpenCode / Codex / Claude / ホストのサブエージェントをローテーションして指摘ゼロまで反復（安いモデルへオフロード） → PR 作成・整備 → pr-review-canvas で説明 → CI green まで一気に仕上げる。進捗は `z/<branch>/ultra-ship.html` に残し途中から再開できる。
 
 **Model-invoked**
 

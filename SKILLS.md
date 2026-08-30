@@ -5,11 +5,11 @@
 このリポジトリに入っている全スキルの一覧。`npx skills add upamune/skills` でインストールできる。
 再生成: `scripts/gen-skills-md.ts`（`scripts/external.ts` の add / sync / remove 後は自動で更新される）。
 
-合計 41 スキル
+合計 42 スキル
 
 | bucket | count | 用途 |
 | --- | --- | --- |
-| [engineering/](#engineering) | 3 | 日常のコード作業向け（自作） |
+| [engineering/](#engineering) | 4 | 日常のコード作業向け（自作） |
 | [productivity/](#productivity) | 0 | コード以外のワークフロー向け（自作） |
 | [in-progress/](#in-progress) | 0 | 作りかけ・試用中（自作） |
 | [deprecated/](#deprecated) | 0 | 使わなくなったもの（自作） |
@@ -22,6 +22,7 @@
 **User-invoked**
 
 - [init-project](./skills/engineering/init-project/SKILL.md): Go または TypeScript (Bun) の新規プロジェクトを、mise / format・lint・test の CI / backlog / upamune の skills 込みで立ち上げる。新しいリポジトリで最初に一度だけ実行する。
+- [ultra-ship](./skills/engineering/ultra-ship/SKILL.md): 実装が終わったブランチを「コミット → base merge と衝突解消 → 4 種のレビューを Cursor / OpenCode / Codex / Claude / ホストのサブエージェントをローテーションして指摘ゼロまで反復 → PR 作成・整備 → pr-review-canvas で説明 → CI が green になるまで修正」まで一気に持っていく。進捗は z/<branch>/ultra-ship.html にチェックポイントとして残し、途中から再開できる。
 
 **Model-invoked**
 
