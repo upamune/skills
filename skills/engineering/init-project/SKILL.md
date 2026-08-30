@@ -15,7 +15,7 @@ disable-model-invocation: true
 - **GitHub Actions の `uses:` は pinact で SHA に pin**し、各 action は Releases を見て最新メジャーを使う
 - **CI は format / lint / test の 3 ジョブ**を最低限とする
 
-言語別の雛形は [references/typescript.md](references/typescript.md) と [references/go.md](references/go.md)、CI の規約と action の最新版は [references/github-actions.md](references/github-actions.md)、`.gitignore` は [references/gitignore.md](references/gitignore.md)。選んだ言語の reference だけ読む（`.gitignore` はどちらでも同じ全文）。
+言語別の雛形は [references/typescript.md](references/typescript.md) と [references/go.md](references/go.md)、CI の規約と action の最新版は [references/github-actions.md](references/github-actions.md)。選んだ言語の reference だけ読む。
 
 ## 手順
 
@@ -48,7 +48,7 @@ disable-model-invocation: true
 
 選んだ言語の reference に従って作る:
 
-1. `git init`（未初期化の場合）と `.gitignore`（[references/gitignore.md](references/gitignore.md) の全文。`.backlog/` は backlog 自身の `.gitignore` に任せる）
+1. `git init`（未初期化の場合）と `.gitignore`（[references/gitignore.txt](references/gitignore.txt) をそのままコピー。`.backlog/` は backlog 自身の `.gitignore` に任せる）
 2. `mise.toml`（`[tools]` と `[tasks]` の `format` / `format:check` / `lint` / `test` / `ci`）→ `mise trust` → `mise install`
 3. 言語の初期化（`go mod init` / `bun init -y` 相当）、設定ファイル、最小ソースとテスト 1 本
 4. `.editorconfig`
