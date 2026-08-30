@@ -21,7 +21,7 @@ $R host                                  # claude-code / codex / cursor / unknow
 | 5 | `claude:opus-5` | `claude -p --model opus`（apply は `sonnet`） | ホストが Claude Code でないとき | 数分 |
 | 6 | `host` | ホスト自身のサブエージェント。常に使える | (なし) | 数分 |
 
-実測（deslop 基準で 2 ファイルをレビュー）: GLM 59 秒で 4 件（全部妥当）、DeepSeek 16 秒で 1 件、Cursor（Grok 4.6 high）255 秒で 4 件（全部妥当）、Codex 108 秒で 1 件。Cursor は遅いが指摘の質が高く、Codex / Claude の使用量を食わないので Codex より前。`cursor-grok-4.6-high-fast` は 212 秒で指摘本文を返さなかった（前置きだけで終わる）ので使わない。時間は `$R list` にも出る。1 ラウンドに数分かかるのは正常なので、`--timeout` を短くしない。
+実測（deslop 基準で 2 ファイルをレビュー）: GLM 59 秒で 4 件（全部妥当）、DeepSeek 16 秒で 1 件、Cursor（Grok 4.6 high）255 秒で 4 件（全部妥当）、Codex 108 秒で 1 件。Cursor は遅いが指摘の質が高く、Codex / Claude の使用量を食わないので Codex より前。`cursor-grok-4.6-high-fast` は 212 秒で指摘本文を返さなかった（前置きだけで終わる）ので使わない。時間は `$R list` にも出るが、**どれも小さい差分（2 ファイル）での値**で、差分が大きければそのぶん伸びる。上限は `run` の `--timeout`（既定 1800 秒 = 30 分）で、そこまでは待つ。短くしない。30 分で返らなければそのレビュアーを `blocked` 扱いにして次のレビュアーで同じラウンドをやり直す。
 
 - 個人機判定は `$USER == upamune` か `ULTRA_SHIP_PERSONAL=1`。会社機では 1・2 が落ちて Cursor → Codex → Claude → host になる
 - `ULTRA_SHIP_REVIEWERS=codex:gpt-5.6-sol,host` のように順序と対象を上書きできる

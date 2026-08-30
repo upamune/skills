@@ -53,7 +53,7 @@ class Reviewer:
     review: list[str] | None
     apply: list[str] | None
     check: str  # 可用性チェックの種類
-    eta: str  # レビュー 1 回の目安時間（実測）
+    eta: str  # レビュー 1 回の目安時間（小さい差分での実測。差分が大きければ伸びる）
 
     def command(self, role: str) -> list[str] | None:
         return self.review if role == "review" else self.apply
@@ -170,7 +170,7 @@ def ordered_ledger() -> list[Reviewer]:
 
 
 def cmd_list() -> None:
-    print(f"host={detect_host()} personal={is_personal()}")
+    print(f"host={detect_host()} personal={is_personal()}  （~時間は小さい差分での実測。大きい差分では伸びる。上限は run の --timeout、既定 30 分）")
     for i, r in enumerate(ordered_ledger(), 1):
         ok, why = availability(r)
         mark = "✓" if ok else "✗"
