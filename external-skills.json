@@ -50,6 +50,13 @@
       "commit": "a3b1e26beced71d582e13314fb6f5b179b023c76",
       "updatedAt": "2026-08-29T01:41:14.312Z"
     },
+    "deslop": {
+      "source": "cursor/plugins",
+      "url": "https://github.com/cursor/plugins.git",
+      "path": "cursor-team-kit/skills/deslop",
+      "commit": "68836ddaf5697224520f1847d90cdb90ca8babaa",
+      "updatedAt": "2026-08-30T07:10:21.977Z"
+    },
     "diagnosing-bugs": {
       "source": "mattpocock/skills",
       "url": "https://github.com/mattpocock/skills.git",
@@ -77,6 +84,13 @@
       "path": "skills/find-animation-opportunities",
       "commit": "d23d7f88a2e21c9e4b1418c7abe420f5c1052ba7",
       "updatedAt": "2026-08-23T10:43:46.898Z"
+    },
+    "get-pr-comments": {
+      "source": "cursor/plugins",
+      "url": "https://github.com/cursor/plugins.git",
+      "path": "cursor-team-kit/skills/get-pr-comments",
+      "commit": "68836ddaf5697224520f1847d90cdb90ca8babaa",
+      "updatedAt": "2026-08-30T07:10:22.023Z"
     },
     "grill-me": {
       "source": "mattpocock/skills",
@@ -134,12 +148,40 @@
       "commit": "5b15a47f2d7150f545fbcacbfe381787fc0230dc",
       "updatedAt": "2026-08-23T10:02:54.844Z"
     },
+    "loop-on-ci": {
+      "source": "cursor/plugins",
+      "url": "https://github.com/cursor/plugins.git",
+      "path": "cursor-team-kit/skills/loop-on-ci",
+      "commit": "68836ddaf5697224520f1847d90cdb90ca8babaa",
+      "updatedAt": "2026-08-30T07:10:21.965Z"
+    },
+    "make-pr-easy-to-review": {
+      "source": "cursor/plugins",
+      "url": "https://github.com/cursor/plugins.git",
+      "path": "cursor-team-kit/skills/make-pr-easy-to-review",
+      "commit": "68836ddaf5697224520f1847d90cdb90ca8babaa",
+      "updatedAt": "2026-08-30T07:10:22.011Z"
+    },
+    "new-branch-and-pr": {
+      "source": "cursor/plugins",
+      "url": "https://github.com/cursor/plugins.git",
+      "path": "cursor-team-kit/skills/new-branch-and-pr",
+      "commit": "68836ddaf5697224520f1847d90cdb90ca8babaa",
+      "updatedAt": "2026-08-30T07:10:21.989Z"
+    },
     "pick-ui-library": {
       "source": "emilkowalski/skills",
       "url": "https://github.com/emilkowalski/skills.git",
       "path": "skills/pick-ui-library",
       "commit": "d23d7f88a2e21c9e4b1418c7abe420f5c1052ba7",
       "updatedAt": "2026-08-23T10:43:46.902Z"
+    },
+    "pr-review-canvas": {
+      "source": "cursor/plugins",
+      "url": "https://github.com/cursor/plugins.git",
+      "path": "cursor-team-kit/skills/pr-review-canvas",
+      "commit": "68836ddaf5697224520f1847d90cdb90ca8babaa",
+      "updatedAt": "2026-08-30T07:11:45.400Z"
     },
     "prototype": {
       "source": "mattpocock/skills",
@@ -162,6 +204,13 @@
       "commit": "5b15a47f2d7150f545fbcacbfe381787fc0230dc",
       "updatedAt": "2026-08-23T10:02:54.829Z"
     },
+    "review-and-ship": {
+      "source": "cursor/plugins",
+      "url": "https://github.com/cursor/plugins.git",
+      "path": "cursor-team-kit/skills/review-and-ship",
+      "commit": "68836ddaf5697224520f1847d90cdb90ca8babaa",
+      "updatedAt": "2026-08-30T07:10:22.000Z"
+    },
     "review-animations": {
       "source": "emilkowalski/skills",
       "url": "https://github.com/emilkowalski/skills.git",
@@ -175,6 +224,34 @@
       "path": "skills/productivity/teach",
       "commit": "5b15a47f2d7150f545fbcacbfe381787fc0230dc",
       "updatedAt": "2026-08-23T10:02:54.860Z"
+    },
+    "thermo-nuclear-code-quality-review": {
+      "source": "cursor/plugins",
+      "url": "https://github.com/cursor/plugins.git",
+      "path": "cursor-team-kit/skills/thermo-nuclear-code-quality-review",
+      "commit": "68836ddaf5697224520f1847d90cdb90ca8babaa",
+      "updatedAt": "2026-08-30T07:12:32.225Z"
+    },
+    "weekly-review": {
+      "source": "cursor/plugins",
+      "url": "https://github.com/cursor/plugins.git",
+      "path": "cursor-team-kit/skills/weekly-review",
+      "commit": "68836ddaf5697224520f1847d90cdb90ca8babaa",
+      "updatedAt": "2026-08-30T07:10:22.035Z"
+    },
+    "what-did-i-get-done": {
+      "source": "cursor/plugins",
+      "url": "https://github.com/cursor/plugins.git",
+      "path": "cursor-team-kit/skills/what-did-i-get-done",
+      "commit": "68836ddaf5697224520f1847d90cdb90ca8babaa",
+      "updatedAt": "2026-08-30T07:10:22.046Z"
+    },
+    "workflow-from-chats": {
+      "source": "cursor/plugins",
+      "url": "https://github.com/cursor/plugins.git",
+      "path": "cursor-team-kit/skills/workflow-from-chats",
+      "commit": "68836ddaf5697224520f1847d90cdb90ca8babaa",
+      "updatedAt": "2026-08-30T07:10:22.058Z"
     },
     "writing-for-agents": {
       "source": "mattpocock/skills",
