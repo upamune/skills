@@ -5,7 +5,7 @@
 このリポジトリに入っている全スキルの一覧。`npx skills add upamune/skills` でインストールできる。
 再生成: `scripts/gen-skills-md.ts`（`scripts/external.ts` の add / sync / remove 後は自動で更新される）。
 
-合計 42 スキル
+合計 43 スキル
 
 | bucket | count | 用途 |
 | --- | --- | --- |
@@ -13,7 +13,7 @@
 | [productivity/](#productivity) | 0 | コード以外のワークフロー向け（自作） |
 | [in-progress/](#in-progress) | 0 | 作りかけ・試用中（自作） |
 | [deprecated/](#deprecated) | 0 | 使わなくなったもの（自作） |
-| [external/](#external) | 38 | 外部リポジトリから vendor したもの |
+| [external/](#external) | 39 | 外部リポジトリから vendor したもの |
 
 ## engineering
 
@@ -63,6 +63,7 @@
 | [deslop](./skills/external/deslop/SKILL.md) | Remove AI-generated code slop and clean up code style | [cursor/plugins/cursor-team-kit/skills/deslop](https://github.com/cursor/plugins/tree/68836ddaf5697224520f1847d90cdb90ca8babaa/cursor-team-kit/skills/deslop) | `68836dd` |
 | [diagnosing-bugs](./skills/external/diagnosing-bugs/SKILL.md) | Diagnosis loop for hard bugs and performance regressions. Use when the user says "diagnose"/"debug this", or reports something broken/throwing/failing/slow. | [mattpocock/skills/skills/engineering/diagnosing-bugs](https://github.com/mattpocock/skills/tree/5b15a47f2d7150f545fbcacbfe381787fc0230dc/skills/engineering/diagnosing-bugs) | `5b15a47` |
 | [domain-modeling](./skills/external/domain-modeling/SKILL.md) | Build and sharpen a project's domain model. Use when discussing codebase terminology, writing or editing a CONTEXT.md, or recording or editing an ADR. | [mattpocock/skills/skills/engineering/domain-modeling](https://github.com/mattpocock/skills/tree/5b15a47f2d7150f545fbcacbfe381787fc0230dc/skills/engineering/domain-modeling) | `5b15a47` |
+| [eli5](./skills/external/eli5/SKILL.md) | Explain a topic like I'm a 5 year old. Use when the user types /eli5 <topic> or asks for a dead-simple picture explainer of how something works. | [anthropics/claude-plugins-community/eli5/skills/eli5](https://github.com/anthropics/claude-plugins-community/tree/a727be1c7bd6064419b6f60d71993a19198adc17/eli5/skills/eli5) | `a727be1` |
 | [emil-design-eng](./skills/external/emil-design-eng/SKILL.md) | This skill encodes Emil Kowalski's philosophy on UI polish, component design, animation decisions, and the invisible details that make software feel great. | [emilkowalski/skills/skills/emil-design-eng](https://github.com/emilkowalski/skills/tree/d23d7f88a2e21c9e4b1418c7abe420f5c1052ba7/skills/emil-design-eng) | `d23d7f8` |
 | [find-animation-opportunities](./skills/external/find-animation-opportunities/SKILL.md) | Search a codebase or UI for places that don't animate but should, and reject everything that shouldn't. Read-only; it proposes motion with exact values, it does not implement it. Use when the user asks "what could be animated here?" or wants to "make this feel more alive". For fixing existing animations, use improve-animations or review-animations instead. | [emilkowalski/skills/skills/find-animation-opportunities](https://github.com/emilkowalski/skills/tree/d23d7f88a2e21c9e4b1418c7abe420f5c1052ba7/skills/find-animation-opportunities) | `d23d7f8` |
 | [get-pr-comments](./skills/external/get-pr-comments/SKILL.md) | Fetch and summarize review comments from the active pull request | [cursor/plugins/cursor-team-kit/skills/get-pr-comments](https://github.com/cursor/plugins/tree/68836ddaf5697224520f1847d90cdb90ca8babaa/cursor-team-kit/skills/get-pr-comments) | `68836dd` |

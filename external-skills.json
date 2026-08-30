@@ -71,6 +71,14 @@
       "commit": "5b15a47f2d7150f545fbcacbfe381787fc0230dc",
       "updatedAt": "2026-08-23T10:02:54.808Z"
     },
+    "eli5": {
+      "source": "anthropics/claude-plugins-community",
+      "url": "https://github.com/anthropics/claude-plugins-community.git",
+      "path": "eli5/skills/eli5",
+      "ref": "main",
+      "commit": "a727be1c7bd6064419b6f60d71993a19198adc17",
+      "updatedAt": "2026-08-30T13:22:51.059Z"
+    },
     "emil-design-eng": {
       "source": "emilkowalski/skills",
       "url": "https://github.com/emilkowalski/skills.git",

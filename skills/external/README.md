@@ -15,6 +15,7 @@
 | [deslop](./deslop/SKILL.md) | [cursor/plugins](https://github.com/cursor/plugins/tree/68836ddaf5697224520f1847d90cdb90ca8babaa/cursor-team-kit/skills/deslop) | `default` | `68836dd` |
 | [diagnosing-bugs](./diagnosing-bugs/SKILL.md) | [mattpocock/skills](https://github.com/mattpocock/skills/tree/5b15a47f2d7150f545fbcacbfe381787fc0230dc/skills/engineering/diagnosing-bugs) | `default` | `5b15a47` |
 | [domain-modeling](./domain-modeling/SKILL.md) | [mattpocock/skills](https://github.com/mattpocock/skills/tree/5b15a47f2d7150f545fbcacbfe381787fc0230dc/skills/engineering/domain-modeling) | `default` | `5b15a47` |
+| [eli5](./eli5/SKILL.md) | [anthropics/claude-plugins-community](https://github.com/anthropics/claude-plugins-community/tree/a727be1c7bd6064419b6f60d71993a19198adc17/eli5/skills/eli5) | `main` | `a727be1` |
 | [emil-design-eng](./emil-design-eng/SKILL.md) | [emilkowalski/skills](https://github.com/emilkowalski/skills/tree/d23d7f88a2e21c9e4b1418c7abe420f5c1052ba7/skills/emil-design-eng) | `default` | `d23d7f8` |
 | [find-animation-opportunities](./find-animation-opportunities/SKILL.md) | [emilkowalski/skills](https://github.com/emilkowalski/skills/tree/d23d7f88a2e21c9e4b1418c7abe420f5c1052ba7/skills/find-animation-opportunities) | `default` | `d23d7f8` |
 | [get-pr-comments](./get-pr-comments/SKILL.md) | [cursor/plugins](https://github.com/cursor/plugins/tree/68836ddaf5697224520f1847d90cdb90ca8babaa/cursor-team-kit/skills/get-pr-comments) | `default` | `68836dd` |
