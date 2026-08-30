@@ -13,7 +13,7 @@ disable-model-invocation: true
 - **チェックポイント優先**。始める前に必ず `checkpoint.py status` を試し、あれば `done` 以外の最初のフェーズから再開する。ただし記録を鵜呑みにせず、git / gh の実状態（未コミット差分、merge 中か、PR の有無、CI 状態）と突き合わせてから進む
 - **フェーズの節目ごとに必ずチェックポイントを更新する**。`phase <id> in_progress` で入り、`done` / `skipped` / `blocked` で抜ける。レビューは 1 ラウンドごとに `round` で「誰が、何を指摘し、何をどう直したか（見送ったなら理由）」を指摘 1 件単位で記録する。後から振り返る材料はここにしか残らない
 - **自明に良い指摘は勝手に採用する**。挙動を変えない整理、命名、重複除去、不要コメント削除、規約違反の修正は聞かずに直す。挙動やスコープが変わるもの、spec と矛盾するものだけ「採用しなかった指摘」として最後に報告する
-- **レビューは毎ラウンド別のレビュアー**で行う。`scripts/reviewers.py` の台帳（OpenCode+GLM-5.3 Flash → OpenCode+DeepSeek V4 Flash → Codex → Claude → Cursor → `host`）を上から順にローテーションし、前ラウンドの文脈を引き継がせない。Claude / Codex は台帳の下位なので、上位モデルで指摘が尽きれば呼ばれない（使用量のオフロード）。外部 CLI が一つも無い環境（各社の Cloud）では `host`（ホスト自身のサブエージェント）だけで回す。有効な指摘がゼロになったらそのスキルは終了、上限は各 4 ラウンド（超えたら `blocked` にして理由を書き、次へ進む）
+- **レビューは毎ラウンド別のレビュアー**で行う。`scripts/reviewers.py` の台帳（OpenCode+GLM-5.3 Flash → OpenCode+DeepSeek V4 Flash → Cursor+Grok 4.6 → Codex → Claude → `host`。1 ラウンド数分かかるのは正常）を上から順にローテーションし、前ラウンドの文脈を引き継がせない。Claude / Codex は台帳の下位なので、上位モデルで指摘が尽きれば呼ばれない（使用量のオフロード）。外部 CLI が一つも無い環境（各社の Cloud）では `host`（ホスト自身のサブエージェント）だけで回す。有効な指摘がゼロになったらそのスキルは終了、上限は各 4 ラウンド（超えたら `blocked` にして理由を書き、次へ進む）
 - **レビュー（読み取り専用）と適用（書き込み）を分ける**。外部レビュアーは指摘だけ返し、適用は `reviewers.py pick --role apply` で選んだ安い書き込み可能なレビュアー、無ければホストの安いサブエージェント（Claude Code なら `model: sonnet`）がやる。作業ツリーに同時に書くエージェントは常に 1 つ
 - **コードを触ったラウンドの後は必ずプロジェクトの検査（typecheck / lint / test）を通してからコミット**する
 - **`z/` 以下（チェックポイント、レビュー結果、canvas の HTML）は絶対にコミットしない**。`checkpoint.py init` が `.git/info/exclude` に `/z/` を入れるが、`git add -A` や `git add -f` で混ざらないよう、コミット前に `git status --short` に `z/` が無いことを確認する。混ざっていたら `git rm --cached -r z/` で外す

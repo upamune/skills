@@ -12,18 +12,18 @@ $R run <id> --role review --prompt-file P --skill <SKILL.md> --out F   # 外部 
 $R host                                  # claude-code / codex / cursor / unknown
 ```
 
-| 順 | id | 中身 | 条件 |
-| --- | --- | --- | --- |
-| 1 | `opencode:glm-5.3-flash` | `opencode2 run --model ollama-cloud/glm-5.3-flash`（review は `--agent plan`、apply は `--agent build`） | 個人機かつ `ollama show glm-5.3-flash:cloud` が通る |
-| 2 | `opencode:deepseek-v4-flash` | 同上 DeepSeek V4 Flash | 同上 |
-| 3 | `codex:gpt-5.6-sol` | `codex exec -m gpt-5.6-sol`（review は `--sandbox read-only`、apply は `--full-auto`） | `codex` とログイン |
-| 4 | `claude:opus-5` | `claude -p --model opus`（apply は `sonnet`） | ホストが Claude Code でないとき |
-| 5 | `cursor:grok-4.6` | `cursor-agent --output-format json --model cursor-grok-4.6-high`（review は `--mode=plan`、apply は `-f`）。`text` 形式は長い依頼で最終出力が落ちるので json 固定 | `cursor-agent` がある |
-| 6 | `host` | ホスト自身のサブエージェント。常に使える | (なし) |
+| 順 | id | 中身 | 条件 | 目安時間 |
+| --- | --- | --- | --- | --- |
+| 1 | `opencode:glm-5.3-flash` | `opencode2 run --model ollama-cloud/glm-5.3-flash`（review は `--agent plan`、apply は `--agent build`） | 個人機かつ `ollama show glm-5.3-flash:cloud` が通る | 約 1 分 |
+| 2 | `opencode:deepseek-v4-flash` | 同上 DeepSeek V4 Flash | 同上 | 約 20 秒 |
+| 3 | `cursor:grok-4.6` | `cursor-agent --output-format json --model cursor-grok-4.6-high`（review は `--mode=plan`、apply は `-f`）。`text` 形式は長い依頼で最終出力が落ちるので json 固定 | `cursor-agent` がある | 約 4〜5 分 |
+| 4 | `codex:gpt-5.6-sol` | `codex exec -m gpt-5.6-sol`（review は `--sandbox read-only`、apply は `--full-auto`） | `codex` とログイン | 約 2 分 |
+| 5 | `claude:opus-5` | `claude -p --model opus`（apply は `sonnet`） | ホストが Claude Code でないとき | 数分 |
+| 6 | `host` | ホスト自身のサブエージェント。常に使える | (なし) | 数分 |
 
-実測（deslop 基準で 2 ファイルをレビュー）: GLM 59 秒で 4 件（全部妥当）、DeepSeek 16 秒で 1 件、Codex 108 秒で 1 件、Cursor（Grok 4.6）255 秒で 4 件（全部妥当）。順序は速さと質のバランスから。
+実測（deslop 基準で 2 ファイルをレビュー）: GLM 59 秒で 4 件（全部妥当）、DeepSeek 16 秒で 1 件、Cursor（Grok 4.6 high）255 秒で 4 件（全部妥当）、Codex 108 秒で 1 件。Cursor は遅いが指摘の質が高く、Codex / Claude の使用量を食わないので Codex より前。`cursor-grok-4.6-high-fast` は 212 秒で指摘本文を返さなかった（前置きだけで終わる）ので使わない。時間は `$R list` にも出る。1 ラウンドに数分かかるのは正常なので、`--timeout` を短くしない。
 
-- 個人機判定は `$USER == upamune` か `ULTRA_SHIP_PERSONAL=1`。会社機では 1・2 が落ちて Codex → Claude → Cursor → host になる
+- 個人機判定は `$USER == upamune` か `ULTRA_SHIP_PERSONAL=1`。会社機では 1・2 が落ちて Cursor → Codex → Claude → host になる
 - `ULTRA_SHIP_REVIEWERS=codex:gpt-5.6-sol,host` のように順序と対象を上書きできる
 - 各社の Cloud 環境（外部 CLI が無い）では `pick` が `host` だけを返す。その場合はラウンドごとに新しいサブエージェントを起動して同じ手順を回す（Claude Code なら `Agent` ツール、Codex / Cursor ならそれぞれのサブエージェント機構）
 - `host` は `$R run` できない。プロンプトファイルの中身をそのままサブエージェントに渡す

@@ -53,6 +53,7 @@ class Reviewer:
     review: list[str] | None
     apply: list[str] | None
     check: str  # 可用性チェックの種類
+    eta: str  # レビュー 1 回の目安時間（実測）
 
     def command(self, role: str) -> list[str] | None:
         return self.review if role == "review" else self.apply
@@ -65,35 +66,40 @@ LEDGER: list[Reviewer] = [
         [*OPENCODE2, "run", "--agent", "plan", "--model", "ollama-cloud/glm-5.3-flash", "{prompt}"],
         [*OPENCODE2, "run", "--agent", "build", "--model", "ollama-cloud/glm-5.3-flash", "{prompt}"],
         "opencode:glm-5.3-flash:cloud",
+        "約 1 分",
     ),
     Reviewer(
         "opencode:deepseek-v4-flash", "OpenCode v2 / Ollama Cloud DeepSeek V4 Flash", True,
         [*OPENCODE2, "run", "--agent", "plan", "--model", "ollama-cloud/deepseek-v4-flash", "{prompt}"],
         [*OPENCODE2, "run", "--agent", "build", "--model", "ollama-cloud/deepseek-v4-flash", "{prompt}"],
         "opencode:deepseek-v4-flash:cloud",
-    ),
-    Reviewer(
-        "codex:gpt-5.6-sol", "Codex CLI / GPT-5.6 Sol", False,
-        ["codex", "exec", "-m", "gpt-5.6-sol", "--sandbox", "read-only", "{prompt}"],
-        ["codex", "exec", "-m", "gpt-5.6-sol", "--full-auto", "{prompt}"],
-        "codex",
-    ),
-    Reviewer(
-        "claude:opus-5", "Claude Code / Opus 5（apply は Sonnet 5）", False,
-        ["claude", "-p", "--model", "opus", "--permission-mode", "plan", "{prompt}"],
-        ["claude", "-p", "--model", "sonnet", "--permission-mode", "acceptEdits", "{prompt}"],
-        "claude",
+        "約 20 秒",
     ),
     Reviewer(
         "cursor:grok-4.6", "Cursor CLI / Grok 4.6 (high)", False,
         ["cursor-agent", "-p", "--mode=plan", "--output-format", "json", "--model", "cursor-grok-4.6-high", "{prompt}"],
         ["cursor-agent", "-p", "-f", "--output-format", "json", "--model", "cursor-grok-4.6-high", "{prompt}"],
         "cursor",
+        "約 4〜5 分",
+    ),
+    Reviewer(
+        "codex:gpt-5.6-sol", "Codex CLI / GPT-5.6 Sol", False,
+        ["codex", "exec", "-m", "gpt-5.6-sol", "--sandbox", "read-only", "{prompt}"],
+        ["codex", "exec", "-m", "gpt-5.6-sol", "--full-auto", "{prompt}"],
+        "codex",
+        "約 2 分",
+    ),
+    Reviewer(
+        "claude:opus-5", "Claude Code / Opus 5（apply は Sonnet 5）", False,
+        ["claude", "-p", "--model", "opus", "--permission-mode", "plan", "{prompt}"],
+        ["claude", "-p", "--model", "sonnet", "--permission-mode", "acceptEdits", "{prompt}"],
+        "claude",
+        "数分",
     ),
 ]
 
 
-HOST = Reviewer(HOST_ID, "ホスト自身のサブエージェント（Agent ツール等）", False, None, None, "host")
+HOST = Reviewer(HOST_ID, "ホスト自身のサブエージェント（Agent ツール等）", False, None, None, "host", "数分")
 
 
 def is_personal() -> bool:
@@ -168,7 +174,7 @@ def cmd_list() -> None:
     for i, r in enumerate(ordered_ledger(), 1):
         ok, why = availability(r)
         mark = "✓" if ok else "✗"
-        print(f"{i}. {mark} {r.id:28} {r.label}  [{why}]")
+        print(f"{i}. {mark} {r.id:28} {r.label}  [{why}]  ~{r.eta}")
 
 
 def pick(n: int, exclude: set[str]) -> list[Reviewer]:
@@ -188,7 +194,7 @@ def pick(n: int, exclude: set[str]) -> list[Reviewer]:
 def cmd_pick(role: str, n: int, exclude: set[str], as_json: bool) -> None:
     chosen = pick(n, exclude)
     if as_json:
-        print(json.dumps([{"id": r.id, "label": r.label, "command": r.command(role)} for r in chosen], ensure_ascii=False, indent=2))
+        print(json.dumps([{"id": r.id, "label": r.label, "eta": r.eta, "command": r.command(role)} for r in chosen], ensure_ascii=False, indent=2))
     else:
         for r in chosen:
             print(r.id)
