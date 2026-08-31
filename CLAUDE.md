@@ -39,6 +39,8 @@
 
 `scripts/link-skills.sh` で `~/.claude/skills` と `~/.agents/skills` に symlink する（`git pull` だけで追従）。既存の実体ディレクトリは上書きしないので、置き換えるときは `--force`。スキルの追加・削除・改名後は再実行する。
 
+何もないマシンには repo 直下の `install.sh`（`curl -fsSL https://raw.githubusercontent.com/upamune/skills/main/install.sh | sh`）を使う。clone（git が無ければ tarball）と `link-skills.sh --force` をまとめてやる POSIX sh で、確認は出さない。
+
 ## Plugin manifest
 
 `.claude-plugin/plugin.json` は promoted スキルだけを列挙する。`.claude-plugin/marketplace.json` はこの repo 自身を単一 plugin の marketplace にするためのもの。どちらかを触ったら `claude plugin validate . --strict` を通す。

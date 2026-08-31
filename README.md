@@ -4,6 +4,16 @@ upamune の agent skills 集。自作スキルと、外部リポジトリから 
 
 ## インストール
 
+### 何もないマシンに一発で
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/upamune/skills/main/install.sh | sh
+```
+
+`~/ghq/github.com/upamune/skills` に clone（git が無ければ tarball を展開）し、`scripts/link-skills.sh --force` で `~/.claude/skills` と `~/.agents/skills` に全スキルを symlink する。確認は出さず、同名の既存スキルは symlink でも実体でも置き換える。clone 先は `UPAMUNE_SKILLS_DIR`、ブランチは `UPAMUNE_SKILLS_REF` で変えられる。更新は同じコマンドをもう一度打つか、clone 先で `git pull`。
+
+### skills CLI で
+
 private repo なので、`gh auth login` 済みか SSH 鍵の設定があれば `skills` CLI がそのまま認証を使う。
 
 ```bash
