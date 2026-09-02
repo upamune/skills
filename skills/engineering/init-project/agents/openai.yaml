@@ -1,5 +1,5 @@
 interface:
   display_name: "Init Project"
-  short_description: "Go / TypeScript(Bun + Effect) プロジェクトの初期セットアップ"
+  short_description: "Go / TypeScript(Bun + Effect + Ultracite) の初期セットアップ"
 policy:
   allow_implicit_invocation: false

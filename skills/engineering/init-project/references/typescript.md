@@ -1,6 +1,6 @@
 # TypeScript (Bun) の雛形
 
-ランタイム・パッケージマネージャ・テストランナーは Bun。アプリケーション基盤は **Effect**。品質ツールは **oxfmt（format）/ oxlint（lint）/ knip（未使用検出）/ TypeScript + Effect TSGO（型・Effect 診断）**。Node / npm / ESLint / Prettier は入れない。
+ランタイム・パッケージマネージャ・テストランナーは Bun。アプリケーション基盤は **Effect**。品質ツールは **Ultracite + Oxfmt（format）/ Ultracite + Oxlint（lint）/ knip（未使用検出）/ TypeScript + Effect TSGO（型・Effect 診断）**。Node / npm / ESLint / Prettier は入れない。
 
 ## mise.toml
 
@@ -14,11 +14,11 @@ pinact = "4"
 
 [tasks.format]
 description = "Format"
-run = "bun run fmt"
+run = "bun run format"
 
 [tasks."format:check"]
 description = "Format check"
-run = "bun run fmt:check"
+run = "bun run format:check"
 
 [tasks.lint]
 description = "Lint + unused check"
@@ -45,10 +45,12 @@ depends = ["format:check", "lint", "typecheck", "test"]
   "private": true,
   "type": "module",
   "scripts": {
-    "fmt": "oxfmt",
-    "fmt:check": "oxfmt --check",
-    "lint": "oxlint",
-    "lint:fix": "oxlint --fix",
+    "format": "oxfmt",
+    "format:check": "oxfmt --check",
+    "lint": "oxlint --type-aware",
+    "lint:fix": "ultracite fix --type-aware",
+    "check": "ultracite check --type-aware",
+    "fix": "ultracite fix --type-aware",
     "knip": "knip",
     "typecheck": "tsc --noEmit && effect-tsgo diagnostics --project tsconfig.json",
     "test": "bun test"
@@ -60,15 +62,29 @@ depends = ["format:check", "lint", "typecheck", "test"]
 
 ```bash
 bun add effect
-bun add -D oxfmt oxlint knip typescript @types/bun @effect/tsgo
+bun add -D knip typescript @types/bun @effect/tsgo
 ```
 
-knip は `typescript` を peer に要求する。`@types/node` ではなく `@types/bun` を使う。`bun.lock` をコミットする。
+Ultracite の安定版を確認してから、確認した版を明示して初期化する。`latest` のまま実行しない。
+
+```bash
+bun pm view ultracite version
+bunx ultracite@<確認した版> init \
+  --quiet \
+  --linter oxlint \
+  --pm bun \
+  --type-aware \
+  --js-plugins anti-slop
+```
+
+`--quiet` は agent files、editor settings、hooks、git integrations を作らず、lint / format の core config だけを非対話で生成する。これにより、このスキルが管理する `CLAUDE.md` / `AGENTS.md` と競合しない。生成後、`package.json` の scripts を上の形に揃え、`bun run fix` を一度実行する。生成直後の config や `package.json` 自体が Ultracite の形式とずれている場合があるので、`bun run check` が通るまでを初期化に含める。
+
+Ultracite が `ultracite`、`oxlint`、`oxfmt`、`oxlint-tsgolint` と `oxlint.config.ts` / `oxfmt.config.ts` を追加する。`oxlint.config.ts` が `ultracite/oxlint/core` と `ultracite/oxlint/anti-slop` を extends していることを確認する。knip は `typescript` を peer に要求する。`@types/node` ではなく `@types/bun` を使う。`bun.lock` をコミットする。
 
 ## 設定ファイル
 
-- `bunx oxfmt --init` → `.oxfmtrc.json`。生成されたら `$schema` が入っていることを確認。`.editorconfig` を読むので、`indent_style` / `insert_final_newline` は `.editorconfig` に書く
-- `bunx oxlint --init` → `.oxlintrc.json`。最低限 `"categories": {"correctness": "error"}` にする。型情報ルールが欲しければ `bun add -D oxlint-tsgolint` して `"options": {"typeAware": true}`
+- `oxfmt.config.ts`: `ultracite/oxfmt` を展開する。手書きの `.oxfmtrc.json` は作らない
+- `oxlint.config.ts`: `ultracite/oxlint/core` と `ultracite/oxlint/anti-slop` を extends する。手書きの `.oxlintrc.json` は作らない
 - `knip.json`:
 
 ```json
@@ -81,6 +97,8 @@ knip は `typescript` を peer に要求する。`@types/node` ではなく `@ty
 ```
 
 `@effect/tsgo` の plugin 名は `@effect/language-service` なので、knip には仮想的な依存として無視させる。テストを `entry` に含める必要がある構成では `src/**/*.test.ts` も追加する。
+
+Ultracite の anti-slop preset は型アサーション、`unknown` の漏出、module mocking などを厳しく検査する。Effect の Schema / Layer / typed error と組み合わせ、ルールを一括で無効化しない。プロジェクト固有の正当な理由があるルールだけ、`oxlint.config.ts` で個別に上書きする。
 
 - `tsconfig.json`（`bun init` が生成するものをベースに、`"strict": true` と `"noEmit": true` を確認）。Effect Language Service を有効にする:
 
@@ -154,4 +172,4 @@ test("greets by name", () => {
 
 ## 確認
 
-`mise install && bun install && mise run ci` が通り、TypeScript と Effect の診断がともに 0 件であること。
+`mise install && bun install && bun run check && mise run ci` が通り、Ultracite、TypeScript、Effect の診断がすべて 0 件であること。`bun run fix --codex` はコードを変更するため、通常の初期化や CI では実行しない。

@@ -1,12 +1,12 @@
 ---
 name: init-project
-description: Go または TypeScript (Bun + Effect) の新規プロジェクトを、mise / format・lint・typecheck・test の CI / backlog / upamune の skills 込みで立ち上げる。新しいリポジトリで最初に一度だけ実行する。
+description: Go または TypeScript (Bun + Effect + Ultracite) の新規プロジェクトを、mise / format・lint・typecheck・test の CI / backlog / upamune の skills 込みで立ち上げる。新しいリポジトリで最初に一度だけ実行する。
 disable-model-invocation: true
 ---
 
 # Init Project
 
-新規プロジェクトの骨組みを、毎回同じ形で作る。言語は **Go** か **TypeScript (Bun + Effect)** のどちらか。TypeScript では Effect を標準のアプリケーション基盤にする。ツールはすべて mise で管理し、バージョンは pin する（`latest` を書かない）。
+新規プロジェクトの骨組みを、毎回同じ形で作る。言語は **Go** か **TypeScript (Bun + Effect + Ultracite)** のどちらか。TypeScript では Effect を標準のアプリケーション基盤、Ultracite + Oxlint/Oxfmt をコード品質の標準にする。ツールはすべて mise で管理し、バージョンは pin する（`latest` を書かない）。
 
 原則:
 
@@ -14,6 +14,7 @@ disable-model-invocation: true
 - **バージョンは pin**。`mise ls-remote <tool>` で最新を確認してから、マイナーまで固定して書く（`bun = "1.4"`、`go = "1.27"`）。`latest` は使わない
 - **GitHub Actions の `uses:` は pinact で SHA に pin**し、各 action は Releases を見て最新メジャーを使う
 - **TypeScript は Effect を既定採用**。成功・失敗・依存関係を Effect の型に載せ、`Effect.run*` はアプリケーション境界に寄せる。ユーザーが明示的に不要と言った場合だけ外す
+- **TypeScript の lint / format は Ultracite**。Oxlint + Oxfmt、type-aware lint、anti-slop preset を既定にする。Ultracite に agent files / hooks は生成させず、このスキルが作る `CLAUDE.md` / `AGENTS.md` と競合させない
 - **CI は format / lint / typecheck / test** を最低限とする
 
 言語別の雛形は [references/typescript.md](references/typescript.md) と [references/go.md](references/go.md)、CI の規約と action の最新版は [references/github-actions.md](references/github-actions.md)。選んだ言語の reference だけ読む。
@@ -32,7 +33,7 @@ disable-model-invocation: true
 
 一度にまとめて聞く（AskUserQuestion が使えるならそれで）:
 
-- 言語: **Go** / **TypeScript (Bun + Effect)**
+- 言語: **Go** / **TypeScript (Bun + Effect + Ultracite)**
 - プロジェクト名（ディレクトリ名を既定値に）
 - Go なら module path（`github.com/<owner>/<repo>` を既定値に。owner は `gh api user -q .login` で取る）
 - 一行説明（README と CLAUDE.md の冒頭に使う）
@@ -51,7 +52,7 @@ disable-model-invocation: true
 
 1. `git init`（未初期化の場合）と `.gitignore`（[references/gitignore.txt](references/gitignore.txt) をそのままコピー。`.backlog/` は backlog 自身の `.gitignore` に任せる）
 2. `mise.toml`（`[tools]` と `[tasks]` の `format` / `format:check` / `lint` / `typecheck` / `test` / `ci`）→ `mise trust` → `mise install`
-3. 言語の初期化（`go mod init` / `bun init -y` 相当）、設定ファイル、最小ソースとテスト 1 本。TypeScript は `effect` と `@effect/tsgo` を入れ、最小ソースも Effect を使う
+3. 言語の初期化（`go mod init` / `bun init -y` 相当）、設定ファイル、最小ソースとテスト 1 本。TypeScript は `effect` と `@effect/tsgo` を入れ、Ultracite で Oxlint/Oxfmt 設定を生成し、最小ソースも Effect を使う
 4. `.editorconfig`
 5. `.github/workflows/ci.yml`（`references/github-actions.md` の雛形。Go は `format` / `lint` / `test`、TypeScript はさらに `typecheck`、共通で `pinact` ジョブ）→ `pinact run`
 
@@ -91,7 +92,7 @@ bunx skills@latest add upamune/skills -a claude-code -a codex -y --skill '*'   #
 
 ### 7. CLAUDE.md / AGENTS.md / README.md を書く
 
-- `CLAUDE.md`: 一行説明、よく使うコマンド（`mise run format|lint|typecheck|test|ci`）、規約（ツールは mise、Actions は pinact、タスクは backlog で管理: `backlog task add|list|show|move <id> done`）、ディレクトリ構成。TypeScript なら Effect の規約（業務処理は Effect を返す、想定内の失敗は型付きエラー、`Effect.run*` は境界だけ）も短く書く
+- `CLAUDE.md`: 一行説明、よく使うコマンド（`mise run format|lint|typecheck|test|ci`）、規約（ツールは mise、Actions は pinact、タスクは backlog で管理: `backlog task add|list|show|move <id> done`）、ディレクトリ構成。TypeScript なら Effect の規約（業務処理は Effect を返す、想定内の失敗は型付きエラー、`Effect.run*` は境界だけ）と、Ultracite の `bun run check|fix` も短く書く
 - `AGENTS.md` は `ln -s CLAUDE.md AGENTS.md` で symlink
 - `README.md`: プロジェクト名と一行説明、**インストール方法**（前提: mise → `mise install` → 言語固有の依存取得 → 動かし方）、**使い方**（CLI なら主要コマンド例、ライブラリなら import 例、サーバーなら起動と疎通）、開発（`mise run ci`、CI の構成、backlog）。初見の人が README だけで動かせることを基準にする
 

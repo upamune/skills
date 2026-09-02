@@ -21,7 +21,7 @@
 
 **User-invoked**
 
-- [init-project](./skills/engineering/init-project/SKILL.md): Go または TypeScript (Bun + Effect) の新規プロジェクトを、mise / format・lint・typecheck・test の CI / backlog / upamune の skills 込みで立ち上げる。新しいリポジトリで最初に一度だけ実行する。
+- [init-project](./skills/engineering/init-project/SKILL.md): Go または TypeScript (Bun + Effect + Ultracite) の新規プロジェクトを、mise / format・lint・typecheck・test の CI / backlog / upamune の skills 込みで立ち上げる。新しいリポジトリで最初に一度だけ実行する。
 - [ultra-ship](./skills/engineering/ultra-ship/SKILL.md): 実装が終わったブランチを「コミット → base merge と衝突解消 → 4 種のレビューを Cursor / OpenCode / Codex / Claude / ホストのサブエージェントをローテーションして指摘ゼロまで反復 → PR 作成・整備 → pr-review-canvas で説明 → CI が green になるまで修正」まで一気に持っていく。進捗は z/<branch>/ultra-ship.html にチェックポイントとして残し、途中から再開できる。
 
 **Model-invoked**
