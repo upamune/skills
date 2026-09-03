@@ -226,6 +226,14 @@
       "commit": "d23d7f88a2e21c9e4b1418c7abe420f5c1052ba7",
       "updatedAt": "2026-08-23T10:43:46.904Z"
     },
+    "show-me": {
+      "source": "humanlayer/skills",
+      "url": "https://github.com/humanlayer/skills.git",
+      "path": "plugins/show-me/skills/show-me",
+      "ref": "main",
+      "commit": "3c2629142c5d437428269b1b722b08c0b87f574d",
+      "updatedAt": "2026-09-03T15:22:14.359Z"
+    },
     "simplify": {
       "source": "brianlovin/agent-config",
       "url": "https://github.com/brianlovin/agent-config.git",
