@@ -1,6 +1,6 @@
 # GitHub Actions の規約
 
-CI は **format / lint / test** の 3 ジョブを最低限とする。TypeScript は **typecheck** も独立ジョブにする。`uses:` はすべて pinact で commit SHA に pin する。
+CI は **format / lint / test** の 3 ジョブを最低限とする。TypeScript は **typecheck** と **build** も独立ジョブにする。`uses:` はすべて pinact で commit SHA に pin する。
 
 ## pinact
 
@@ -76,7 +76,8 @@ jobs:
           persist-credentials: false
       - uses: jdx/mise-action@v4
       - run: mise run lint
-  # TypeScript の場合だけ追加する。Go では省略する
+  # TypeScript の場合だけ typecheck と build を追加する。Go では省略する。
+  # TypeScript は各ジョブで mise-action の直後に `bun install --frozen-lockfile` を挟む
   typecheck:
     runs-on: ubuntu-24.04
     steps:
@@ -84,7 +85,17 @@ jobs:
         with:
           persist-credentials: false
       - uses: jdx/mise-action@v4
+      - run: bun install --frozen-lockfile
       - run: mise run typecheck
+  build:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - uses: jdx/mise-action@v4
+      - run: bun install --frozen-lockfile
+      - run: mise run build
   test:
     runs-on: ubuntu-24.04
     steps:
@@ -95,7 +106,7 @@ jobs:
       - run: mise run test
 ```
 
-`mise run format:check` 等は `mise.toml` の `[tasks]` に定義する（言語別 reference を参照）。ジョブ名は `format` / `lint` / `test`、TypeScript では `typecheck` に揃える（ブランチ保護の required checks で使う）。
+`mise run format:check` 等は `mise.toml` の `[tasks]` に定義する（言語別 reference を参照）。ジョブ名は `format` / `lint` / `test`、TypeScript では `typecheck` / `build` に揃える（ブランチ保護の required checks で使う）。
 
 ## 書いたあとの確認
 

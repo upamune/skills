@@ -42,6 +42,12 @@ dist/
 # TypeScript の incremental ビルドキャッシュ
 *.tsbuildinfo
 
+# TanStack Start / Vite / nitro のキャッシュと出力。routeTree.gen.ts はコミットする
+.tanstack/
+.output/
+.nitro/
+.vite/
+
 # coverage
 coverage/
 .nyc_output/
