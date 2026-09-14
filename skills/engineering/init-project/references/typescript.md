@@ -10,7 +10,7 @@ TypeScript プロジェクトは **React + TanStack Start** の Web アプリと
 | UI | Tailwind CSS v4 + shadcn/ui（Base UI、nova preset） | `bunx --bun shadcn add <component>` |
 | アイコン | lucide-react | shadcn の既定 |
 | アプリ基盤・バリデーション | Effect / Effect Schema | `Schema.standardSchemaV1` で TanStack Form にも渡せる |
-| 品質 | Ultracite（Oxlint + Oxfmt、react / tanstack / vitest preset）+ knip + tsc + Effect TSGO | |
+| 品質 | Ultracite（Oxlint + Oxfmt、react / tanstack / vitest preset）+ @shadcn/lint（デザインシステム）+ knip + tsc + Effect TSGO | |
 | テスト | Vitest + Testing Library + jsdom | TanStack Router 公式の推奨構成 |
 | Devtools | `@tanstack/react-devtools`（Router / Query panel） | 本番 HTML には出ない |
 | 本番サーバ | TanStack 公式 `start-bun` example の `server.ts` を Bun で実行 | nitro 不要 |
@@ -227,7 +227,18 @@ bunx ultracite@<確認した版> init \
   --frameworks react tanstack vitest
 ```
 
-`--quiet` は agent files、editor settings、hooks、git integrations を作らず、lint / format の core config だけを非対話で生成する（このスキルが作る `CLAUDE.md` / `AGENTS.md` と競合させない）。生成後、`oxlint.config.ts` に生成物の除外を足す:
+`--quiet` は agent files、editor settings、hooks、git integrations を作らず、lint / format の core config だけを非対話で生成する（このスキルが作る `CLAUDE.md` / `AGENTS.md` と競合させない）。
+
+続けて `@shadcn/lint` を pin して入れる。[shadcn/lint](https://github.com/shadcn-ui/lint) は Tailwind デザインシステムのルールを agent が検証できるようにする Oxlint JS plugin（ESLint は入れない）:
+
+```bash
+bun pm view @shadcn/lint version
+bun add -D @shadcn/lint@<確認した版>
+```
+
+`@shadcn/lint` は Oxlint 1.80 以上が必要。Ultracite が oxlint を入れるので、このスキルでは oxlint を別途 pin しない。init 後に `bun.lock` の oxlint が 1.80 未満なら、同じ手順（`bun pm view oxlint version` → `bun add -D oxlint@<確認した版>`）で上げる。
+
+生成後、`oxlint.config.ts` に生成物の除外と `@shadcn/lint` を足す（Ultracite は `defineConfig` from `oxlint` を使う。手書きの `.oxlintrc.json` は作らない）:
 
 ```ts
 import { defineConfig } from "oxlint";
@@ -239,13 +250,22 @@ import vitest from "ultracite/oxlint/vitest";
 
 export default defineConfig({
   extends: [core, react, tanstack, vitest, antiSlop],
+  jsPlugins: ["@shadcn/lint"],
   ignorePatterns: [
     ...core.ignorePatterns,
-    // shadcn/ui が生成するコンポーネント。CLI で上書き更新するので lint 対象にしない
+    // shadcn/ui が生成するコンポーネント。CLI で上書き更新するので lint 対象にしない。
+    // @shadcn/lint もここには当たらない。ルールはコンポーネントを消費するアプリコードを見る
     "src/components/ui/**",
     // TanStack の start-bun example からコピーした本番サーバ
     "server.ts",
   ],
+  rules: {
+    "shadcn/no-restyle": ["error", { allow: ["layout"] }],
+    "shadcn/no-raw-colors": "error",
+    "shadcn/no-arbitrary-values": ["error", { allow: ["layout"] }],
+    "shadcn/no-inline-styles": "error",
+    "shadcn/require-static-classes": "error",
+  },
 });
 ```
 
@@ -254,6 +274,22 @@ export default defineConfig({
 - `*.gen.*` は core の ignorePatterns に入っているので `routeTree.gen.ts` は lint / format の対象外
 - `package.json` の scripts を上の形に揃え、`bun run fix` を一度実行して `bun run check` が通るまでを初期化に含める
 - anti-slop preset は型アサーション、`unknown` の漏出、module mocking などを厳しく検査する。ルールを一括で無効化せず、正当な理由があるものだけ `oxlint.config.ts` で個別に上書きする
+- `@shadcn/lint` は新規プロジェクトなのでルールを空にしない。上の 5 本が greenfield の既定。`shadcn/no-unknown-classes` は既定では入れない（後から `warn` で opt-in してよい。他 stylesheet 由来のクラスに `allow` が要ることがある）
+- shadcn/ui プロジェクトは `components.json` からコンポーネントと theme を自動発見する。`settings.shadcn.ui` はディレクトリを変えたときなど、自動発見が足りない場合だけ書く
+- `src/components/ui/**` を `ignorePatterns` に残す理由: コンポーネントは CLI 所有なので Ultracite の一般ルールを当てない。`@shadcn/lint` の対象も主にそれを消費するアプリコードなので、同じ除外でよい。`defineConfig` の `overrides` は Oxlint 公式の flat config で使えるが、`ignorePatterns` に入ったファイルには到達しない。生成コンポーネントにも `no-raw-colors` / `no-inline-styles` を当てたいときだけ、`src/components/ui/**` を ignore から外し、公式どおり次の override を足す（`no-restyle` / `no-arbitrary-values` / `require-static-classes` をオフ、`no-raw-colors` と `no-inline-styles` は残す）:
+
+```ts
+overrides: [
+  {
+    files: ["src/components/ui/**"],
+    rules: {
+      "shadcn/no-restyle": "off",
+      "shadcn/no-arbitrary-values": "off",
+      "shadcn/require-static-classes": "off",
+    },
+  },
+],
+```
 
 ### knip.json
 
@@ -269,6 +305,7 @@ export default defineConfig({
   "ignoreDependencies": [
     "@effect/language-service",
     "@fontsource-variable/geist",
+    "@shadcn/lint",
     "lucide-react",
     "shadcn",
     "tailwindcss",
@@ -279,7 +316,7 @@ export default defineConfig({
 
 - ルートファイルは生成される `routeTree.gen.ts` からしか参照されないので `entry` にする（knip の tanstack-router plugin が `routeTree.gen.ts` と `src/router.tsx` は自動で entry にする）
 - shadcn のコンポーネントは使う前から置かれるので `entry` にして未使用 export を報告させない。`src/lib/utils.ts` も shadcn の規約上のファイルなので同様
-- `ignoreDependencies` は CSS の `@import` 経由でしか使われない依存（knip は CSS を追わない）と、shadcn が既定で入れる `lucide-react`。アイコンを使い始めたら `lucide-react` は外す。`@effect/language-service` は `@effect/tsgo` の plugin 名で実パッケージが無い
+- `ignoreDependencies` は CSS の `@import` 経由でしか使われない依存（knip は CSS を追わない）と、shadcn が既定で入れる `lucide-react`。アイコンを使い始めたら `lucide-react` は外す。`@effect/language-service` は `@effect/tsgo` の plugin 名で実パッケージが無い。`@shadcn/lint` は `oxlint.config.ts` の `jsPlugins` 文字列だけで参照されるので knip からは未使用に見える
 
 ### .editorconfig
 
@@ -493,7 +530,7 @@ curl -fsSL https://raw.githubusercontent.com/TanStack/router/main/examples/react
 
 ## 確認
 
-1. `mise install && bun install && bun run check && mise run ci` が通り、Ultracite、knip、TypeScript、Effect の診断がすべて 0 件
+1. `mise install && bun install && bun run check && mise run ci` が通り、Ultracite、`@shadcn/lint`、knip、TypeScript、Effect の診断がすべて 0 件
 2. `bun run build && PORT=3999 bun run start` を起動し、`curl -s http://localhost:3999/` の HTML に見出しの文言と `<link rel="stylesheet">` が含まれ、`devtools` の文字列が含まれないことを確認してから止める
 3. `mise run dev` でも同じページが出る
 
