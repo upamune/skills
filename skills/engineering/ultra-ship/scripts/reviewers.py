@@ -5,7 +5,7 @@
 # [tool.uv]
 # exclude-newer = "2026-08-30T07:45:12Z"
 # ///
-"""ultra-ship のレビュアー台帳。使える CLI / モデルを優先順に並べ、選んで、実行する。
+"""ultra-ship の任意の外部レビュアー。明示した候補から選んで実行する。
 
   reviewers.py list                       # 台帳を優先順に表示（✓ 使える / ✗ 理由）
   reviewers.py pick [--role review|apply] [--n N] [--exclude ID,...] [--json]
@@ -14,18 +14,17 @@
 
 役割:
   review: 読み取り専用で指摘だけ返す
-  apply : 作業ツリーに書き込んで指摘を適用する（安いモデルに振る）
+  apply : 作業ツリーに書き込んで指摘を適用する
 
-`host` は ultra-ship を動かしているエージェント自身のサブエージェント。常に使え、外部 CLI が
-一つも無い環境（Cursor Cloud / Claude Cloud / Codex Cloud）では pick がこれだけを返す。
-run は host には対応しない（ホストの Agent 機構でスキル側が回す）。
+`host` は現在のエージェント。委譲機構が使えるという意味ではない。
+ULTRA_SHIP_REVIEWERS が未指定なら pick は host のみを返す。run は host に対応しない。
 
 run の注意:
   外部 CLI はリポジトリ外のファイル（~/.claude/skills 等）を読めないことがある（opencode2 は自動拒否）。
   スキル定義は --skill で渡すと本文がプロンプトの先頭に埋め込まれる。既定タイムアウトは 30 分。
 
 環境変数:
-  ULTRA_SHIP_REVIEWERS=id,id,...   台帳の順序と対象を上書き
+  ULTRA_SHIP_REVIEWERS=id,id,...   使用する外部候補と順序（未指定は host）
   ULTRA_SHIP_PERSONAL=1            個人機扱い（既定は $USER == upamune）
 """
 
@@ -59,7 +58,7 @@ class Reviewer:
         return self.review if role == "review" else self.apply
 
 
-# 上から優先。{prompt} はプロンプト本文に置き換える。
+# 既存環境向けのプリセット。選定順位ではない。{prompt} は本文に置き換える。
 LEDGER: list[Reviewer] = [
     Reviewer(
         "opencode:glm-5.3-flash", "OpenCode v2 / Ollama Cloud GLM-5.3 Flash", True,
@@ -99,7 +98,7 @@ LEDGER: list[Reviewer] = [
 ]
 
 
-HOST = Reviewer(HOST_ID, "ホスト自身のサブエージェント（Agent ツール等）", False, None, None, "host", "数分")
+HOST = Reviewer(HOST_ID, "現在のエージェント", False, None, None, "host", "環境による")
 
 
 def is_personal() -> bool:
@@ -160,7 +159,7 @@ def availability(r: Reviewer) -> tuple[bool, str]:
 def ordered_ledger() -> list[Reviewer]:
     override = os.environ.get("ULTRA_SHIP_REVIEWERS")
     if not override:
-        return [*LEDGER, HOST]
+        return [HOST]
     by_id = {r.id: r for r in [*LEDGER, HOST]}
     ids = [s.strip() for s in override.split(",") if s.strip()]
     unknown = [i for i in ids if i not in by_id]
@@ -170,7 +169,7 @@ def ordered_ledger() -> list[Reviewer]:
 
 
 def cmd_list() -> None:
-    print(f"host={detect_host()} personal={is_personal()}  （~時間は小さい差分での実測。大きい差分では伸びる。上限は run の --timeout、既定 30 分）")
+    print(f"host={detect_host()} personal={is_personal()}  （外部候補は ULTRA_SHIP_REVIEWERS で選択。時間は過去の小規模な差分での参考値）")
     for i, r in enumerate(ordered_ledger(), 1):
         ok, why = availability(r)
         mark = "✓" if ok else "✗"
@@ -220,7 +219,7 @@ def extract_result(stdout: str) -> str:
 
 def cmd_run(rid: str, role: str, prompt_file: Path, skill: Path | None, out: Path | None, cwd: Path | None, timeout: int) -> None:
     if rid == HOST_ID:
-        sys.exit("host は run できない。ホストのサブエージェント機構でプロンプトを実行する")
+        sys.exit("host は run できない。現在のエージェントで進めるか、利用可能で許可済みの委譲機構を使う")
     r = next((x for x in LEDGER if x.id == rid), None)
     if r is None:
         sys.exit(f"unknown reviewer: {rid}")

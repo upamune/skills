@@ -4,6 +4,8 @@ upamune の agent skills 集。自作スキルと、外部リポジトリから 
 
 ## インストール
 
+必要なスキルだけを `--skill <name>` で選ぶと、用途の重複と自動選択時の説明文を減らせる。全件導入が必要な場合は一括インストールを使う。
+
 ### 何もないマシンに一発で
 
 ```bash
@@ -14,18 +16,17 @@ curl -fsSL https://raw.githubusercontent.com/upamune/skills/main/install.sh | sh
 
 ### skills CLI で
 
-private repo なので、`gh auth login` 済みか SSH 鍵の設定があれば `skills` CLI がそのまま認証を使う。
+用途に合わせてスキルと対象エージェントを選ぶ。
 
 ```bash
-# 自作 + 外部を全部、グローバルに、検出された全エージェントへ
-npx skills@latest add upamune/skills -g --all
-
-# 対象エージェントを絞る / スキルを選ぶ
-npx skills@latest add upamune/skills -g -a claude-code -a codex -y --skill '*'
-npx skills@latest add upamune/skills -g -a claude-code --skill grilling --skill tdd
+# 必要なスキルを選ぶ（例）
+npx skills@latest add upamune/skills -g -a claude-code -a codex --skill uv-script --skill tagpr
 
 # 中身を見るだけ
 npx skills@latest add upamune/skills --list
+
+# 全件が必要な場合: 自作 + 外部をグローバルに、検出された全エージェントへ
+npx skills@latest add upamune/skills -g --all
 ```
 
 更新は `npx skills update -g`。この repo 側で外部スキルを `sync` して push すれば、同じコマンドで追従する。
@@ -88,13 +89,13 @@ scripts/external.ts list
 
 **User-invoked**
 
-- [init-project](./skills/engineering/init-project/SKILL.md): Go / TypeScript Web アプリ (Bun + TanStack Start + Tailwind / shadcn/ui + Effect + Ultracite + @shadcn/lint) の新規プロジェクトを mise・CI（format/lint/typecheck/test/build, pinact）・backlog・upamune/skills 込みで立ち上げる。新しいリポジトリで最初に一度だけ実行する。
-- [ultra-ship](./skills/engineering/ultra-ship/SKILL.md): 実装済みのブランチを、コミット → base merge と衝突解消 → thermo-nuclear / simplify / deslop / code-review を Cursor / OpenCode / Codex / Claude / ホストのサブエージェントをローテーションして指摘ゼロまで反復（安いモデルへオフロード） → PR 作成・整備 → pr-review-canvas で説明 → CI green まで一気に仕上げる。進捗は `z/<branch>/ultra-ship.html` に残し途中から再開できる。
+- [init-project](./skills/engineering/init-project/SKILL.md): 新しい Go / TypeScript Web プロジェクトを、mise・CI・開発文書を含む標準構成で初期化する。
+- [ultra-ship](./skills/engineering/ultra-ship/SKILL.md): 実装済みブランチを、差分に応じたレビュー・必要な修正・PR 作成・CI 確認まで仕上げる。チェックポイントから再開できる。
 
 **Model-invoked**
 
-- [tagpr](./skills/engineering/tagpr/SKILL.md): Songmu/tagpr でリリース PR の自動生成・タグ付け・GitHub Release 作成を GitHub Actions に組み込む。GitHub App（actions/create-github-app-token）のトークンで動かし、タグ push で別の公開ワークフローを起動できる形にする。
-- [uv-script](./skills/engineering/uv-script/SKILL.md): uv の PEP 723 インラインメタデータで単一ファイルの Python スクリプトを書く・直す・実行する。依存を入れるときは `[tool.uv] exclude-newer` を必ず付けて再現性を保つ。
+- [tagpr](./skills/engineering/tagpr/SKILL.md): Songmu/tagpr の導入・設定変更・不具合調査を行う。既存のタグと公開経路を保ち、必要な設定を修正する。
+- [uv-script](./skills/engineering/uv-script/SKILL.md): uv で動く単独 Python スクリプトを作成・編集する。PEP 723 と cutoff / lock で依存を管理する。
 
 ### Productivity
 

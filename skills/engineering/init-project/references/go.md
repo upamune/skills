@@ -44,7 +44,7 @@ golangci-lint を足したい場合だけ `golangci-lint = "2.13"` を追加し�
 
 ## go.mod
 
-`go mod init <module path>` で作る。module path は `github.com/<owner>/<repo>` を既定にし、ユーザーに確認する。`go` ディレクティブは `mise.toml` の Go と同じマイナー（例 `go 1.27`）。
+`go mod init <module path>` で作る。module path は指定済みの値、なければ remote を使う。公開先が推定できない場合だけ確認する。`go` ディレクティブは `mise.toml` の Go と同じマイナー（例 `go 1.27`）。
 
 ## 最小ソース
 
@@ -55,7 +55,7 @@ main.go                 # 単一バイナリの小さなツールならルート
 <pkg>/<pkg>_test.go
 ```
 
-テストは標準 `testing` で 1 ケース。`go test ./...` が pass することが完成条件。
+標準 `testing` で最小実装の振る舞いを確認する。ケース数は固定せず、`mise run ci` の test タスクで検証する。
 
 ## .editorconfig
 

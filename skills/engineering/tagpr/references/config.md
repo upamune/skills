@@ -120,11 +120,11 @@ GitHub Enterprise では `GITHUB_TOKEN` の代わりに `GH_ENTERPRISE_TOKEN` �
 
 | 症状 | 見るところ |
 | --- | --- |
-| リリース PR が作られない | ワークフローの `permissions`（`contents: write` / `pull-requests: write` / `issues: read`）、repo の `can_approve_pull_request_reviews`、App の権限とインストール対象。`create-github-app-token` で要求した `permission-*` がインストールに無いとエラー |
+| リリース PR が作られない | まず使用トークン、App の権限とインストール対象、要求した `permission-*` を確認する。repo の `can_approve_pull_request_reviews` と workflow の書込権限は `GITHUB_TOKEN` 構成の場合だけ調べる |
 | タグを打っても別ワークフローが走らない | tagpr の `env.GITHUB_TOKEN` が `secrets.GITHUB_TOKEN` になっている。App トークンに差し替える |
 | リリース PR の CI が「approval required」で止まる | 同上。App トークンで作った PR なら承認なしで走る |
 | 違うバージョンファイルが選ばれた | `versionFile` を明示。tag-only は `-` |
 | `.tagpr` をサブディレクトリに置いたらファイルが無いと言われる | パスはルート基準。`tools/...` と書く |
 | 最初のリリース PR が全履歴を含む | 一致するタグが無い。`vPrefix` / `tagPrefix` が既存タグと合っているか確認。本当にタグが無ければ、ベースラインのコミットに正しいタグを打つか全履歴を受け入れる |
 | 既存 CHANGELOG の構造が崩れた | tagpr は最初の `##` 見出しの前に挿入する。独自構造なら `changelog = false` にして別プロセスに任せる |
-| Release PR を Rebase and merge したらタグが打たれない | tagpr は merge commit か squash のみ対応。`gh repo edit --enable-squash-merge` |
+| Release PR を Rebase and merge したらタグが打たれない | tagpr は merge commit か squash のみ対応。現在のマージ方式を確認し、必要な設定変更が許可された場合に対応する |

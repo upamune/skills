@@ -1,61 +1,40 @@
 ---
 name: ultra-ship
-description: 実装が終わったブランチを「コミット → base merge と衝突解消 → 4 種のレビューを Cursor / OpenCode / Codex / Claude / ホストのサブエージェントをローテーションして指摘ゼロまで反復 → PR 作成・整備 → pr-review-canvas で説明 → CI が green になるまで修正」まで一気に持っていく。進捗は z/<branch>/ultra-ship.html にチェックポイントとして残し、途中から再開できる。
+description: 実装済みブランチをレビューし、必要な修正・PR 作成・CI 確認まで仕上げる。中断した作業の再開にも使う。
 disable-model-invocation: true
 ---
 
 # ultra-ship
 
-実装済みのブランチを、レビュー可能で CI が通る PR にするまでを 1 回の呼び出しで終わらせる。既存スキルの組み合わせで、順番と「終了条件」をここで固定する。各フェーズの具体的な手順、レビュアー台帳、レビュアーと適用役に渡すプロンプトは [references/phases.md](references/phases.md)。
+実装済みの変更を、レビュー可能で検証済みの PR にする。依頼範囲の修正、commit、base の取り込み、push、PR 作成・更新、CI の確認まで続ける。PR は指定がなければ draft。マージや本番公開はこのスキルの完了条件に含めない。
 
-原則:
+## 進め方と判断境界
 
-- **チェックポイント優先**。始める前に必ず `checkpoint.py status` を試し、あれば `done` 以外の最初のフェーズから再開する。ただし記録を鵜呑みにせず、git / gh の実状態（未コミット差分、merge 中か、PR の有無、CI 状態）と突き合わせてから進む
-- **フェーズの節目ごとに必ずチェックポイントを更新する**。`phase <id> in_progress` で入り、`done` / `skipped` / `blocked` で抜ける。レビューは 1 ラウンドごとに `round` で「誰が、何を指摘し、何をどう直したか（見送ったなら理由）」を指摘 1 件単位で記録する。後から振り返る材料はここにしか残らない
-- **自明に良い指摘は勝手に採用する**。挙動を変えない整理、命名、重複除去、不要コメント削除、規約違反の修正は聞かずに直す。挙動やスコープが変わるもの、spec と矛盾するものだけ「採用しなかった指摘」として最後に報告する
-- **レビューは毎ラウンド別のレビュアー**で行う。`scripts/reviewers.py` の台帳（OpenCode+GLM-5.3 Flash → OpenCode+DeepSeek V4 Flash → Cursor+Grok 4.6 → Codex → Claude → `host`。1 ラウンド数分から、差分が大きければ最大 30 分待つ）を上から順にローテーションし、前ラウンドの文脈を引き継がせない。Claude / Codex は台帳の下位なので、上位モデルで指摘が尽きれば呼ばれない（使用量のオフロード）。外部 CLI が一つも無い環境（各社の Cloud）では `host`（ホスト自身のサブエージェント）だけで回す。有効な指摘がゼロになったらそのスキルは終了、上限は各 4 ラウンド（超えたら `blocked` にして理由を書き、次へ進む）
-- **レビュー（読み取り専用）と適用（書き込み）を分ける**。外部レビュアーは指摘だけ返し、適用は `reviewers.py pick --role apply` で選んだ安い書き込み可能なレビュアー、無ければホストの安いサブエージェント（Claude Code なら `model: sonnet`）がやる。作業ツリーに同時に書くエージェントは常に 1 つ
-- **コードを触ったラウンドの後は必ずプロジェクトの検査（typecheck / lint / test）を通してからコミット**する
-- **`z/` 以下（チェックポイント、レビュー結果、canvas の HTML）は絶対にコミットしない**。`checkpoint.py init` が `.git/info/exclude` に `/z/` を入れるが、`git add -A` や `git add -f` で混ざらないよう、コミット前に `git status --short` に `z/` が無いことを確認する。混ざっていたら `git rm --cached -r z/` で外す
-- 破壊的な git 操作（`push --force`、`reset --hard`、`--no-verify`）はしない。履歴の書き換えは make-pr-easy-to-review の手順どおり、未 push のコミットに限る
+- チェックポイントがあれば git / PR / CI の実状態と照合して再開する。記録だけを根拠に完了扱いしない。
+- 差分を要求・規約・不具合の観点でレビューする。構造の監査、simplify、deslop は具体的な必要がある場合に追加する。毎回すべてのスキルを読む必要はない。
+- 既定は現在のエージェントがレビューと修正を行う。独立した確認が有用で、委譲が利用可能・許可済みなら読み取り専用のレビュアーを使う。モデルやプロバイダーのローテーションは必須ではない。
+- 依頼された挙動を実現する修正は進める。挙動を変えるバグ修正を一律に見送らない。要求外の設計変更や不明な仕様は、実施できる作業を終えてから判断点を示す。
+- 修正後は影響する検査と指摘箇所を確かめる。指摘ゼロを得るためだけに別の総点検を繰り返さない。収束しない場合は同じ問題への試行を 3 回までとし、理由と残作業を記録する。
+- 作業ツリーに書き込む担当は同時に一つ。`push --force`、`reset --hard`、`--no-verify` は使わず、push 済み履歴を保つ。
+- `z/` のチェックポイント・レビュー記録・HTML はコミットに入れない。既存のユーザー変更を、作業ツリーを clean にするためだけに取り込んだり消したりしない。
 
-## 手順
+## 記録と資料
 
-```
-S=<このスキルのディレクトリ>/scripts/checkpoint.py
-R=<このスキルのディレクトリ>/scripts/reviewers.py
-$S init --base <base>      # 既存なら状態を保持したまま再描画。z/ は .git/info/exclude に入れる
-$S status                  # 再開時はまずこれを読む
-$R list                    # 使えるレビュアーを確認し、$S set reviewers "<id,id,...>" で記録
+`S` はこのスキルの `scripts/checkpoint.py` の絶対パス。base は既存 PR、なければ remote の既定ブランチから決める。
+
+```bash
+python3 "$S" status
+python3 "$S" init --base <base>
 ```
 
-base は `gh pr view --json baseRefName` があればそれ、無ければ `gh repo view --json defaultBranchRef -q .defaultBranchRef.name`。
+進捗は `z/<sanitized-branch>/ultra-ship.html` に保存する。工程を終えた時点と中断時に記録を更新する。
 
-| # | phase id | やること | 使うスキル | 終了条件 |
-| --- | --- | --- | --- | --- |
-| 1 | `commit` | `git status` で漏れを確認し、論理単位でコミット。生成物・秘密情報が混ざっていないか見る | (なし) | 作業ツリーがクリーン |
-| 2 | `merge` | `git fetch origin <base>` して `git merge origin/<base>`。衝突したら解消して検査を通す | resolving-merge-conflicts | merge コミット済みで検査が通る |
-| 3 | `review:thermo` | 構造・抽象の大きな見直し。構造の問題を最初に潰す | thermo-nuclear-code-quality-review | 有効な指摘 0 |
-| 4 | `review:simplify` | 挙動を変えずに読みやすく | simplify | 有効な指摘 0 |
-| 5 | `review:deslop` | AI 由来の冗長さ・不要な防御・コメントを除去 | deslop | 有効な指摘 0 |
-| 6 | `review:code-review` | 規約（Standards）と spec の両軸で最終確認。fixed point は `origin/<base>` の merge-base | code-review | 有効な指摘 0 |
-| 7 | `pr` | PR が無ければ push して **draft で**作成（指示が無い限り ready にしない）、あれば説明を更新。レビュー観点の案内を付ける | make-pr-easy-to-review | PR URL が `values.pr_url` に入る |
-| 8 | `canvas` | PR の変更内容を HTML で説明し、`z/<branch>/pr-review.html` にも保存する | pr-review-canvas | `values.canvas_path` が入る |
-| 9 | `ci` | チェックを見て失敗を直し、push して green まで繰り返す | loop-on-ci | 全チェック green |
-| 10 | (verify) | `scripts/verify.py` で全項目を突き合わせる | (なし) | exit 0 |
+- commit / merge / PR / CI と再開時の照合: [references/phases.md](references/phases.md)
+- 指摘の記録、独立レビュー、追加監査: [references/review.md](references/review.md)
+- 外部 CLI を明示的に選んで使う場合のみ: [references/reviewers.md](references/reviewers.md)
 
-3〜6 は順番に意味がある。構造（thermo）を直してから整える（simplify）、その後に細かい slop を落とし（deslop）、最後に規約と spec に照らす（code-review）。code-review の指摘で構造が変わったら 3 に戻す（上限 1 回）。
+## 完了条件
 
-レビュアー（外部 CLI でもホストのサブエージェントでも）には必ず次を渡す: 使うスキルの `SKILL.md` の本文（`$R run --skill` が埋め込む。外部 CLI はリポジトリ外を読めないことがあり、`disable-model-invocation: true` のスキルは Skill ツールでも呼べない）、diff の範囲（`git diff origin/<base>...HEAD`）、「指摘のみ・編集しない」こと、返答フォーマット（指摘の一覧と、それぞれが自明に適用してよいものか）。適用役には指摘一覧と「挙動が変わるものは適用せず報告」の線引きを渡す。プロンプト例は [references/phases.md](references/phases.md)。
+対象の変更が commit・push され、最新の差分のレビューと必要な修正が済み、PR の説明が現在の内容に合い、CI の状態が確認できていること。CI が設定されていない場合は「CI なし」と記録し、成功したと表現しない。
 
-## 最後の報告
-
-チェックポイントを `$S status` で読み直して、次を短くまとめる:
-
-- PR URL と canvas の HTML パス
-- 各レビューのラウンド数、どのレビュアーが見たか、採用した主な変更
-- 採用しなかった指摘とその理由
-- CI の最終状態と、直した失敗
-- `blocked` にしたフェーズがあればその理由と、人が判断すべきこと
-
-完了条件: `scripts/verify.py` が全項目 ✓ で exit 0（チェックポイント・作業ツリー・base 取り込み・push・PR・canvas・CI を機械的に突き合わせる）。✗ が残っていたら該当フェーズに戻り、勝手に「完了」と報告しない。
+`python3 <skill-dir>/scripts/verify.py` で記録と実状態を照合する。任意工程の省略は理由を残す。未解決の指摘、取得できない CI、認証・外部サービスの障害は `blocked` とし、完了と取り違えない。最終報告は PR URL、主な変更、検証結果、残る判断点に絞る。

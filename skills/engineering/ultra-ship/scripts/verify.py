@@ -18,8 +18,8 @@
   base        origin/<base> を取り込み済み（origin/<base> が HEAD の祖先）
   pushed      HEAD が origin/<branch> と一致
   pr          PR が存在し open（draft かどうかは表示のみ）
-  canvas      values.canvas_path のファイルが存在
-  ci          gh pr checks が全部 pass（--no-ci で省略）
+  canvas      ファイルが存在するか、理由付きで省略済み
+  ci          gh pr checks が全部 pass、または CI なしと確認済み（--no-ci は途中確認用）
 """
 
 from __future__ import annotations
@@ -69,6 +69,15 @@ def check_checkpoint(r: Report, state: dict | None) -> None:
         r.add("checkpoint", False, "z/<branch>/ultra-ship.html が無い、または壊れている")
         return
     bad = [f"{p['id']}={p['status']}" for p in state["phases"] if p["status"] not in ("done", "skipped")]
+    required = {"commit", "merge", "review:code-review", "pr", "ci"}
+    by_id = {p["id"]: p for p in state["phases"]}
+    bad.extend(f"{pid}: 工程なし" for pid in sorted(required - by_id.keys()))
+    for p in state["phases"]:
+        if p["status"] == "skipped":
+            if not p.get("note", "").strip():
+                bad.append(f"{p['id']}: 省略理由なし")
+            if p["id"] in required - {"ci"}:
+                bad.append(f"{p['id']}: 必須工程は省略できない")
     r.add("checkpoint", not bad, "全フェーズ done/skipped" if not bad else "未完了: " + ", ".join(bad))
 
 
@@ -115,7 +124,7 @@ def check_git(r: Report, root: Path, branch: str, base: str | None) -> None:
         r.add("pushed", remote == head, "HEAD == origin/" + branch if remote == head else f"HEAD {head[:8]} != origin/{branch} {remote[:8]}")
 
 
-def check_pr(r: Report, want_ci: bool) -> None:
+def check_pr(r: Report, want_ci: bool, state: dict | None = None) -> None:
     rc, out = sh("gh", "pr", "view", "--json", "url,state,isDraft,baseRefName")
     if rc != 0:
         r.add("pr", False, "PR が無い")
@@ -128,18 +137,30 @@ def check_pr(r: Report, want_ci: bool) -> None:
     if not want_ci:
         return
     rc, out = sh("gh", "pr", "checks", "--json", "name,bucket,state")
-    if rc != 0 and not out.startswith("["):
+    no_checks = out.lower().startswith("no checks reported")
+    if rc != 0 and not out.startswith("[") and not no_checks:
         r.add("ci", False, out.splitlines()[0] if out else "gh pr checks 失敗")
         return
-    checks = json.loads(out) if out else []
+    checks = json.loads(out) if out and not no_checks else []
     if not checks:
-        r.add("ci", False, "チェックが 1 つも無い")
+        ci = next((p for p in (state or {}).get("phases", []) if p["id"] == "ci"), {})
+        confirmed_none = (
+            ci.get("status") == "skipped"
+            and bool(ci.get("note", "").strip())
+            and (state or {}).get("values", {}).get("ci_status") == "none"
+        )
+        r.add("ci", bool(confirmed_none), "CI なし（設定・トリガーを確認済み）" if confirmed_none else "チェックが無い。CI 設定・トリガーの確認が必要")
         return
     bad = [f"{c['name']}={c['bucket']}" for c in checks if c["bucket"] not in ("pass", "skipping")]
     r.add("ci", not bad, f"{len(checks)} 件すべて pass" if not bad else ", ".join(bad))
 
 
 def check_canvas(r: Report, root: Path, state: dict | None) -> None:
+    phase = next((p for p in (state or {}).get("phases", []) if p["id"] == "canvas"), {})
+    if phase.get("status") == "skipped":
+        note = phase.get("note", "").strip()
+        r.add("canvas", bool(note), "省略: " + note if note else "省略理由が無い")
+        return
     path = (state or {}).get("values", {}).get("canvas_path")
     if not path:
         r.add("canvas", False, "values.canvas_path が無い")
@@ -169,7 +190,7 @@ def main() -> None:
     check_checkpoint(r, state)
     check_findings(r, state)
     check_git(r, root, branch, base)
-    check_pr(r, not a.no_ci)
+    check_pr(r, not a.no_ci, state)
     check_canvas(r, root, state)
 
     if a.json:

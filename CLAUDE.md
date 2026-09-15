@@ -1,50 +1,21 @@
-このリポジトリは upamune の agent skills 集。自作スキルと、外部リポジトリから vendor した外部スキルを一緒に管理し、`npx skills add upamune/skills` 一発でインストールできるようにしている。
+このリポジトリは upamune の agent skills 集。自作スキルと外部から vendor したスキルを `npx skills add upamune/skills` で配布する。`AGENTS.md` はこのファイルへの symlink。
 
-## ディレクトリ
+## 作業に応じて読む
 
-`skills/` 配下はバケット単位:
+- スキルの追加・更新・移動や vendor 管理には [.agents/skills/manage-skills/SKILL.md](.agents/skills/manage-skills/SKILL.md) を使う。個々の修正では対象スキルと関連 reference から読む。
+- 配布・インストール方法は [README.md](README.md)、スキルを探すときは [SKILLS.md](SKILLS.md)。一覧全体や無関係な reference を毎回読む必要はない。
 
-- `engineering/`: 日常のコード作業向け（自作）
-- `productivity/`: コード以外のワークフロー向け（自作）
-- `in-progress/`: 作りかけ・試用中（自作、plugin には含めない）
-- `deprecated/`: 使わなくなったもの（自作）
-- `external/`: 外部リポジトリから vendor したもの（**直接編集禁止**）
+## 保つ制約
 
-`engineering/` と `productivity/` が **promoted** バケット。ここにあるスキルは必ず `README.md`（トップ）と `.claude-plugin/plugin.json` の `skills` 配列に載せる。`in-progress/`、`deprecated/`、`external/` はどちらにも載せない。
+- `skills/engineering/` と `skills/productivity/` は promoted。トップ README と `.claude-plugin/plugin.json` に載せる。`in-progress/`・`deprecated/`・`external/` は載せない。
+- 各バケットの README は全スキルを `SKILL.md` へのリンクと一行説明で列挙する。promoted とトップ README は User-invoked / Model-invoked に分ける。廃止スキルは `metadata.internal: true` にする。
+- `skills/external/` は `external-skills.json` の出所・commit pin から生成する。直接編集せず、`scripts/external.ts` を使う。改変が必要なら fork への出所変更か、自作バケットへの別名コピーを検討する。
+- `SKILLS.md` は生成物。スキルの追加・改名・削除・description 変更後は `bun scripts/gen-skills-md.ts` で再生成する。
+- `.agents/skills/manage-skills/` は内部用。`metadata.internal: true` と `.claude/skills/manage-skills` の symlink を保つ。
+- 散文に em-dash（—）を使わない。
 
-各バケットの `README.md` にはそのバケットの全スキルを一行説明付きで列挙し、スキル名は `SKILL.md` にリンクする。promoted バケットとトップ `README.md` は **User-invoked** / **Model-invoked** に分けて書く。
+## 作業の完了
 
-`deprecated/` に移したスキルは frontmatter に `metadata: { internal: true }` を付け、`npx skills add` から見えないようにする。
+依頼された修正、関連する生成物の更新、影響に見合った検証まで進める。説明文だけなら frontmatter・参照・一覧の整合を確認し、スクリプト変更なら変更した振る舞いを実行して確かめる。`.claude-plugin/*.json` を変更した場合は `claude plugin validate . --strict` を使う。
 
-## この repo を触るときのスキル
-
-`.agents/skills/manage-skills/`（`.claude/skills/manage-skills` は symlink）に、この repo 自身のスキル管理手順（外部 vendor / 自作追加 / 昇格・廃止 / リリース）がある。`metadata.internal: true` なので `npx skills add upamune/skills` の配布対象には入らない。スキルの追加・更新を頼まれたらまずこれを使う。
-
-## SKILLS.md
-
-`SKILLS.md` は `scripts/gen-skills-md.ts` が生成する全スキル一覧。手で編集しない。自作スキルを追加・改名・削除・説明変更したら再実行する（`scripts/external.ts` の add / sync / remove は自動で再生成する）。共通ヘルパーは `scripts/lib.ts`。
-
-## 外部スキル
-
-出所と pin（commit）は `external-skills.json` が正。`skills/external/` の中身はそこから生成されたコピーなので手で触らない。操作はすべて `scripts/external.ts` で行う:
-
-- 追加: `scripts/external.ts add <owner/repo|URL> [<skill>...] [--ref <ref>] [--path <repo内パス>]`（スキル名を省略すると対話的に選択、`--list` で一覧のみ。gist URL も可で、SKILL.md がルート直下にあれば取り込める）
-- 更新: `scripts/external.ts sync [<skill>...]`（`--frozen` で pin した commit のまま取り直し）
-- 削除: `scripts/external.ts remove <skill>...`
-- 一覧: `scripts/external.ts list`
-
-`add` / `sync` / `remove` は `skills/external/README.md` を再生成する。外部スキルに手を入れたくなったら、fork して出所を変えるか、自作バケットにコピーして別名にする。
-
-## ローカル反映
-
-`scripts/link-skills.sh` で `~/.claude/skills` と `~/.agents/skills` に symlink する（`git pull` だけで追従）。既存の実体ディレクトリは上書きしないので、置き換えるときは `--force`。スキルの追加・削除・改名後は再実行する。
-
-何もないマシンには repo 直下の `install.sh`（`curl -fsSL https://raw.githubusercontent.com/upamune/skills/main/install.sh | sh`）を使う。clone（git が無ければ tarball）と `link-skills.sh --force` をまとめてやる POSIX sh で、確認は出さない。
-
-## Plugin manifest
-
-`.claude-plugin/plugin.json` は promoted スキルだけを列挙する。`.claude-plugin/marketplace.json` はこの repo 自身を単一 plugin の marketplace にするためのもの。どちらかを触ったら `claude plugin validate . --strict` を通す。
-
-## 文章
-
-散文に em-dash（—）を使わない。カンマ、読点、括弧、接続詞で書き直す。
+ローカル編集・生成・一時データでの検証は都度確認せず進め、修正に起因する失敗を直す。スキルを保守する依頼は、そのスキルが説明している公開・インストール・アカウント操作を実行する依頼ではない。
