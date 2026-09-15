@@ -1,6 +1,6 @@
 # TypeScript (Bun + TanStack Start) の雛形
 
-TypeScript プロジェクトは **React + TanStack Start** の Web アプリとして立ち上げる。ランタイム・パッケージマネージャは Bun、アプリケーション基盤は **Effect**、UI は **Tailwind CSS v4 + shadcn/ui**。Node / npm / ESLint / Prettier は入れない。
+この reference は TypeScript Web アプリの標準構成を選んだ場合の雛形。指定済みの別構成には適用しない。**React + TanStack Start** の Web アプリとして立ち上げる。ランタイム・パッケージマネージャは Bun、アプリケーション基盤は **Effect**、UI は **Tailwind CSS v4 + shadcn/ui**。Node / npm / ESLint / Prettier は入れない。
 
 | 役割 | 採用 | 備考 |
 | --- | --- | --- |
@@ -530,8 +530,8 @@ curl -fsSL https://raw.githubusercontent.com/TanStack/router/main/examples/react
 
 ## 確認
 
-1. `mise install && bun install && bun run check && mise run ci` が通り、Ultracite、`@shadcn/lint`、knip、TypeScript、Effect の診断がすべて 0 件
-2. `bun run build && PORT=3999 bun run start` を起動し、`curl -s http://localhost:3999/` の HTML に見出しの文言と `<link rel="stylesheet">` が含まれ、`devtools` の文字列が含まれないことを確認してから止める
+1. 依存導入後の `mise run ci` で lint / format・型・テスト・build を確認する。失敗を直したら影響する検査だけ再実行する
+2. 上で作った本番ビルドを `PORT=3999 bun run start` で起動し、`curl -s http://localhost:3999/` の HTML に見出しの文言と `<link rel="stylesheet">` が含まれ、`devtools` の文字列が含まれないことを確認してから止める
 3. `mise run dev` でも同じページが出る
 
 `bun run fix --codex` はコードを変更するため、通常の初期化や CI では実行しない。

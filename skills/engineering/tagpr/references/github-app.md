@@ -1,6 +1,8 @@
 # GitHub App とリポジトリ設定
 
-tagpr に渡すトークンは GitHub App のインストールトークンにする。`GITHUB_TOKEN` との違い:
+App の新規作成・権限設定が必要な場合に読む。既存の App を再利用できれば作り直さない。既に許可された操作は続け、手動操作が必要なら具体的な設定値を渡す。
+
+tagpr に渡すトークンは GitHub App のインストールトークンにする。[GitHub のトリガー仕様](https://docs.github.com/en/actions/how-tos/write-workflows/choose-when-workflows-run/trigger-a-workflow)に基づく `GITHUB_TOKEN` との違い:
 
 | | `GITHUB_TOKEN` | GitHub App トークン |
 | --- | --- | --- |
@@ -13,7 +15,7 @@ tagpr はコミットを GitHub API 経由で作る（Verified commit になる�
 
 ## 1. App を作る
 
-ブラウザ操作が要るので、ユーザーに依頼する。URL:
+App 作成・インストールの操作手段が利用できなければ、ローカル設定を準備したうえでユーザーに依頼する。URL:
 
 - 個人: `https://github.com/settings/apps/new`
 - Organization: `https://github.com/organizations/<org>/settings/apps/new`
@@ -53,7 +55,6 @@ App の権限を後から増やした場合、インストール側で承認す�
 ```bash
 gh variable set TAGPR_APP_CLIENT_ID --body "<Client ID>"
 gh secret set TAGPR_APP_PRIVATE_KEY < ~/Downloads/<app-name>.<date>.private-key.pem
-rm ~/Downloads/<app-name>.<date>.private-key.pem   # 手元に残さない
 gh variable list
 gh secret list
 ```
@@ -85,29 +86,19 @@ gh secret set TAGPR_APP_PRIVATE_KEY --org <org> --visibility selected --repos <r
 
 `actions/checkout` にも同じトークンを渡し、`persist-credentials: false` にする。tagpr は `env.GITHUB_TOKEN` のトークンで push と API 呼び出しをする。
 
-## 5. リポジトリ設定
+## 5. 必要な場合だけリポジトリ設定を見る
 
-「Settings > Actions > General > Workflow permissions」を `gh api` で操作する:
+App トークンでは `can_approve_pull_request_reviews` は不要。フォールバック用に有効化せず、`default_workflow_permissions` も変えない。既存の `GITHUB_TOKEN` 構成を明示的に扱う場合だけ、この設定とワークフローの `permissions` を調べる。
 
-```bash
-# 現状
-gh api repos/{owner}/{repo}/actions/permissions/workflow
-# Allow GitHub Actions to create and approve pull requests を ON
-gh api -X PUT repos/{owner}/{repo}/actions/permissions/workflow -F can_approve_pull_request_reviews=true
-```
+App の権限、インストール対象、`permission-*` を先に確認する。Organization の制限があっても、権限を一括で緩める解決に置き換えない。
 
-- `default_workflow_permissions` は触らない（`read` のままでよい）。ワークフローの `permissions:` ブロックで必要な分だけ上げられる
-- `can_approve_pull_request_reviews` は `GITHUB_TOKEN` で PR を作る場合にだけ必要。App トークンでは不要だが、フォールバックや他のワークフローのために `true` にしておく
-- Organization 側の設定が優先される。repo で `true` にできないときは `gh api orgs/{org}/actions/permissions/workflow` を確認し、org 管理者に `-X PUT ... -F can_approve_pull_request_reviews=true` を依頼する
-
-マージ方式:
+マージ方式の確認:
 
 ```bash
 gh repo view --json mergeCommitAllowed,squashMergeAllowed,rebaseMergeAllowed
-gh repo edit --enable-squash-merge     # または --enable-merge-commit
 ```
 
-tagpr は Rebase and merge に対応していない。
+tagpr は Rebase and merge に対応していない。必要な設定変更が許可されていれば、`gh repo edit --enable-squash-merge` または `--enable-merge-commit` を使う。
 
 ## 補足: コミット作者を App の bot にしたい他の step がある場合
 

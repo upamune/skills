@@ -21,13 +21,13 @@
 
 **User-invoked**
 
-- [init-project](./skills/engineering/init-project/SKILL.md): Go または TypeScript Web アプリ (Bun + TanStack Start + Tailwind / shadcn/ui + Effect + Ultracite + @shadcn/lint) の新規プロジェクトを、mise / format・lint・typecheck・test・build の CI / backlog / upamune の skills 込みで立ち上げる。新しいリポジトリで最初に一度だけ実行する。
-- [ultra-ship](./skills/engineering/ultra-ship/SKILL.md): 実装が終わったブランチを「コミット → base merge と衝突解消 → 4 種のレビューを Cursor / OpenCode / Codex / Claude / ホストのサブエージェントをローテーションして指摘ゼロまで反復 → PR 作成・整備 → pr-review-canvas で説明 → CI が green になるまで修正」まで一気に持っていく。進捗は z/<branch>/ultra-ship.html にチェックポイントとして残し、途中から再開できる。
+- [init-project](./skills/engineering/init-project/SKILL.md): 新しい Go プロジェクトまたは TypeScript Web アプリを、upamune の標準構成で初期化する。
+- [ultra-ship](./skills/engineering/ultra-ship/SKILL.md): 実装済みブランチをレビューし、必要な修正・PR 作成・CI 確認まで仕上げる。中断した作業の再開にも使う。
 
 **Model-invoked**
 
-- [tagpr](./skills/engineering/tagpr/SKILL.md): Songmu/tagpr でリリース PR の自動生成とタグ付け・GitHub Release 作成を GitHub Actions に組み込む。GitHub App（actions/create-github-app-token）のトークンで動かし、タグ push から別の公開ワークフローを起動できる形にする。「tagpr を導入して」「リリース PR を自動化したい」「タグ付けとリリースを自動化」「tagpr のワークフローを直して」「release PR が作られない」と言われたら使う。新規・既存どちらのリポジトリにも使える。
-- [uv-script](./skills/engineering/uv-script/SKILL.md): uv の PEP 723 インラインメタデータで、単一ファイルで完結する Python スクリプトを書く・直す・実行する。依存を入れるときは `[tool.uv] exclude-newer` を必ず付けて再現性を保つ。「Python でスクリプトを書いて」「uv でスクリプト」「単発の Python を書いて」「この .py に依存を足して」「`# /// script` のファイルを直して」「uv run で動くようにして」と言われたら使う。pyproject.toml を持つパッケージやアプリの開発には使わない。
+- [tagpr](./skills/engineering/tagpr/SKILL.md): Songmu/tagpr の導入、設定・ワークフロー変更、リリース PR やタグ生成の不具合調査に使う。
+- [uv-script](./skills/engineering/uv-script/SKILL.md): uv で動かす単独 Python スクリプトの作成・編集、PEP 723 メタデータと依存管理に使う。Python パッケージ開発は対象外。
 
 ## productivity
 

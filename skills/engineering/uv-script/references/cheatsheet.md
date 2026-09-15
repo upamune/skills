@@ -1,6 +1,6 @@
 # uv スクリプト チートシート
 
-uv 0.12 系で確認。公式: https://docs.astral.sh/uv/guides/scripts/
+コマンド・詳細が必要な場合に読む。[公式ガイド](https://docs.astral.sh/uv/guides/scripts/)と使用中の `uv --help` を参照する。
 
 ## インラインメタデータ（PEP 723）
 
@@ -28,7 +28,7 @@ uv 0.12 系で確認。公式: https://docs.astral.sh/uv/guides/scripts/
 | やること | コマンド | 備考 |
 | --- | --- | --- |
 | 雛形 | `uv init --script x.py --python 3.12` | `requires-python` と空の `dependencies`、`main()` が入る |
-| 依存追加 | `uv add --script x.py 'requests<3' rich` | メタデータが無ければブロックごと作る。`[tool.uv]` は保持される。`--exclude-newer` を渡しても日付はメタデータに書かれないので手で書く |
+| 依存追加 | `uv add --script x.py 'requests<3' rich` | メタデータが無ければブロックごと作る。`[tool.uv]` は保持される。cutoff をメタデータに明記し、オプションだけで保存できたと思わない |
 | 依存削除 | `uv remove --script x.py rich` | |
 | 実行 | `uv run x.py [args]` | `.py` なら `--script` 省略可。`--python 3.11` で Python を差し替え |
 | 実行（拡張子なし / stdin） | `uv run --script ./tool` / `echo 'print(1)' \| uv run -` | |
@@ -48,7 +48,8 @@ uv 0.12 系で確認。公式: https://docs.astral.sh/uv/guides/scripts/
 ## `exclude-newer` の運用
 
 - 新規に書く: `date -u +%Y-%m-%dT%H:%M:%SZ` の値を書く。依存を足す前に書く
-- 依存を更新する: 日付を進めて `uv run`（`.lock` があれば `uv lock --script`）。消すと「最新」が毎回変わる
+- 依存を更新する: 必要な場合に日付を進める。`.lock` がある場合は `uv lock --script x.py --upgrade-package <package>`（全依存の更新が目的なら `--upgrade`）で解決し直す
+- 文言やロジックだけの変更では既存の日付と lock を保つ。cutoff は新しい配布物を除外するもので、lock の代わりに解決結果全体を固定するものではない
 - 環境変数 `UV_EXCLUDE_NEWER` や `--exclude-newer` でも同じ効果が出るが、スクリプト単体で再現できなくなるのでメタデータに書く
 - 書いた日付より新しいパッケージが必要になった（新 API を使いたい等）ら、そのときに日付を進める
 

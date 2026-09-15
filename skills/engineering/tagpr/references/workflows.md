@@ -163,4 +163,4 @@ jobs:
 
 1. `pinact run` → 全 `uses:` が SHA + `# vX.Y.Z` コメントになっている（`pinact run -check` で検証のみ）
 2. `actionlint`（mise に `actionlint` あり）
-3. push 後 `gh run list --workflow tagpr.yml` で実行を見て、`gh pr list --label tagpr` でリリース PR を確認
+3. リリースブランチへの反映まで許可された場合は、`gh run list --workflow tagpr.yml` と `gh pr list --label tagpr` で実行結果を確認する
