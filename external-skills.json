@@ -93,6 +93,13 @@
       "commit": "d23d7f88a2e21c9e4b1418c7abe420f5c1052ba7",
       "updatedAt": "2026-08-23T10:43:46.898Z"
     },
+    "first-reader": {
+      "source": "Shubhamsaboo/awesome-llm-apps",
+      "url": "https://github.com/Shubhamsaboo/awesome-llm-apps.git",
+      "path": "agent_skills/first-reader",
+      "commit": "22a91e2a64bee40277477988d5ac5e786555cf01",
+      "updatedAt": "2026-09-19T08:58:26.702Z"
+    },
     "get-pr-comments": {
       "source": "cursor/plugins",
       "url": "https://github.com/cursor/plugins.git",
@@ -120,6 +127,13 @@
       "path": "skills/productivity/handoff",
       "commit": "5b15a47f2d7150f545fbcacbfe381787fc0230dc",
       "updatedAt": "2026-08-23T10:02:54.856Z"
+    },
+    "i-have-adhd": {
+      "source": "ayghri/i-have-adhd",
+      "url": "https://github.com/ayghri/i-have-adhd.git",
+      "path": "skills/i-have-adhd",
+      "commit": "b15d0be58f55b33972ba3e39709e0e5208ef30cb",
+      "updatedAt": "2026-09-19T08:58:27.045Z"
     },
     "implement": {
       "source": "mattpocock/skills",
