@@ -10,7 +10,7 @@
 | UI | Tailwind CSS v4 + shadcn/ui（Base UI、nova preset） | `bunx --bun shadcn add <component>` |
 | アイコン | lucide-react | shadcn の既定 |
 | アプリ基盤・バリデーション | Effect / Effect Schema | `Schema.standardSchemaV1` で TanStack Form にも渡せる |
-| 品質 | Ultracite（Oxlint + Oxfmt、react / tanstack / vitest preset）+ @shadcn/lint（デザインシステム）+ knip + tsc + Effect TSGO | |
+| 品質 | Ultracite（Oxlint + Oxfmt、react / tanstack / vitest preset）+ @shadcn/lint（デザインシステム）+ knip + fallow + tsc + Effect TSGO | knip は未使用 export / 依存。fallow は循環・重複・複雑度・CSS drift と PR の `fallow audit` ゲート。併用し、置換しない |
 | テスト | Vitest + Testing Library + jsdom | TanStack Router 公式の推奨構成 |
 | Devtools | `@tanstack/react-devtools`（Router / Query panel） | 本番 HTML には出ない |
 | 本番サーバ | TanStack 公式 `start-bun` example の `server.ts` を Bun で実行 | nitro 不要 |
@@ -64,8 +64,8 @@ description = "Format check"
 run = "bun run format:check"
 
 [tasks.lint]
-description = "Lint + unused check"
-run = ["bun run lint", "bun run knip"]
+description = "Lint + unused + fallow audit"
+run = ["bun run lint", "bun run knip", "bun run fallow"]
 
 [tasks.typecheck]
 description = "TypeScript + Effect diagnostics"
@@ -82,6 +82,8 @@ run = "bun run build"
 [tasks.ci]
 depends = ["format:check", "lint", "typecheck", "test", "build"]
 ```
+
+`bun run fallow` は `fallow audit`。exit 0 は pass / warn、1 は fail（ゲートに掛かる finding）、2 は設定や git の実エラー。CI では exit 1 でジョブを落とす。`|| true` で飲み込むな。
 
 ## package.json
 
@@ -102,6 +104,7 @@ depends = ["format:check", "lint", "typecheck", "test", "build"]
     "check": "ultracite check --type-aware",
     "fix": "ultracite fix --type-aware",
     "knip": "knip",
+    "fallow": "fallow audit",
     "typecheck": "tsc --noEmit && effect-tsgo diagnostics --project tsconfig.json",
     "test": "vitest run"
   }
@@ -118,7 +121,14 @@ bun add react react-dom effect \
 bun add -D vite @vitejs/plugin-react typescript @types/react @types/react-dom @types/bun \
   tailwindcss @tailwindcss/vite \
   vitest @testing-library/react @testing-library/jest-dom jsdom \
-  knip @effect/tsgo
+  knip fallow @effect/tsgo
+```
+
+fallow の版は書く前に確認する（`latest` は書かない）。上の `bun add -D` に並べたあと、確認した版で pin する:
+
+```bash
+bun pm view fallow version
+bun add -D fallow@<確認した版>
 ```
 
 Devtools 3 つは `__root.tsx` から import するので `dependencies` に置く（本番ビルドには含まれない）。`@types/node` ではなく `@types/bun` を使う。
@@ -318,6 +328,31 @@ overrides: [
 - shadcn のコンポーネントは使う前から置かれるので `entry` にして未使用 export を報告させない。`src/lib/utils.ts` も shadcn の規約上のファイルなので同様
 - `ignoreDependencies` は CSS の `@import` 経由でしか使われない依存（knip は CSS を追わない）と、shadcn が既定で入れる `lucide-react`。アイコンを使い始めたら `lucide-react` は外す。`@effect/language-service` は `@effect/tsgo` の plugin 名で実パッケージが無い。`@shadcn/lint` は `oxlint.config.ts` の `jsPlugins` 文字列だけで参照されるので knip からは未使用に見える
 
+### .fallowrc.json
+
+[fallow](https://github.com/fallow-rs/fallow) はグラフ全体の監査（未使用、循環、重複、複雑度、CSS drift）と、変更ファイルに対する `fallow audit` ゲート。knip の置換ではない。knip の設定とスクリプトは残し、`fallow migrate` は使わない。
+
+対話の `fallow recommend` は任意の後追い調整用。初期化では次の設定をコミットする（スキーマは npm パッケージ同梱の `./node_modules/fallow/schema.json`。導入時に `bun pm view fallow version` で確認した版を pin する）。
+
+```json
+{
+  "$schema": "./node_modules/fallow/schema.json",
+  "ignorePatterns": [
+    "**/*.gen.ts",
+    "src/routeTree.gen.ts",
+    "src/components/ui/**",
+    "server.ts"
+  ]
+}
+```
+
+- 組み込み plugin が TanStack Router / Start と Vitest の entry を検出する。初回の誤検知は生成ファイルがほとんどなので `ignorePatterns` で外す
+- `src/components/ui/**` は shadcn CLI 所有（knip の entry、oxlint の ignore と同じ理由）
+- `server.ts` は TanStack の start-bun example からコピーした本番サーバ
+- Fallow Runtime（有料）は入れない。`fallow license activate`、coverage の upload、runtime intelligence は使わない
+- `--type-aware` は初期化の既定にしない（構文解析のまま。型付き検査は tsc と oxlint `--type-aware` が担う）。後から opt-in してよい
+- `fallow agent install` と `fallow init --agents` は実行しない。このスキルが作る `CLAUDE.md` / `AGENTS.md` と競合する
+
 ### .editorconfig
 
 ```ini
@@ -334,7 +369,7 @@ insert_final_newline = true
 
 ### .gitignore
 
-[gitignore.txt](gitignore.txt) をそのままコピーする。TanStack Start 用に `.tanstack/`、`.output/`、`.nitro/`、`dist/` が入っている。`src/routeTree.gen.ts` はコミットする（公式 example と同じ。Ultracite は無視、tsc は見る）。
+[gitignore.txt](gitignore.txt) をそのままコピーする。TanStack Start 用に `.tanstack/`、`.output/`、`.nitro/`、`dist/`、fallow 用に `.fallow/` が入っている。`src/routeTree.gen.ts` はコミットする（公式 example と同じ。Ultracite と fallow は無視、tsc は見る）。
 
 ## 最小ソース
 
@@ -526,11 +561,30 @@ curl -fsSL https://raw.githubusercontent.com/TanStack/router/main/examples/react
 
 ## CI
 
-`references/github-actions.md` の雛形の TypeScript 版（`format` / `lint` / `typecheck` / `test` / `build` + `pinact`）を使う。`jdx/mise-action` が `bun` を入れるので `oven-sh/setup-bun` は不要。各ジョブの `mise run ...` の前に `bun install --frozen-lockfile` を挟む。
+`references/github-actions.md` の雛形の TypeScript 版（`format` / `lint` / `typecheck` / `test` / `build` + `pinact`）を使う。`jdx/mise-action` が `bun` を入れるので `oven-sh/setup-bun` は不要。各ジョブの `mise run ...` の前に `bun install --frozen-lockfile` を挟む（lint の knip / fallow も `node_modules` のバイナリを使う）。
+
+TypeScript の lint ジョブだけ `actions/checkout` に `fetch-depth: 0` を付ける。`fallow audit` が PR の base と差分を取るため（shallow clone だと `git merge-base` が取れない）。Go では付けない。
+
+```yaml
+  lint:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+          fetch-depth: 0  # TypeScript: fallow audit の PR 差分ゲート用
+      - uses: jdx/mise-action@v4
+      - run: bun install --frozen-lockfile
+      - run: mise run lint
+```
+
+`fallow audit` は `package.json` の `"fallow": "fallow audit"` を `mise run lint` から回す。公式 Action `fallow-rs/fallow` は存在するが、このスキルでは必須にしない（版は bun.lock の pin に揃える）。
+
+base 未指定時の公式既定は、上流または `origin/main` との `git merge-base`（`FALLOW_AUDIT_BASE` で固定可）。ゲートは既定 `new-only`（今回の変更が導入した finding だけ fail）。main への push（PR ベースが無い実行）でも同じコマンドを回す。上流と同じ commit なら変更ファイルは空で、finding が無ければ pass（exit 0）。base が取れないときは exit 2。独自フラグは足さない。
 
 ## 確認
 
-1. 依存導入後の `mise run ci` で lint / format・型・テスト・build を確認する。失敗を直したら影響する検査だけ再実行する
+1. 依存導入後の `mise run ci` で lint / format・型・テスト・build を確認する。`mise run lint` に oxlint、knip、`fallow audit` が含まれるので、required check 名は `lint` のままで足りる。失敗を直したら影響する検査だけ再実行する
 2. 上で作った本番ビルドを `PORT=3999 bun run start` で起動し、`curl -s http://localhost:3999/` の HTML に見出しの文言と `<link rel="stylesheet">` が含まれ、`devtools` の文字列が含まれないことを確認してから止める
 3. `mise run dev` でも同じページが出る
 

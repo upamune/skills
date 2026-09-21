@@ -78,6 +78,8 @@ jobs:
       - run: mise run lint
   # TypeScript の場合だけ typecheck と build を追加する。Go では省略する。
   # TypeScript は各ジョブで mise-action の直後に `bun install --frozen-lockfile` を挟む
+  # （lint の knip / fallow も node_modules のバイナリを使う）。
+  # TypeScript の lint ジョブだけ checkout に fetch-depth: 0 を付ける（fallow audit 用）。Go では付けない。
   typecheck:
     runs-on: ubuntu-24.04
     steps:
@@ -107,6 +109,23 @@ jobs:
 ```
 
 `mise run format:check` 等は `mise.toml` の `[tasks]` に定義する（言語別 reference を参照）。ジョブ名は `format` / `lint` / `test`、TypeScript では `typecheck` / `build` に揃える（ブランチ保護の required checks で使う）。
+
+TypeScript の lint ジョブは次の形にする。`mise run lint` が oxlint、knip、`fallow audit` を回す。`fallow audit` は PR の base との差分を見るので `fetch-depth: 0` が要る。公式 Action `fallow-rs/fallow` は使わず、`package.json` の pin と `bun run fallow` に揃える。
+
+```yaml
+  lint:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+          fetch-depth: 0  # TypeScript: fallow audit の PR 差分ゲート用
+      - uses: jdx/mise-action@v4
+      - run: bun install --frozen-lockfile
+      - run: mise run lint
+```
+
+Go の lint には fallow も `fetch-depth: 0` も不要。main への push でも TypeScript は同じ `mise run lint` を回す（`fallow audit` の base 自動検出は TypeScript reference を参照）。
 
 ## 書いたあとの確認
 
