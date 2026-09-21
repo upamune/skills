@@ -12,7 +12,7 @@ disable-model-invocation: true
 
 - 共通: mise でツール管理、確認した安定版をマイナー以上で固定、Actions の `uses:` は pinact で SHA 固定、backlog でタスク管理。
 - Go: goimports / gofumpt / go vet / go fix と標準 testing。
-- TypeScript Web: Bun + React / TanStack Start、Tailwind / shadcn/ui、Effect、Ultracite（Oxlint / Oxfmt）+ `@shadcn/lint`。具体的な互換性制約は TypeScript reference に置く。
+- TypeScript Web: Bun + React / TanStack Start、Tailwind / shadcn/ui、Effect、Ultracite（Oxlint / Oxfmt）+ `@shadcn/lint` + knip + fallow。具体的な互換性制約は TypeScript reference に置く。
 
 これらは新規作成時の既定。ユーザーが指定した構成や既存の設定を置き換えない。既存ファイルには必要な差分を統合し、未確定の方針変更や破壊的な置換だけ確認する。
 

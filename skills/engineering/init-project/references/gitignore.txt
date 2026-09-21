@@ -48,6 +48,9 @@ dist/
 .nitro/
 .vite/
 
+# fallow の機械ローカルキャッシュ（TypeScript。Go では発火しない）
+.fallow/
+
 # coverage
 coverage/
 .nyc_output/
