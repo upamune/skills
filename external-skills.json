@@ -22,6 +22,13 @@
       "commit": "d23d7f88a2e21c9e4b1418c7abe420f5c1052ba7",
       "updatedAt": "2026-08-23T10:43:46.892Z"
     },
+    "archify": {
+      "source": "tt-a1i/archify",
+      "url": "https://github.com/tt-a1i/archify.git",
+      "path": "archify",
+      "commit": "d5a1333d7447c866a765adac7d4d062f2f02e4d2",
+      "updatedAt": "2026-09-30T12:03:47.424Z"
+    },
     "claude-handoff": {
       "source": "mattpocock/skills",
       "url": "https://github.com/mattpocock/skills.git",
