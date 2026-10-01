@@ -48,7 +48,12 @@ function normalize(result) {
 export function startDeliveryUpdateCheck({
   env = process.env, deadlineMs = DEADLINE_MS, checkerPath = childPath,
 } = {}) {
-  if (env.ARCHIFY_UPDATE_CHECK_DISABLED === '1') return Promise.resolve(unavailable('disabled'));
+  // upamune/skills local override, re-applied by scripts/external.ts after vendor copy.
+  // Do not spawn the update check unless ARCHIFY_UPDATE_CHECK=1.
+  // ARCHIFY_UPDATE_CHECK_DISABLED=1 still forces the check off.
+  if (env.ARCHIFY_UPDATE_CHECK_DISABLED === '1' || env.ARCHIFY_UPDATE_CHECK !== '1') {
+    return Promise.resolve(unavailable('disabled'));
+  }
   return new Promise((resolve) => {
     let child;
     try {
