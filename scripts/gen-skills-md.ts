@@ -4,6 +4,7 @@
 
 import { existsSync, readdirSync } from "node:fs";
 import { basename, join, relative } from "node:path";
+import { externalOverrideNoticeLines } from "./external-overrides";
 import {
   EXTERNAL_DIR,
   findSkillDirs,
@@ -113,6 +114,7 @@ export async function generateSkillsMd(): Promise<string> {
       sections.push("（なし）", "");
       continue;
     }
+    if (dir === EXTERNAL_DIR) sections.push(...externalOverrideNoticeLines());
     sections.push(...(dir === EXTERNAL_DIR ? renderExternal(rows, manifest) : renderOwnBucket(rows)));
   }
 

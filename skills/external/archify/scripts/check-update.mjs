@@ -51,7 +51,11 @@ function silent(reason) {
 }
 
 function updatesDisabled() {
-  return process.env.ARCHIFY_UPDATE_CHECK_DISABLED === '1';
+  // upamune/skills local override, re-applied by scripts/external.ts after vendor copy.
+  // No update-endpoint request unless ARCHIFY_UPDATE_CHECK=1.
+  // ARCHIFY_UPDATE_CHECK_DISABLED=1 still forces the check off.
+  if (process.env.ARCHIFY_UPDATE_CHECK_DISABLED === '1') return true;
+  return process.env.ARCHIFY_UPDATE_CHECK !== '1';
 }
 
 function isPlainObject(value) {
