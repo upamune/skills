@@ -47,3 +47,4 @@
 | [what-did-i-get-done](./what-did-i-get-done/SKILL.md) | [cursor/plugins](https://github.com/cursor/plugins/tree/68836ddaf5697224520f1847d90cdb90ca8babaa/cursor-team-kit/skills/what-did-i-get-done) | `default` | `68836dd` |
 | [workflow-from-chats](./workflow-from-chats/SKILL.md) | [cursor/plugins](https://github.com/cursor/plugins/tree/68836ddaf5697224520f1847d90cdb90ca8babaa/cursor-team-kit/skills/workflow-from-chats) | `default` | `68836dd` |
 | [writing-for-agents](./writing-for-agents/SKILL.md) | [mattpocock/skills](https://github.com/mattpocock/skills/tree/5b15a47f2d7150f545fbcacbfe381787fc0230dc/skills/productivity/writing-for-agents) | `default` | `5b15a47` |
+| [yomiyasu](./yomiyasu/SKILL.md) | [nanaism/yomiyasu](https://github.com/nanaism/yomiyasu/tree/30ee6041c328ce21d38a7963f667e079a93d7a12/skills/yomiyasu) | `default` | `30ee604` |

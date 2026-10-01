@@ -5,7 +5,7 @@
 このリポジトリに入っている全スキルの一覧。`npx skills add upamune/skills` でインストールできる。
 再生成: `scripts/gen-skills-md.ts`（`scripts/external.ts` の add / sync / remove 後は自動で更新される）。
 
-合計 46 スキル
+合計 47 スキル
 
 | bucket | count | 用途 |
 | --- | --- | --- |
@@ -13,7 +13,7 @@
 | [productivity/](#productivity) | 0 | コード以外のワークフロー向け（自作） |
 | [in-progress/](#in-progress) | 0 | 作りかけ・試用中（自作） |
 | [deprecated/](#deprecated) | 0 | 使わなくなったもの（自作） |
-| [external/](#external) | 42 | 外部リポジトリから vendor したもの |
+| [external/](#external) | 43 | 外部リポジトリから vendor したもの |
 
 ## engineering
 
@@ -95,3 +95,4 @@
 | [what-did-i-get-done](./skills/external/what-did-i-get-done/SKILL.md) | Summarize authored commits over a user-specified time period into a concise update | [cursor/plugins/cursor-team-kit/skills/what-did-i-get-done](https://github.com/cursor/plugins/tree/68836ddaf5697224520f1847d90cdb90ca8babaa/cursor-team-kit/skills/what-did-i-get-done) | `68836dd` |
 | [workflow-from-chats](./skills/external/workflow-from-chats/SKILL.md) | Extract durable working preferences from recent Cursor chats and convert them into skills, rules, or workflow docs. Use when asked to learn preferences, mine feedback, personalize workflows, or generate team/person-specific agent guidance. | [cursor/plugins/cursor-team-kit/skills/workflow-from-chats](https://github.com/cursor/plugins/tree/68836ddaf5697224520f1847d90cdb90ca8babaa/cursor-team-kit/skills/workflow-from-chats) | `68836dd` |
 | [writing-for-agents](./skills/external/writing-for-agents/SKILL.md) | Writing documents for agents. Use when creating or editing skills, or modifying AGENTS.md or CLAUDE.md. | [mattpocock/skills/skills/productivity/writing-for-agents](https://github.com/mattpocock/skills/tree/5b15a47f2d7150f545fbcacbfe381787fc0230dc/skills/productivity/writing-for-agents) | `5b15a47` |
+| [yomiyasu](./skills/external/yomiyasu/SKILL.md) | AIが生成した不自然な日本語を、人間が読みやすく情報密度の高い自然な文章へ書き直すAgent Skill。「この文章を読みやすくして」「aiっぽさをなくして」「AI臭さを消して」「自然な日本語にして」「文章を脱臭して」という依頼や、技術記事、業務仕様書・PR説明文、エッセイ・noteの推敲時に使用する。非生物主語の解体、比喩的動詞の具体化、絵文字や文末コロンの完全排除、不要な補足カッコの削除、英単語前後の不自然な半角空白の排除、過剰な太字・箇条書き・否定対比の平文化を行い、文単体で誰が何をどうしたかが伝わる文章へ再構築する。 | [nanaism/yomiyasu/skills/yomiyasu](https://github.com/nanaism/yomiyasu/tree/30ee6041c328ce21d38a7963f667e079a93d7a12/skills/yomiyasu) | `30ee604` |

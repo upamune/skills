@@ -296,6 +296,13 @@
       "path": "skills/productivity/writing-for-agents",
       "commit": "5b15a47f2d7150f545fbcacbfe381787fc0230dc",
       "updatedAt": "2026-08-23T10:02:54.863Z"
+    },
+    "yomiyasu": {
+      "source": "nanaism/yomiyasu",
+      "url": "https://github.com/nanaism/yomiyasu.git",
+      "path": "skills/yomiyasu",
+      "commit": "30ee6041c328ce21d38a7963f667e079a93d7a12",
+      "updatedAt": "2026-10-01T02:24:14.078Z"
     }
   }
 }
