@@ -8,6 +8,7 @@
   },
   "repository": "https://github.com/upamune/skills",
   "skills": [
+    "./skills/engineering/codex-review-loop",
     "./skills/engineering/init-project",
     "./skills/engineering/tagpr",
     "./skills/engineering/ultra-ship",
