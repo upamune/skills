@@ -5,15 +5,15 @@
 このリポジトリに入っている全スキルの一覧。`npx skills add upamune/skills` でインストールできる。
 再生成: `scripts/gen-skills-md.ts`（`scripts/external.ts` の add / sync / remove 後は自動で更新される）。
 
-合計 47 スキル
+合計 49 スキル
 
 | bucket | count | 用途 |
 | --- | --- | --- |
-| [engineering/](#engineering) | 4 | 日常のコード作業向け（自作） |
+| [engineering/](#engineering) | 5 | 日常のコード作業向け（自作） |
 | [productivity/](#productivity) | 0 | コード以外のワークフロー向け（自作） |
 | [in-progress/](#in-progress) | 0 | 作りかけ・試用中（自作） |
 | [deprecated/](#deprecated) | 0 | 使わなくなったもの（自作） |
-| [external/](#external) | 43 | 外部リポジトリから vendor したもの |
+| [external/](#external) | 44 | 外部リポジトリから vendor したもの |
 
 ## engineering
 
@@ -26,6 +26,7 @@
 
 **Model-invoked**
 
+- [codex-review-loop](./skills/engineering/codex-review-loop/SKILL.md): Run a tight GitHub PR review loop with @Codex review: wait for the exact head commit, address every finding, test, push, and repeat until Codex returns no findings. Use when a PR exists and the user asks to keep fixing Codex review feedback until the PR is clean.
 - [tagpr](./skills/engineering/tagpr/SKILL.md): Songmu/tagpr の導入、設定・ワークフロー変更、リリース PR やタグ生成の不具合調査に使う。
 - [uv-script](./skills/engineering/uv-script/SKILL.md): uv で動かす単独 Python スクリプトの作成・編集、PEP 723 メタデータと依存管理に使う。Python パッケージ開発は対象外。
 

@@ -94,6 +94,7 @@ scripts/external.ts list
 
 **Model-invoked**
 
+- [codex-review-loop](./skills/engineering/codex-review-loop/SKILL.md): 開いている PR の Codex review を、対象 commit の指摘がなくなるまで修正・検証・push して回す。
 - [tagpr](./skills/engineering/tagpr/SKILL.md): Songmu/tagpr の導入・設定変更・不具合調査を行う。既存のタグと公開経路を保ち、必要な設定を修正する。
 - [uv-script](./skills/engineering/uv-script/SKILL.md): uv で動く単独 Python スクリプトを作成・編集する。PEP 723 と cutoff / lock で依存を管理する。
 
