@@ -5,49 +5,49 @@
       "source": "emilkowalski/skills",
       "url": "https://github.com/emilkowalski/skills.git",
       "path": "skills/animate",
-      "commit": "d23d7f88a2e21c9e4b1418c7abe420f5c1052ba7",
+      "commit": "2d228630ba1446365f614a108cb8252f1feda202",
       "updatedAt": "2026-08-23T10:43:46.886Z"
     },
     "animation-vocabulary": {
       "source": "emilkowalski/skills",
       "url": "https://github.com/emilkowalski/skills.git",
       "path": "skills/animation-vocabulary",
-      "commit": "d23d7f88a2e21c9e4b1418c7abe420f5c1052ba7",
+      "commit": "2d228630ba1446365f614a108cb8252f1feda202",
       "updatedAt": "2026-08-23T10:43:46.889Z"
     },
     "apple-design": {
       "source": "emilkowalski/skills",
       "url": "https://github.com/emilkowalski/skills.git",
       "path": "skills/apple-design",
-      "commit": "d23d7f88a2e21c9e4b1418c7abe420f5c1052ba7",
+      "commit": "2d228630ba1446365f614a108cb8252f1feda202",
       "updatedAt": "2026-08-23T10:43:46.892Z"
     },
     "archify": {
       "source": "tt-a1i/archify",
       "url": "https://github.com/tt-a1i/archify.git",
       "path": "archify",
-      "commit": "d5a1333d7447c866a765adac7d4d062f2f02e4d2",
+      "commit": "d0c8c7e9f4e06f303389f804208d387f27019ef5",
       "updatedAt": "2026-10-01T09:32:45.097Z"
     },
     "claude-handoff": {
       "source": "mattpocock/skills",
       "url": "https://github.com/mattpocock/skills.git",
       "path": "skills/in-progress/claude-handoff",
-      "commit": "5b15a47f2d7150f545fbcacbfe381787fc0230dc",
+      "commit": "49dd158d1076134a641b33efb035946536778336",
       "updatedAt": "2026-08-23T10:02:54.839Z"
     },
     "code-review": {
       "source": "mattpocock/skills",
       "url": "https://github.com/mattpocock/skills.git",
       "path": "skills/engineering/code-review",
-      "commit": "5b15a47f2d7150f545fbcacbfe381787fc0230dc",
+      "commit": "49dd158d1076134a641b33efb035946536778336",
       "updatedAt": "2026-08-23T10:02:54.795Z"
     },
     "codebase-design": {
       "source": "mattpocock/skills",
       "url": "https://github.com/mattpocock/skills.git",
       "path": "skills/engineering/codebase-design",
-      "commit": "5b15a47f2d7150f545fbcacbfe381787fc0230dc",
+      "commit": "49dd158d1076134a641b33efb035946536778336",
       "updatedAt": "2026-08-23T10:02:54.800Z"
     },
     "cognitive-rhythm-writing": {
@@ -61,21 +61,21 @@
       "source": "cursor/plugins",
       "url": "https://github.com/cursor/plugins.git",
       "path": "cursor-team-kit/skills/deslop",
-      "commit": "68836ddaf5697224520f1847d90cdb90ca8babaa",
+      "commit": "99743e9c151c8537cbbf1f98bb38f34ef3368453",
       "updatedAt": "2026-08-30T07:10:21.977Z"
     },
     "diagnosing-bugs": {
       "source": "mattpocock/skills",
       "url": "https://github.com/mattpocock/skills.git",
       "path": "skills/engineering/diagnosing-bugs",
-      "commit": "5b15a47f2d7150f545fbcacbfe381787fc0230dc",
+      "commit": "49dd158d1076134a641b33efb035946536778336",
       "updatedAt": "2026-08-23T10:02:54.805Z"
     },
     "domain-modeling": {
       "source": "mattpocock/skills",
       "url": "https://github.com/mattpocock/skills.git",
       "path": "skills/engineering/domain-modeling",
-      "commit": "5b15a47f2d7150f545fbcacbfe381787fc0230dc",
+      "commit": "49dd158d1076134a641b33efb035946536778336",
       "updatedAt": "2026-08-23T10:02:54.808Z"
     },
     "eli5": {
@@ -83,147 +83,147 @@
       "url": "https://github.com/anthropics/claude-plugins-community.git",
       "path": "eli5/skills/eli5",
       "ref": "main",
-      "commit": "a727be1c7bd6064419b6f60d71993a19198adc17",
+      "commit": "06ec7b6a0a82bdc4bec44bd82d4368c42f20d7c1",
       "updatedAt": "2026-08-30T13:22:51.059Z"
     },
     "emil-design-eng": {
       "source": "emilkowalski/skills",
       "url": "https://github.com/emilkowalski/skills.git",
       "path": "skills/emil-design-eng",
-      "commit": "d23d7f88a2e21c9e4b1418c7abe420f5c1052ba7",
+      "commit": "2d228630ba1446365f614a108cb8252f1feda202",
       "updatedAt": "2026-08-23T10:43:46.894Z"
     },
     "find-animation-opportunities": {
       "source": "emilkowalski/skills",
       "url": "https://github.com/emilkowalski/skills.git",
       "path": "skills/find-animation-opportunities",
-      "commit": "d23d7f88a2e21c9e4b1418c7abe420f5c1052ba7",
+      "commit": "2d228630ba1446365f614a108cb8252f1feda202",
       "updatedAt": "2026-08-23T10:43:46.898Z"
     },
     "first-reader": {
       "source": "Shubhamsaboo/awesome-llm-apps",
       "url": "https://github.com/Shubhamsaboo/awesome-llm-apps.git",
       "path": "agent_skills/first-reader",
-      "commit": "22a91e2a64bee40277477988d5ac5e786555cf01",
+      "commit": "4bf51ab704fb2c5b3803cd5191b30d7dcdb51dc2",
       "updatedAt": "2026-09-19T08:58:26.702Z"
     },
     "get-pr-comments": {
       "source": "cursor/plugins",
       "url": "https://github.com/cursor/plugins.git",
       "path": "cursor-team-kit/skills/get-pr-comments",
-      "commit": "68836ddaf5697224520f1847d90cdb90ca8babaa",
+      "commit": "99743e9c151c8537cbbf1f98bb38f34ef3368453",
       "updatedAt": "2026-08-30T07:10:22.023Z"
     },
     "grill-me": {
       "source": "mattpocock/skills",
       "url": "https://github.com/mattpocock/skills.git",
       "path": "skills/productivity/grill-me",
-      "commit": "5b15a47f2d7150f545fbcacbfe381787fc0230dc",
+      "commit": "49dd158d1076134a641b33efb035946536778336",
       "updatedAt": "2026-08-23T10:02:54.848Z"
     },
     "grill-with-docs": {
       "source": "mattpocock/skills",
       "url": "https://github.com/mattpocock/skills.git",
       "path": "skills/engineering/grill-with-docs",
-      "commit": "5b15a47f2d7150f545fbcacbfe381787fc0230dc",
+      "commit": "49dd158d1076134a641b33efb035946536778336",
       "updatedAt": "2026-08-23T10:02:54.813Z"
     },
     "handoff": {
       "source": "mattpocock/skills",
       "url": "https://github.com/mattpocock/skills.git",
       "path": "skills/productivity/handoff",
-      "commit": "5b15a47f2d7150f545fbcacbfe381787fc0230dc",
+      "commit": "49dd158d1076134a641b33efb035946536778336",
       "updatedAt": "2026-08-23T10:02:54.856Z"
     },
     "i-have-adhd": {
       "source": "ayghri/i-have-adhd",
       "url": "https://github.com/ayghri/i-have-adhd.git",
       "path": "skills/i-have-adhd",
-      "commit": "b15d0be58f55b33972ba3e39709e0e5208ef30cb",
+      "commit": "1ecea1993b7fce257ffbd686c070948b5e07eda6",
       "updatedAt": "2026-09-19T08:58:27.045Z"
     },
     "implement": {
       "source": "mattpocock/skills",
       "url": "https://github.com/mattpocock/skills.git",
       "path": "skills/engineering/implement",
-      "commit": "5b15a47f2d7150f545fbcacbfe381787fc0230dc",
+      "commit": "49dd158d1076134a641b33efb035946536778336",
       "updatedAt": "2026-08-23T10:02:54.816Z"
     },
     "improve-animations": {
       "source": "emilkowalski/skills",
       "url": "https://github.com/emilkowalski/skills.git",
       "path": "skills/improve-animations",
-      "commit": "d23d7f88a2e21c9e4b1418c7abe420f5c1052ba7",
+      "commit": "2d228630ba1446365f614a108cb8252f1feda202",
       "updatedAt": "2026-08-23T10:43:46.900Z"
     },
     "improve-codebase-architecture": {
       "source": "mattpocock/skills",
       "url": "https://github.com/mattpocock/skills.git",
       "path": "skills/engineering/improve-codebase-architecture",
-      "commit": "5b15a47f2d7150f545fbcacbfe381787fc0230dc",
+      "commit": "49dd158d1076134a641b33efb035946536778336",
       "updatedAt": "2026-08-23T10:02:54.819Z"
     },
     "japanese-tech-writing": {
       "source": "gist:k16shikano/fd287c3133457c4fd8f5601d34aa817d",
       "url": "https://gist.github.com/k16shikano/fd287c3133457c4fd8f5601d34aa817d.git",
       "path": ".",
-      "commit": "c7189cdc9c2520be50418209834145bdf3a46e97",
+      "commit": "8f2d57610a73efc97d743c9b0b0ecb1002e09fa4",
       "updatedAt": "2026-08-29T01:41:13.606Z"
     },
     "loop-me": {
       "source": "mattpocock/skills",
       "url": "https://github.com/mattpocock/skills.git",
       "path": "skills/in-progress/loop-me",
-      "commit": "5b15a47f2d7150f545fbcacbfe381787fc0230dc",
+      "commit": "49dd158d1076134a641b33efb035946536778336",
       "updatedAt": "2026-08-23T10:02:54.844Z"
     },
     "loop-on-ci": {
       "source": "cursor/plugins",
       "url": "https://github.com/cursor/plugins.git",
       "path": "cursor-team-kit/skills/loop-on-ci",
-      "commit": "68836ddaf5697224520f1847d90cdb90ca8babaa",
+      "commit": "99743e9c151c8537cbbf1f98bb38f34ef3368453",
       "updatedAt": "2026-08-30T07:10:21.965Z"
     },
     "make-pr-easy-to-review": {
       "source": "cursor/plugins",
       "url": "https://github.com/cursor/plugins.git",
       "path": "cursor-team-kit/skills/make-pr-easy-to-review",
-      "commit": "68836ddaf5697224520f1847d90cdb90ca8babaa",
+      "commit": "99743e9c151c8537cbbf1f98bb38f34ef3368453",
       "updatedAt": "2026-08-30T07:10:22.011Z"
     },
     "new-branch-and-pr": {
       "source": "cursor/plugins",
       "url": "https://github.com/cursor/plugins.git",
       "path": "cursor-team-kit/skills/new-branch-and-pr",
-      "commit": "68836ddaf5697224520f1847d90cdb90ca8babaa",
+      "commit": "99743e9c151c8537cbbf1f98bb38f34ef3368453",
       "updatedAt": "2026-08-30T07:10:21.989Z"
     },
     "pick-ui-library": {
       "source": "emilkowalski/skills",
       "url": "https://github.com/emilkowalski/skills.git",
       "path": "skills/pick-ui-library",
-      "commit": "d23d7f88a2e21c9e4b1418c7abe420f5c1052ba7",
+      "commit": "2d228630ba1446365f614a108cb8252f1feda202",
       "updatedAt": "2026-08-23T10:43:46.902Z"
     },
     "pr-review-canvas": {
       "source": "cursor/plugins",
       "url": "https://github.com/cursor/plugins.git",
       "path": "cursor-team-kit/skills/pr-review-canvas",
-      "commit": "68836ddaf5697224520f1847d90cdb90ca8babaa",
+      "commit": "99743e9c151c8537cbbf1f98bb38f34ef3368453",
       "updatedAt": "2026-08-30T07:11:45.400Z"
     },
     "prototype": {
       "source": "mattpocock/skills",
       "url": "https://github.com/mattpocock/skills.git",
       "path": "skills/engineering/prototype",
-      "commit": "5b15a47f2d7150f545fbcacbfe381787fc0230dc",
+      "commit": "49dd158d1076134a641b33efb035946536778336",
       "updatedAt": "2026-08-23T10:02:54.823Z"
     },
     "research": {
       "source": "mattpocock/skills",
       "url": "https://github.com/mattpocock/skills.git",
       "path": "skills/engineering/research",
-      "commit": "5b15a47f2d7150f545fbcacbfe381787fc0230dc",
+      "commit": "49dd158d1076134a641b33efb035946536778336",
       "updatedAt": "2026-08-23T10:02:54.826Z"
     },
     "resolving-merge-conflicts": {
@@ -237,23 +237,23 @@
       "source": "cursor/plugins",
       "url": "https://github.com/cursor/plugins.git",
       "path": "cursor-team-kit/skills/review-and-ship",
-      "commit": "68836ddaf5697224520f1847d90cdb90ca8babaa",
+      "commit": "99743e9c151c8537cbbf1f98bb38f34ef3368453",
       "updatedAt": "2026-08-30T07:10:22.000Z"
     },
     "review-animations": {
       "source": "emilkowalski/skills",
       "url": "https://github.com/emilkowalski/skills.git",
       "path": "skills/review-animations",
-      "commit": "d23d7f88a2e21c9e4b1418c7abe420f5c1052ba7",
-      "updatedAt": "2026-08-23T10:43:46.904Z"
+      "commit": "2d228630ba1446365f614a108cb8252f1feda202",
+      "updatedAt": "2026-10-15T17:22:23.959Z"
     },
     "show-me": {
       "source": "humanlayer/skills",
       "url": "https://github.com/humanlayer/skills.git",
       "path": "plugins/show-me/skills/show-me",
       "ref": "main",
-      "commit": "3c2629142c5d437428269b1b722b08c0b87f574d",
-      "updatedAt": "2026-09-03T15:22:14.359Z"
+      "commit": "653b6411c1f70c275a18e37673b042ff99f67ceb",
+      "updatedAt": "2026-10-15T17:22:24.187Z"
     },
     "simplify": {
       "source": "brianlovin/agent-config",
@@ -266,42 +266,42 @@
       "source": "mattpocock/skills",
       "url": "https://github.com/mattpocock/skills.git",
       "path": "skills/productivity/teach",
-      "commit": "5b15a47f2d7150f545fbcacbfe381787fc0230dc",
-      "updatedAt": "2026-08-23T10:02:54.860Z"
+      "commit": "49dd158d1076134a641b33efb035946536778336",
+      "updatedAt": "2026-10-15T17:22:24.572Z"
     },
     "thermo-nuclear-code-quality-review": {
       "source": "cursor/plugins",
       "url": "https://github.com/cursor/plugins.git",
       "path": "cursor-team-kit/skills/thermo-nuclear-code-quality-review",
-      "commit": "68836ddaf5697224520f1847d90cdb90ca8babaa",
+      "commit": "99743e9c151c8537cbbf1f98bb38f34ef3368453",
       "updatedAt": "2026-08-30T07:12:32.225Z"
     },
     "weekly-review": {
       "source": "cursor/plugins",
       "url": "https://github.com/cursor/plugins.git",
       "path": "cursor-team-kit/skills/weekly-review",
-      "commit": "68836ddaf5697224520f1847d90cdb90ca8babaa",
+      "commit": "99743e9c151c8537cbbf1f98bb38f34ef3368453",
       "updatedAt": "2026-08-30T07:10:22.035Z"
     },
     "what-did-i-get-done": {
       "source": "cursor/plugins",
       "url": "https://github.com/cursor/plugins.git",
       "path": "cursor-team-kit/skills/what-did-i-get-done",
-      "commit": "68836ddaf5697224520f1847d90cdb90ca8babaa",
+      "commit": "99743e9c151c8537cbbf1f98bb38f34ef3368453",
       "updatedAt": "2026-08-30T07:10:22.046Z"
     },
     "workflow-from-chats": {
       "source": "cursor/plugins",
       "url": "https://github.com/cursor/plugins.git",
       "path": "cursor-team-kit/skills/workflow-from-chats",
-      "commit": "68836ddaf5697224520f1847d90cdb90ca8babaa",
+      "commit": "99743e9c151c8537cbbf1f98bb38f34ef3368453",
       "updatedAt": "2026-08-30T07:10:22.058Z"
     },
     "writing-for-agents": {
       "source": "mattpocock/skills",
       "url": "https://github.com/mattpocock/skills.git",
       "path": "skills/productivity/writing-for-agents",
-      "commit": "5b15a47f2d7150f545fbcacbfe381787fc0230dc",
+      "commit": "49dd158d1076134a641b33efb035946536778336",
       "updatedAt": "2026-08-23T10:02:54.863Z"
     },
     "yomiyasu": {
