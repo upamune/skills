@@ -13,6 +13,7 @@ import { $ } from "bun";
 import { cpSync, existsSync, mkdtempSync, readdirSync, rmSync, statSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { basename, join, relative } from "node:path";
+import { applyExternalOverrides, externalOverrideNoticeLines } from "./external-overrides";
 import { writeSkillsMd } from "./gen-skills-md";
 import {
   EXTERNAL_DIR,
@@ -348,9 +349,19 @@ async function copySkill(
   const src = await locateSkill(repoDir, name, explicitPath);
   const dest = join(EXTERNAL_DIR, name);
   const before = existsSync(dest) ? await folderHash(dest) : null;
-  rmSync(dest, { recursive: true, force: true });
-  // スキルが repo ルート直下（gist など）の場合に .git を持ち込まないよう除外する
-  cpSync(src, dest, { recursive: true, filter: (p) => !SKIP_DIRS.has(basename(p)) });
+  // 上流コピーへ override を当て、成功してから dest を置き換える。
+  // アンカー不一致で失敗したとき、直前の skills/external/<name>/ を残す。
+  const stagingParent = mkdtempSync(join(tmpdir(), "external-skill-copy-"));
+  try {
+    const staged = join(stagingParent, name);
+    // スキルが repo ルート直下（gist など）の場合に .git を持ち込まないよう除外する
+    cpSync(src, staged, { recursive: true, filter: (p) => !SKIP_DIRS.has(basename(p)) });
+    applyExternalOverrides(name, staged);
+    rmSync(dest, { recursive: true, force: true });
+    cpSync(staged, dest, { recursive: true });
+  } finally {
+    rmSync(stagingParent, { recursive: true, force: true });
+  }
   const after = await folderHash(dest);
   // gist などスキルが repo ルート直下にある場合、relative は "" を返すので "." に正規化する
   return { path: relative(repoDir, src) || ".", changed: before !== after };
@@ -439,6 +450,7 @@ async function writeExternalReadme(manifest: Manifest): Promise<void> {
     "外部リポジトリから vendor したスキル。**このディレクトリを直接編集しない**（`scripts/external.ts sync` で上書きされる）。",
     "出所と pin は [`external-skills.json`](../../external-skills.json) が正。追加・更新・削除は `scripts/external.ts` で行う。",
     "",
+    ...externalOverrideNoticeLines(),
     "| skill | source | ref | commit |",
     "| --- | --- | --- | --- |",
     ...(rows.length ? rows : ["| (なし) | | | |"]),
