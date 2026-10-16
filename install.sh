@@ -11,14 +11,19 @@
 #      同名の既存スキルは symlink でも実体でも問答無用で置き換える
 #
 # 環境変数:
-#   UPAMUNE_SKILLS_DIR   clone 先
+#   UPAMUNE_SKILLS_DIR   clone 先。未設定なら ~/ghq/github.com/upamune/skills。空文字は拒否する
 #   UPAMUNE_SKILLS_REF   ブランチ (既定 main)
 #   UPAMUNE_SKILLS_REPO  取得元 (既定 https://github.com/upamune/skills。fork や file:// に差し替え可)
 set -eu
 
 REPO="${UPAMUNE_SKILLS_REPO:-https://github.com/upamune/skills}"
-DIR="${UPAMUNE_SKILLS_DIR:-$HOME/ghq/github.com/upamune/skills}"
 REF="${UPAMUNE_SKILLS_REF:-main}"
+# 空文字は既定値にしない。削除ガードが空パスを拒否できるようにする。
+if [ "${UPAMUNE_SKILLS_DIR+set}" = set ]; then
+  DIR="$UPAMUNE_SKILLS_DIR"
+else
+  DIR="$HOME/ghq/github.com/upamune/skills"
+fi
 
 # mktemp した tarball 作業ディレクトリ。EXIT / INT / TERM で消す。
 tmp=
