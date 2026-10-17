@@ -41,7 +41,6 @@
 | [pr-review-canvas](./pr-review-canvas/SKILL.md) | [cursor/plugins](https://github.com/cursor/plugins/tree/2f8377461fd533f5af782e1fd643783b1067b847/cursor-team-kit/skills/pr-review-canvas) | `default` | `2f83774` |
 | [prototype](./prototype/SKILL.md) | [mattpocock/skills](https://github.com/mattpocock/skills/tree/49dd158d1076134a641b33efb035946536778336/skills/engineering/prototype) | `default` | `49dd158` |
 | [research](./research/SKILL.md) | [mattpocock/skills](https://github.com/mattpocock/skills/tree/49dd158d1076134a641b33efb035946536778336/skills/engineering/research) | `default` | `49dd158` |
-| [resolving-merge-conflicts](./resolving-merge-conflicts/SKILL.md) | [mattpocock/skills](https://github.com/mattpocock/skills/tree/5b15a47f2d7150f545fbcacbfe381787fc0230dc/skills/engineering/resolving-merge-conflicts) | `default` | `5b15a47` |
 | [review-and-ship](./review-and-ship/SKILL.md) | [cursor/plugins](https://github.com/cursor/plugins/tree/2f8377461fd533f5af782e1fd643783b1067b847/cursor-team-kit/skills/review-and-ship) | `default` | `2f83774` |
 | [review-animations](./review-animations/SKILL.md) | [emilkowalski/skills](https://github.com/emilkowalski/skills/tree/2d228630ba1446365f614a108cb8252f1feda202/skills/review-animations) | `default` | `2d22863` |
 | [show-me](./show-me/SKILL.md) | [humanlayer/skills](https://github.com/humanlayer/skills/tree/653b6411c1f70c275a18e37673b042ff99f67ceb/plugins/show-me/skills/show-me) | `main` | `653b641` |

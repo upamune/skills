@@ -226,13 +226,6 @@
       "commit": "49dd158d1076134a641b33efb035946536778336",
       "updatedAt": "2026-08-23T10:02:54.826Z"
     },
-    "resolving-merge-conflicts": {
-      "source": "mattpocock/skills",
-      "url": "https://github.com/mattpocock/skills.git",
-      "path": "skills/engineering/resolving-merge-conflicts",
-      "commit": "5b15a47f2d7150f545fbcacbfe381787fc0230dc",
-      "updatedAt": "2026-08-23T10:02:54.829Z"
-    },
     "review-and-ship": {
       "source": "cursor/plugins",
       "url": "https://github.com/cursor/plugins.git",
