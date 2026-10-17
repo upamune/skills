@@ -5,7 +5,7 @@
 このリポジトリに入っている全スキルの一覧。`npx skills add upamune/skills` でインストールできる。
 再生成: `scripts/gen-skills-md.ts`（`scripts/external.ts` の add / sync / remove 後は自動で更新される）。
 
-合計 49 スキル
+合計 48 スキル
 
 | bucket | count | 用途 |
 | --- | --- | --- |
@@ -13,7 +13,7 @@
 | [productivity/](#productivity) | 0 | コード以外のワークフロー向け（自作） |
 | [in-progress/](#in-progress) | 0 | 作りかけ・試用中（自作） |
 | [deprecated/](#deprecated) | 0 | 使わなくなったもの（自作） |
-| [external/](#external) | 44 | 外部リポジトリから vendor したもの |
+| [external/](#external) | 43 | 外部リポジトリから vendor したもの |
 
 ## engineering
 
@@ -90,7 +90,6 @@
 | [pr-review-canvas](./skills/external/pr-review-canvas/SKILL.md) | Generate an interactive PR review walkthrough as an HTML page. Fetches PR data via gh API, categorizes files into core vs mechanical changes, adds reviewer annotations, and renders diffs with moved-code detection. Use when the user pastes a GitHub PR URL and asks for a review, walkthrough, or summary, or says "review this PR". | [cursor/plugins/cursor-team-kit/skills/pr-review-canvas](https://github.com/cursor/plugins/tree/2f8377461fd533f5af782e1fd643783b1067b847/cursor-team-kit/skills/pr-review-canvas) | `2f83774` |
 | [prototype](./skills/external/prototype/SKILL.md) | Build a throwaway prototype to answer a design question. Use when the user wants to sanity-check whether a state model or logic feels right, or explore what a UI should look like. | [mattpocock/skills/skills/engineering/prototype](https://github.com/mattpocock/skills/tree/49dd158d1076134a641b33efb035946536778336/skills/engineering/prototype) | `49dd158` |
 | [research](./skills/external/research/SKILL.md) | Investigate a question against high-trust primary sources and capture the findings as a Markdown file in the repo. Use when the user wants a topic researched, docs or API facts gathered, or reading legwork delegated to a background agent. | [mattpocock/skills/skills/engineering/research](https://github.com/mattpocock/skills/tree/49dd158d1076134a641b33efb035946536778336/skills/engineering/research) | `49dd158` |
-| [resolving-merge-conflicts](./skills/external/resolving-merge-conflicts/SKILL.md) | Use when you need to resolve an in-progress git merge/rebase conflict. | [mattpocock/skills/skills/engineering/resolving-merge-conflicts](https://github.com/mattpocock/skills/tree/5b15a47f2d7150f545fbcacbfe381787fc0230dc/skills/engineering/resolving-merge-conflicts) | `5b15a47` |
 | [review-and-ship](./skills/external/review-and-ship/SKILL.md) | Review the current branch for bugs, intent fit, and test coverage; run or write tests; commit focused work; open or update a PR. | [cursor/plugins/cursor-team-kit/skills/review-and-ship](https://github.com/cursor/plugins/tree/2f8377461fd533f5af782e1fd643783b1067b847/cursor-team-kit/skills/review-and-ship) | `2f83774` |
 | [review-animations](./skills/external/review-animations/SKILL.md) | Reviews animation and motion code against a high craft bar derived from Emil Kowalski's design engineering philosophy. Default to flagging; approval is earned. | [emilkowalski/skills/skills/review-animations](https://github.com/emilkowalski/skills/tree/2d228630ba1446365f614a108cb8252f1feda202/skills/review-animations) | `2d22863` |
 | [show-me](./skills/external/show-me/SKILL.md) | Help the user understand the current topic visually with concise diagrams, code-shape sketches, and focused HTML artifacts. | [humanlayer/skills/plugins/show-me/skills/show-me](https://github.com/humanlayer/skills/tree/653b6411c1f70c275a18e37673b042ff99f67ceb/plugins/show-me/skills/show-me) | `653b641` |
