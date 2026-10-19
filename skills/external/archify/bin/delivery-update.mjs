@@ -27,14 +27,16 @@ function normalize(result) {
   const noticeText = noticeRequired
     ? `Archify ${result.severity === 'security' ? 'security update' : 'update'}: ${result.installedVersion} → ${result.latestVersion}. ${cached
       ? `A previous check at ${result.checkedAt} found a newer release.`
-      : 'A newer release is available.'} Release notes: ${result.releaseNotes}. The installed Skill has not changed; ask to snooze or ignore this reminder.`
+      : 'A newer release is available.'} The installed Skill has not changed.`
     : null;
+  // upamune/skills local override: the notice does not quote the remote manifest or offer to self-update.
   return {
     status: 'update_available',
     installedVersion: result.installedVersion,
     availableVersion: result.latestVersion,
     releaseNotes: result.releaseNotes,
     severity: result.severity,
+    // upamune/skills local override: do not copy the remote manifest summary onto the receipt.
     checkedAt: result.checkedAt,
     source: result.source,
     noticeRequired,
