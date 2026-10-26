@@ -51,4 +51,4 @@
 | [what-did-i-get-done](./what-did-i-get-done/SKILL.md) | [cursor/plugins](https://github.com/cursor/plugins/tree/99b609a72323b70204eab407c622f436e858e112/cursor-team-kit/skills/what-did-i-get-done) | `default` | `99b609a` |
 | [workflow-from-chats](./workflow-from-chats/SKILL.md) | [cursor/plugins](https://github.com/cursor/plugins/tree/99b609a72323b70204eab407c622f436e858e112/cursor-team-kit/skills/workflow-from-chats) | `default` | `99b609a` |
 | [writing-for-agents](./writing-for-agents/SKILL.md) | [mattpocock/skills](https://github.com/mattpocock/skills/tree/5beb35b040e3de97e54fa9e386d7e42d15c295c2/skills/productivity/writing-for-agents) | `default` | `5beb35b` |
-| [yomiyasu](./yomiyasu/SKILL.md) | [nanaism/yomiyasu](https://github.com/nanaism/yomiyasu/tree/552c12c472ddfb79e2ee7a15219847782686a945/skills/yomiyasu) | `default` | `552c12c` |
+| [yomiyasu](./yomiyasu/SKILL.md) | [nanaism/yomiyasu](https://github.com/nanaism/yomiyasu/tree/41e5aec228f080fe24e5f795efee2ac3fda61839/skills/yomiyasu) | `default` | `41e5aec` |
