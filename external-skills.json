@@ -26,7 +26,7 @@
       "source": "tt-a1i/archify",
       "url": "https://github.com/tt-a1i/archify.git",
       "path": "archify",
-      "commit": "81c6be8d87090670c45d08a8f97f9d29c5af0bec",
+      "commit": "d6059331abbddb49bca380ff46dca8ce33158b04",
       "updatedAt": "2026-10-25T17:26:25.228Z"
     },
     "claude-handoff": {
@@ -61,7 +61,7 @@
       "source": "cursor/plugins",
       "url": "https://github.com/cursor/plugins.git",
       "path": "cursor-team-kit/skills/deslop",
-      "commit": "519d36aa98955bf680db01bcde5fdfba686dc901",
+      "commit": "23ab063af02bb9b9c97936b0563879dd6bf21a05",
       "updatedAt": "2026-08-30T07:10:21.977Z"
     },
     "diagnosing-bugs": {
@@ -111,7 +111,7 @@
       "source": "cursor/plugins",
       "url": "https://github.com/cursor/plugins.git",
       "path": "cursor-team-kit/skills/get-pr-comments",
-      "commit": "519d36aa98955bf680db01bcde5fdfba686dc901",
+      "commit": "23ab063af02bb9b9c97936b0563879dd6bf21a05",
       "updatedAt": "2026-08-30T07:10:22.023Z"
     },
     "grill-me": {
@@ -181,21 +181,21 @@
       "source": "cursor/plugins",
       "url": "https://github.com/cursor/plugins.git",
       "path": "cursor-team-kit/skills/loop-on-ci",
-      "commit": "519d36aa98955bf680db01bcde5fdfba686dc901",
+      "commit": "23ab063af02bb9b9c97936b0563879dd6bf21a05",
       "updatedAt": "2026-08-30T07:10:21.965Z"
     },
     "make-pr-easy-to-review": {
       "source": "cursor/plugins",
       "url": "https://github.com/cursor/plugins.git",
       "path": "cursor-team-kit/skills/make-pr-easy-to-review",
-      "commit": "519d36aa98955bf680db01bcde5fdfba686dc901",
+      "commit": "23ab063af02bb9b9c97936b0563879dd6bf21a05",
       "updatedAt": "2026-08-30T07:10:22.011Z"
     },
     "new-branch-and-pr": {
       "source": "cursor/plugins",
       "url": "https://github.com/cursor/plugins.git",
       "path": "cursor-team-kit/skills/new-branch-and-pr",
-      "commit": "519d36aa98955bf680db01bcde5fdfba686dc901",
+      "commit": "23ab063af02bb9b9c97936b0563879dd6bf21a05",
       "updatedAt": "2026-08-30T07:10:21.989Z"
     },
     "pick-ui-library": {
@@ -209,7 +209,7 @@
       "source": "cursor/plugins",
       "url": "https://github.com/cursor/plugins.git",
       "path": "cursor-team-kit/skills/pr-review-canvas",
-      "commit": "519d36aa98955bf680db01bcde5fdfba686dc901",
+      "commit": "23ab063af02bb9b9c97936b0563879dd6bf21a05",
       "updatedAt": "2026-08-30T07:11:45.400Z"
     },
     "prototype": {
@@ -230,7 +230,7 @@
       "source": "cursor/plugins",
       "url": "https://github.com/cursor/plugins.git",
       "path": "cursor-team-kit/skills/review-and-ship",
-      "commit": "519d36aa98955bf680db01bcde5fdfba686dc901",
+      "commit": "23ab063af02bb9b9c97936b0563879dd6bf21a05",
       "updatedAt": "2026-08-30T07:10:22.000Z"
     },
     "review-animations": {
@@ -266,28 +266,28 @@
       "source": "cursor/plugins",
       "url": "https://github.com/cursor/plugins.git",
       "path": "cursor-team-kit/skills/thermo-nuclear-code-quality-review",
-      "commit": "519d36aa98955bf680db01bcde5fdfba686dc901",
+      "commit": "23ab063af02bb9b9c97936b0563879dd6bf21a05",
       "updatedAt": "2026-08-30T07:12:32.225Z"
     },
     "weekly-review": {
       "source": "cursor/plugins",
       "url": "https://github.com/cursor/plugins.git",
       "path": "cursor-team-kit/skills/weekly-review",
-      "commit": "519d36aa98955bf680db01bcde5fdfba686dc901",
+      "commit": "23ab063af02bb9b9c97936b0563879dd6bf21a05",
       "updatedAt": "2026-08-30T07:10:22.035Z"
     },
     "what-did-i-get-done": {
       "source": "cursor/plugins",
       "url": "https://github.com/cursor/plugins.git",
       "path": "cursor-team-kit/skills/what-did-i-get-done",
-      "commit": "519d36aa98955bf680db01bcde5fdfba686dc901",
+      "commit": "23ab063af02bb9b9c97936b0563879dd6bf21a05",
       "updatedAt": "2026-08-30T07:10:22.046Z"
     },
     "workflow-from-chats": {
       "source": "cursor/plugins",
       "url": "https://github.com/cursor/plugins.git",
       "path": "cursor-team-kit/skills/workflow-from-chats",
-      "commit": "519d36aa98955bf680db01bcde5fdfba686dc901",
+      "commit": "23ab063af02bb9b9c97936b0563879dd6bf21a05",
       "updatedAt": "2026-08-30T07:10:22.058Z"
     },
     "writing-for-agents": {
