@@ -26,7 +26,7 @@
       "source": "tt-a1i/archify",
       "url": "https://github.com/tt-a1i/archify.git",
       "path": "archify",
-      "commit": "e3920894b0f30db7d5fc7d7d4ece57b304c17015",
+      "commit": "f325d86230553e1dd15d3464324f1fcd01f02352",
       "updatedAt": "2026-10-25T17:26:25.228Z"
     },
     "claude-handoff": {
@@ -68,7 +68,7 @@
       "source": "cursor/plugins",
       "url": "https://github.com/cursor/plugins.git",
       "path": "cursor-team-kit/skills/deslop",
-      "commit": "1ba91fc25c0977741dd0e267849e6234b037ed0a",
+      "commit": "4dd1d05818d19792e7cd6e818f1667f95f7e1dbe",
       "updatedAt": "2026-08-30T07:10:21.977Z"
     },
     "diagnosing-bugs": {
@@ -118,7 +118,7 @@
       "source": "cursor/plugins",
       "url": "https://github.com/cursor/plugins.git",
       "path": "cursor-team-kit/skills/get-pr-comments",
-      "commit": "1ba91fc25c0977741dd0e267849e6234b037ed0a",
+      "commit": "4dd1d05818d19792e7cd6e818f1667f95f7e1dbe",
       "updatedAt": "2026-08-30T07:10:22.023Z"
     },
     "grill-me": {
@@ -188,21 +188,21 @@
       "source": "cursor/plugins",
       "url": "https://github.com/cursor/plugins.git",
       "path": "cursor-team-kit/skills/loop-on-ci",
-      "commit": "1ba91fc25c0977741dd0e267849e6234b037ed0a",
+      "commit": "4dd1d05818d19792e7cd6e818f1667f95f7e1dbe",
       "updatedAt": "2026-08-30T07:10:21.965Z"
     },
     "make-pr-easy-to-review": {
       "source": "cursor/plugins",
       "url": "https://github.com/cursor/plugins.git",
       "path": "cursor-team-kit/skills/make-pr-easy-to-review",
-      "commit": "1ba91fc25c0977741dd0e267849e6234b037ed0a",
+      "commit": "4dd1d05818d19792e7cd6e818f1667f95f7e1dbe",
       "updatedAt": "2026-08-30T07:10:22.011Z"
     },
     "new-branch-and-pr": {
       "source": "cursor/plugins",
       "url": "https://github.com/cursor/plugins.git",
       "path": "cursor-team-kit/skills/new-branch-and-pr",
-      "commit": "1ba91fc25c0977741dd0e267849e6234b037ed0a",
+      "commit": "4dd1d05818d19792e7cd6e818f1667f95f7e1dbe",
       "updatedAt": "2026-08-30T07:10:21.989Z"
     },
     "pick-ui-library": {
@@ -216,7 +216,7 @@
       "source": "cursor/plugins",
       "url": "https://github.com/cursor/plugins.git",
       "path": "cursor-team-kit/skills/pr-review-canvas",
-      "commit": "1ba91fc25c0977741dd0e267849e6234b037ed0a",
+      "commit": "4dd1d05818d19792e7cd6e818f1667f95f7e1dbe",
       "updatedAt": "2026-08-30T07:11:45.400Z"
     },
     "prototype": {
@@ -237,7 +237,7 @@
       "source": "cursor/plugins",
       "url": "https://github.com/cursor/plugins.git",
       "path": "cursor-team-kit/skills/review-and-ship",
-      "commit": "1ba91fc25c0977741dd0e267849e6234b037ed0a",
+      "commit": "4dd1d05818d19792e7cd6e818f1667f95f7e1dbe",
       "updatedAt": "2026-08-30T07:10:22.000Z"
     },
     "review-animations": {
@@ -280,28 +280,28 @@
       "source": "cursor/plugins",
       "url": "https://github.com/cursor/plugins.git",
       "path": "cursor-team-kit/skills/thermo-nuclear-code-quality-review",
-      "commit": "1ba91fc25c0977741dd0e267849e6234b037ed0a",
+      "commit": "4dd1d05818d19792e7cd6e818f1667f95f7e1dbe",
       "updatedAt": "2026-08-30T07:12:32.225Z"
     },
     "weekly-review": {
       "source": "cursor/plugins",
       "url": "https://github.com/cursor/plugins.git",
       "path": "cursor-team-kit/skills/weekly-review",
-      "commit": "1ba91fc25c0977741dd0e267849e6234b037ed0a",
+      "commit": "4dd1d05818d19792e7cd6e818f1667f95f7e1dbe",
       "updatedAt": "2026-08-30T07:10:22.035Z"
     },
     "what-did-i-get-done": {
       "source": "cursor/plugins",
       "url": "https://github.com/cursor/plugins.git",
       "path": "cursor-team-kit/skills/what-did-i-get-done",
-      "commit": "1ba91fc25c0977741dd0e267849e6234b037ed0a",
+      "commit": "4dd1d05818d19792e7cd6e818f1667f95f7e1dbe",
       "updatedAt": "2026-08-30T07:10:22.046Z"
     },
     "workflow-from-chats": {
       "source": "cursor/plugins",
       "url": "https://github.com/cursor/plugins.git",
       "path": "cursor-team-kit/skills/workflow-from-chats",
-      "commit": "1ba91fc25c0977741dd0e267849e6234b037ed0a",
+      "commit": "4dd1d05818d19792e7cd6e818f1667f95f7e1dbe",
       "updatedAt": "2026-08-30T07:10:22.058Z"
     },
     "writing-for-agents": {
@@ -315,8 +315,8 @@
       "source": "nanaism/yomiyasu",
       "url": "https://github.com/nanaism/yomiyasu.git",
       "path": "skills/yomiyasu",
-      "commit": "41e5aec228f080fe24e5f795efee2ac3fda61839",
-      "updatedAt": "2026-10-25T17:25:41.567Z"
+      "commit": "29d67ccb05e370b5958d72920a9cd1aa829dee80",
+      "updatedAt": "2026-10-30T17:25:49.012Z"
     }
   }
 }
