@@ -60,7 +60,7 @@ CalVer では、バージョンファイルがあれば PR 作成・更新時に
 ### monorepo
 
 ```yaml
-- uses: Songmu/tagpr@v1
+- uses: Songmu/tagpr@v1.20.1
   with:
     config: tools/.tagpr
   env:

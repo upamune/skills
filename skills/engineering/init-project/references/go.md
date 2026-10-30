@@ -1,6 +1,6 @@
 # Go の雛形
 
-品質ツールは **goimports → gofumpt（format）/ go vet（lint）/ go fix（modernize）**。Go 1.26 以降 `go fix` が modernize スイートを内蔵しているので、別途 modernize コマンドは入れない。
+品質ツールは **goimports → gofumpt（format）/ go vet（lint）/ go fix（modernize）/ cccc（複雑度）**。Go 1.26 以降 `go fix` が modernize スイートを内蔵しているので、別途 modernize コマンドは入れない。
 
 ## mise.toml
 
@@ -11,7 +11,7 @@
 go = "1.27"
 gofumpt = "0.11"
 "go:golang.org/x/tools/cmd/goimports" = "0.49.0"
-pinact = "4"
+"github:moznion/cccc" = "1.8.5"
 "npm:backlog" = "1.4"
 
 [tasks.format]
@@ -27,8 +27,8 @@ run = [
 ]
 
 [tasks.lint]
-description = "go vet"
-run = "go vet ./..."
+description = "go vet + cccc"
+run = ["go vet ./...", "cccc ."]
 
 [tasks.test]
 description = "Test"
@@ -40,7 +40,21 @@ depends = ["format:check", "lint", "test"]
 
 `go:` backend は `go install` を実行する（`go` が先に入っている必要があるので `[tools]` の順序はそのまま）。gofumpt は Go 1.26 以上を要求する。
 
-golangci-lint を足したい場合だけ `golangci-lint = "2.13"` を追加し、`lint` タスクを `["go vet ./...", "golangci-lint run"]` にする。`.golangci.yml` は `version: "2"`、`formatters: enable: [gofumpt, goimports]`。
+golangci-lint を足したい場合だけ `golangci-lint = "2.13"` を追加し、`lint` タスクを `["go vet ./...", "golangci-lint run", "cccc ."]` にする。`.golangci.yml` は `version: "2"`、`formatters: enable: [gofumpt, goimports]`。
+
+## cccc.toml
+
+[cccc](https://github.com/moznion/cccc)（v1.8.5、MIT）で関数の cognitive / cyclomatic complexity を測る。リポジトリルートに `cccc.toml` を置く。`cccc .` は `mise run lint` から回す。
+
+```toml
+max-cognitive = 8
+max-cyclomatic = 10
+cache = false
+```
+
+閾値を超えると exit 1、設定エラーは exit 2。超えた関数は分割する。例外は `exclude` で個別のパスだけ外す。cache は使わない。
+
+配布物は release workflow の SLSA attestation 付き。`gh attestation verify <asset> --repo moznion/cccc --signer-workflow moznion/cccc/.github/workflows/release-build.yml` で確認できる。
 
 ## go.mod
 
@@ -74,8 +88,8 @@ indent_style = tab
 
 ## CI
 
-`references/github-actions.md` の雛形をそのまま使う。`jdx/mise-action` が `go` / `gofumpt` / `goimports` を入れるので `actions/setup-go` は不要。Go のモジュールキャッシュが欲しければ `actions/cache@v6` で `~/go/pkg/mod` と `~/.cache/go-build` を `hashFiles('**/go.sum')` キーでキャッシュする。
+`references/github-actions.md` の雛形をそのまま使う。`jdx/mise-action` が `go` / `gofumpt` / `goimports` / `cccc` を入れるので `actions/setup-go` は不要。Go のモジュールキャッシュが欲しければ `actions/cache@v6.1.0` で `~/go/pkg/mod` と `~/.cache/go-build` を `hashFiles('**/go.sum')` キーでキャッシュする。
 
 ## 確認
 
-`mise install && mise run ci` が通ること。`go fix -diff ./...` が何も出さないこと（出たら `mise run format` で適用してからコミット）。
+`mise install && mise run ci` が通ること（`cccc .` を含む）。`go fix -diff ./...` が何も出さないこと（出たら `mise run format` で適用してからコミット）。

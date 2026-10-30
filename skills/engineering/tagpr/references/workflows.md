@@ -1,6 +1,6 @@
 # ワークフロー雛形
 
-Action のバージョンは 2026-08-23 時点の最新メジャー。書く前に Releases で確認し、書いた後は `pinact run` で SHA に pin する（`uses: actions/checkout@v7` → `uses: actions/checkout@<sha> # v7.0.1`）。
+Action のバージョンは 2026-08-23 時点の最新メジャー。書く前に Releases で確認し、`uses:` は表の full semver で書く。書いたあと `gh actions-lock` で `.github/workflows/actions.lock` を生成してコミットする（手で編集しない）。他リポジトリの reusable workflow と composite action（`action.yml`）だけ pinact v5 の `pinact run` で SHA に固定する（検証は `pinact run --check`）。
 
 | Action | 最新メジャー | full semver |
 | --- | --- | --- |
@@ -9,6 +9,23 @@ Action のバージョンは 2026-08-23 時点の最新メジャー。書く前�
 | Songmu/tagpr | v1 | v1.20.1 |
 | jdx/mise-action | v4 | v4.2.5 |
 | goreleaser/goreleaser-action | v7 | v7.2.3 |
+
+拡張は pre-1.0 なので `--pin` を省かない。導入時に release を確認する。ここでの pin は v0.4.0。Dependabot の `github-actions` 更新は、onboard 済み workflow の lockfile も同じ PR で直す。`actions.lock` は CODEOWNERS に入れる（オーナーは `@<owner>` のようなプレースホルダを実在の担当に置き換える）。検証ジョブが無ければ次を足す。`--accept-moved` は自動化で使わない。
+
+```yaml
+  actions-lock:
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: read
+    env:
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v7.0.1
+        with:
+          persist-credentials: false
+      - run: gh extension install github/gh-actions-lock --pin v0.4.0
+      - run: gh actions-lock --verify
+```
 
 ## `.github/workflows/tagpr.yml`（GitHub App トークン）
 
@@ -29,7 +46,7 @@ jobs:
   tagpr:
     runs-on: ubuntu-24.04
     steps:
-      - uses: actions/create-github-app-token@v3
+      - uses: actions/create-github-app-token@v3.2.0
         id: app-token
         with:
           client-id: ${{ vars.TAGPR_APP_CLIENT_ID }}
@@ -37,12 +54,12 @@ jobs:
           permission-contents: write
           permission-pull-requests: write
           permission-issues: read
-      - uses: actions/checkout@v7
+      - uses: actions/checkout@v7.0.1
         with:
           token: ${{ steps.app-token.outputs.token }}
           persist-credentials: false
       - id: tagpr
-        uses: Songmu/tagpr@v1
+        uses: Songmu/tagpr@v1.20.1
         env:
           GITHUB_TOKEN: ${{ steps.app-token.outputs.token }}
 ```
@@ -80,12 +97,12 @@ jobs:
     permissions:
       contents: write
     steps:
-      - uses: actions/checkout@v7
+      - uses: actions/checkout@v7.0.1
         with:
           ref: ${{ inputs.tag || github.ref }}
           fetch-depth: 0
           persist-credentials: false
-      - uses: jdx/mise-action@v4
+      - uses: jdx/mise-action@v4.2.5
       - run: mise run publish -- "${TAG}"
         env:
           TAG: ${{ inputs.tag || github.ref_name }}
@@ -99,13 +116,13 @@ jobs:
 ### Go + goreleaser の場合
 
 ```yaml
-      - uses: actions/checkout@v7
+      - uses: actions/checkout@v7.0.1
         with:
           ref: ${{ inputs.tag || github.ref }}
           fetch-depth: 0
           persist-credentials: false
-      - uses: jdx/mise-action@v4
-      - uses: goreleaser/goreleaser-action@v7
+      - uses: jdx/mise-action@v4.2.5
+      - uses: goreleaser/goreleaser-action@v7.2.3
         with:
           version: "~> v2"
           args: release --clean
@@ -118,11 +135,11 @@ jobs:
 ### npm の場合
 
 ```yaml
-      - uses: actions/checkout@v7
+      - uses: actions/checkout@v7.0.1
         with:
           ref: ${{ inputs.tag || github.ref }}
           persist-credentials: false
-      - uses: jdx/mise-action@v4
+      - uses: jdx/mise-action@v4.2.5
       - run: bun install --frozen-lockfile
       - run: bun publish --access public
         env:
@@ -137,11 +154,11 @@ jobs:
 
 ```yaml
       - id: tagpr
-        uses: Songmu/tagpr@v1
+        uses: Songmu/tagpr@v1.20.1
         env:
           GITHUB_TOKEN: ${{ steps.app-token.outputs.token }}
       - if: steps.tagpr.outputs.tag != ''
-        uses: jdx/mise-action@v4
+        uses: jdx/mise-action@v4.2.5
       - if: steps.tagpr.outputs.tag != ''
         run: mise run publish -- "${TAG}"
         env:
@@ -161,6 +178,7 @@ jobs:
 
 ## 書いた後の確認
 
-1. `pinact run` → 全 `uses:` が SHA + `# vX.Y.Z` コメントになっている（`pinact run -check` で検証のみ）
+1. `gh actions-lock` → `uses:` が完全なタグになり、`.github/workflows/actions.lock` ができている。reusable workflow か composite action があるときだけ、続けて `pinact run`
 2. `actionlint`（mise に `actionlint` あり）
-3. リリースブランチへの反映まで許可された場合は、`gh run list --workflow tagpr.yml` と `gh pr list --label tagpr` で実行結果を確認する
+3. `gh actions-lock --verify`。pinact を使ったときだけ `pinact run --check` も通す
+4. リリースブランチへの反映まで許可された場合は、`gh run list --workflow tagpr.yml` と `gh pr list --label tagpr` で実行結果を確認する

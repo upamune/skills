@@ -40,7 +40,7 @@ changelog:
 
 ## 導入の検証
 
-`on.push.branches` と `releaseBranch`、公開側のタグ条件と prefix、App の vars / secrets 名を突き合わせる。`pinact run -check` と利用可能な workflow 検査を行い、タグ生成と Release 作成が重複していないことを確認する。
+`on.push.branches` と `releaseBranch`、公開側のタグ条件と prefix、App の vars / secrets 名を突き合わせる。`gh actions-lock --verify` と利用可能な workflow 検査を行い、タグ生成と Release 作成が重複していないことを確認する。他リポジトリの reusable workflow か composite action を使うときだけ `pinact run --check` も通す。
 
 リリースブランチへの反映が許可されている場合は、tagpr の実行と最初のリリース PR を確認する。前回タグからの CHANGELOG 範囲、提案バージョン、変更ファイル、release notes を見る。範囲がおかしければ公開前に `.tagpr` を修正する。ベースライン合わせのためのタグ追加も公開への影響を確認して扱う。
 
