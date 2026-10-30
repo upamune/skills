@@ -69,7 +69,7 @@ gh secret set TAGPR_APP_PRIVATE_KEY --org <org> --visibility selected --repos <r
 ## 4. ワークフローでトークンを発行する
 
 ```yaml
-- uses: actions/create-github-app-token@v3
+- uses: actions/create-github-app-token@v3.2.0
   id: app-token
   with:
     client-id: ${{ vars.TAGPR_APP_CLIENT_ID }}

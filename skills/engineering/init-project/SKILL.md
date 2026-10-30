@@ -10,9 +10,9 @@ disable-model-invocation: true
 
 ## 標準構成
 
-- 共通: mise でツール管理、確認した安定版をマイナー以上で固定、Actions の `uses:` は pinact で SHA 固定、backlog でタスク管理。
-- Go: goimports / gofumpt / go vet / go fix と標準 testing。
-- TypeScript Web: Bun + React / TanStack Start、Tailwind / shadcn/ui、Effect、Ultracite（Oxlint / Oxfmt）+ `@shadcn/lint` + knip + fallow。具体的な互換性制約は TypeScript reference に置く。
+- 共通: mise でツール管理、確認した安定版をマイナー以上で固定、Actions の `uses:` は完全なタグで書き `.github/workflows/actions.lock` に固定、backlog でタスク管理。
+- Go: goimports / gofumpt / go vet / go fix / cccc と標準 testing。
+- TypeScript Web: Bun + React / TanStack Start、Tailwind / shadcn/ui、Effect、Ultracite（Oxlint / Oxfmt）+ `@shadcn/lint` + knip + fallow + cccc。具体的な互換性制約は TypeScript reference に置く。
 
 これらは新規作成時の既定。ユーザーが指定した構成や既存の設定を置き換えない。既存ファイルには必要な差分を統合し、未確定の方針変更や破壊的な置換だけ確認する。
 
@@ -28,6 +28,6 @@ disable-model-invocation: true
 
 ## 完了まで進める
 
-依存を入れ、最小実装と意味のある動作確認を用意し、README から起動できるところまで仕上げる。言語ごとの `mise run ci` と `pinact run -check` を通し、Web アプリは起動した画面・疎通と本番配信を確認する。失敗は修正し、影響する検査を再実行する。変更していない結果を工程の節目だけで取り直さない。
+依存を入れ、最小実装と意味のある動作確認を用意し、README から起動できるところまで仕上げる。言語ごとの `mise run ci` と `gh actions-lock --verify` を通す。他リポジトリの reusable workflow か composite action を使うときだけ、reference のとおり範囲を絞った `pinact run --check` を通す。Web アプリは起動した画面・疎通と本番配信を確認する。失敗は修正し、影響する検査を再実行する。変更していない結果を工程の節目だけで取り直さない。
 
 ローカルの初期化が済んだら成果物・起動方法・検証結果を報告する。commit / push / リポジトリ作成が既に依頼されていれば続ける。リモート公開やアカウント設定は、そのスキルを呼んだことだけで許可されたと扱わない。

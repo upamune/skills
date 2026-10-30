@@ -10,7 +10,7 @@
 | UI | Tailwind CSS v4 + shadcn/ui（Base UI、nova preset） | `bunx --bun shadcn add <component>` |
 | アイコン | lucide-react | shadcn の既定 |
 | アプリ基盤・バリデーション | Effect / Effect Schema | `Schema.standardSchemaV1` で TanStack Form にも渡せる |
-| 品質 | Ultracite（Oxlint + Oxfmt、react / tanstack / vitest preset）+ @shadcn/lint（デザインシステム）+ knip + fallow + tsc + Effect TSGO | knip は未使用 export / 依存。fallow は循環・重複・複雑度・CSS drift と PR の `fallow audit` ゲート。併用し、置換しない |
+| 品質 | Ultracite（Oxlint + Oxfmt、react / tanstack / vitest preset）+ @shadcn/lint（デザインシステム）+ knip + fallow + cccc + tsc + Effect TSGO | knip は未使用 export / 依存。fallow は循環・重複・CSS drift と PR の `fallow audit` ゲート。複雑度の gate は cccc で行う。併用し、置換しない |
 | テスト | Vitest + Testing Library + jsdom | TanStack Router 公式の推奨構成 |
 | Devtools | `@tanstack/react-devtools`（Router / Query panel） | 本番 HTML には出ない |
 | 本番サーバ | TanStack 公式 `start-bun` example の `server.ts` を Bun で実行 | nitro 不要 |
@@ -48,7 +48,7 @@ Form / Table / Virtual / Store / Pacer / DB は必要になった時点で `bun 
 ```toml
 [tools]
 bun = "1.4"
-pinact = "4"
+"github:moznion/cccc" = "1.8.5"
 "npm:backlog" = "1.4"
 
 [tasks.dev]
@@ -64,8 +64,8 @@ description = "Format check"
 run = "bun run format:check"
 
 [tasks.lint]
-description = "Lint + unused + fallow audit"
-run = ["bun run lint", "bun run knip", "bun run fallow"]
+description = "Lint + unused + fallow audit + cccc"
+run = ["bun run lint", "bun run knip", "bun run fallow", "cccc ."]
 
 [tasks.typecheck]
 description = "TypeScript + Effect diagnostics"
@@ -330,7 +330,7 @@ overrides: [
 
 ### .fallowrc.json
 
-[fallow](https://github.com/fallow-rs/fallow) はグラフ全体の監査（未使用、循環、重複、複雑度、CSS drift）と、変更ファイルに対する `fallow audit` ゲート。knip の置換ではない。knip の設定とスクリプトは残し、`fallow migrate` は使わない。
+[fallow](https://github.com/fallow-rs/fallow) はグラフ全体の監査（未使用、循環、重複、複雑度、CSS drift）と、変更ファイルに対する `fallow audit` ゲート。knip の置換ではない。knip の設定とスクリプトは残し、`fallow migrate` は使わない。複雑度の gate は cccc で行う。
 
 対話の `fallow recommend` は任意の後追い調整用。初期化では次の設定をコミットする（スキーマは npm パッケージ同梱の `./node_modules/fallow/schema.json`。導入時に `bun pm view fallow version` で確認した版を pin する）。
 
@@ -352,6 +352,26 @@ overrides: [
 - Fallow Runtime（有料）は入れない。`fallow license activate`、coverage の upload、runtime intelligence は使わない
 - `--type-aware` は初期化の既定にしない（構文解析のまま。型付き検査は tsc と oxlint `--type-aware` が担う）。後から opt-in してよい
 - `fallow agent install` と `fallow init --agents` は実行しない。このスキルが作る `CLAUDE.md` / `AGENTS.md` と競合する
+
+### cccc.toml
+
+[cccc](https://github.com/moznion/cccc)（v1.8.5、MIT）で関数の cognitive / cyclomatic complexity を測る。リポジトリルートに置く。`cccc .` は `mise run lint` から回す。`exclude` は fallow の `ignorePatterns` に合わせる。
+
+```toml
+max-cognitive = 8
+max-cyclomatic = 10
+exclude = [
+  "**/*.gen.ts",
+  "src/routeTree.gen.ts",
+  "src/components/ui/**",
+  "server.ts",
+]
+cache = false
+```
+
+閾値を超えると exit 1、設定エラーは exit 2。超えた関数は分割する。例外は `exclude` で個別のパスだけ外す。cache は使わない。
+
+配布物は release workflow の SLSA attestation 付き。`gh attestation verify <asset> --repo moznion/cccc --signer-workflow moznion/cccc/.github/workflows/release-build.yml` で確認できる。
 
 ### .editorconfig
 
@@ -561,7 +581,7 @@ curl -fsSL https://raw.githubusercontent.com/TanStack/router/main/examples/react
 
 ## CI
 
-`references/github-actions.md` の雛形の TypeScript 版（`format` / `lint` / `typecheck` / `test` / `build` + `pinact`）を使う。`jdx/mise-action` が `bun` を入れるので `oven-sh/setup-bun` は不要。各ジョブの `mise run ...` の前に `bun install --frozen-lockfile` を挟む（lint の knip / fallow も `node_modules` のバイナリを使う）。
+`references/github-actions.md` の雛形の TypeScript 版（`format` / `lint` / `typecheck` / `test` / `build` + `actions-lock`）を使う。`jdx/mise-action` が `bun` と `cccc` を入れるので `oven-sh/setup-bun` は不要。各ジョブの `mise run ...` の前に `bun install --frozen-lockfile` を挟む（lint の knip / fallow も `node_modules` のバイナリを使う）。
 
 TypeScript の lint ジョブだけ `actions/checkout` に `fetch-depth: 0` を付ける。`fallow audit` が PR の base と差分を取るため（shallow clone だと `git merge-base` が取れない）。Go では付けない。
 
@@ -569,11 +589,11 @@ TypeScript の lint ジョブだけ `actions/checkout` に `fetch-depth: 0` を�
   lint:
     runs-on: ubuntu-24.04
     steps:
-      - uses: actions/checkout@v7
+      - uses: actions/checkout@v7.0.1
         with:
           persist-credentials: false
           fetch-depth: 0  # TypeScript: fallow audit の PR 差分ゲート用
-      - uses: jdx/mise-action@v4
+      - uses: jdx/mise-action@v4.2.5
       - run: bun install --frozen-lockfile
       - run: mise run lint
 ```
@@ -584,7 +604,7 @@ base 未指定時の公式既定は、上流または `origin/main` との `git 
 
 ## 確認
 
-1. 依存導入後の `mise run ci` で lint / format・型・テスト・build を確認する。`mise run lint` に oxlint、knip、`fallow audit` が含まれるので、required check 名は `lint` のままで足りる。失敗を直したら影響する検査だけ再実行する
+1. 依存導入後の `mise run ci` で lint / format・型・テスト・build を確認する。`mise run lint` に oxlint、knip、`fallow audit`、`cccc .` が含まれるので、required check 名は `lint` のままで足りる。失敗を直したら影響する検査だけ再実行する
 2. 上で作った本番ビルドを `PORT=3999 bun run start` で起動し、`curl -s http://localhost:3999/` の HTML に見出しの文言と `<link rel="stylesheet">` が含まれ、`devtools` の文字列が含まれないことを確認してから止める
 3. `mise run dev` でも同じページが出る
 

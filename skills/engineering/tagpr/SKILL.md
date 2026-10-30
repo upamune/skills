@@ -12,7 +12,7 @@ tagpr によるリリース PR とタグ生成を、既存のリリース方式�
 - タグ push で後続の公開ワークフローを動かす構成は GitHub App のインストールトークンを使う。`GITHUB_TOKEN` へ暗黙にフォールバックしない。
 - App トークン構成のために `can_approve_pull_request_reviews` やリポジトリ全体の既定権限を変更しない。
 - 既存の公開済みタグを動かさない。バージョン・タグ接頭辞・リリースブランチを既存運用に合わせ、タグや Release を二重に作らせない。
-- Actions の `uses:` は pinact で SHA に固定し、checkout は `persist-credentials: false`。公開はタグ起動と明示タグによる再実行を扱える形にする。
+- Actions の `uses:` は完全なタグで書き、`gh actions-lock` で `.github/workflows/actions.lock` に固定する。checkout は `persist-credentials: false`。公開はタグ起動と明示タグによる再実行を扱える形にする。
 
 ## 必要な資料
 
