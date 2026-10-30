@@ -13,7 +13,7 @@ gh extension install github/gh-actions-lock --pin v0.4.0
 gh actions-lock
 ```
 
-- `gh actions-lock`: onboard と更新。`uses:` を完全なタグへ書き換え、lockfile を書く
+- `gh actions-lock`: onboard と更新。未固定の部分バージョン（`v4` や `v7`）だけ、その範囲で最も新しい完全なタグへ narrow し、lockfile を書く。すでに完全なタグの `uses:` は変えない。narrow の結果は表の full semver とは限らない
 - `gh actions-lock --relock`: 動いた ref（`main` や `v4` など）を現在の commit へ進める
 - `gh actions-lock --verify`: CI 用。ファイルは書き換えず、lockfile と workflow の一致と pin の upstream を検証する
 - `gh actions-lock --verify-local`: オフライン。各 `uses:` に lockfile エントリがあることだけを見る
@@ -61,12 +61,33 @@ updates:
 
 ## pinact（reusable workflow と composite action だけ）
 
-[pinact](https://github.com/suzuki-shunsuke/pinact) v5 は lockfile と共存する。lockfile が固定した step の action は書き換えない。対象外の reusable workflow と composite action（`action.yml`）を使うときだけ、pinact で SHA に固定する。詳細は [workflow lockfile](https://github.com/suzuki-shunsuke/pinact/blob/main/docs/workflow_lockfile.md)。
+既定の `[tools]` には入れない。lockfile の対象外を SHA に固定するときだけ `pinact = "5.0"` を足す（`mise ls-remote pinact` で v5 系を確認する。2026-10-30 時点は v5.0.2）。フラグは `--check` と `--update`。固定は `pinact run`、検証は `pinact run --check`、更新は `pinact run --update`。
 
-- 既定の `[tools]` には入れない。使うときだけ `pinact = "5.0"`（`mise ls-remote pinact` で v5 系を確認する。2026-10-30 時点は v5.0.2）
-- フラグは `--check` と `--update`。固定は `pinact run`、検証は `pinact run --check`、更新は `pinact run --update`
-- onboard 済み workflow に lockfile 未登録の step action があると exit 2 になり、`gh actions-lock` の再実行を求める。step の action は先に `gh actions-lock` で固定する
-- そのときだけ CI に次のジョブを足す
+[pinact](https://github.com/suzuki-shunsuke/pinact) v5.0.2 は `actions.lock` を読まない。引数なしの `pinact run --check` は、lockfile 済みの step action も SHA への変更として報告し exit 1 になる。`--check` はファイルを書き換えない。
+
+reusable workflow（`jobs.<id>.uses`）があるときだけ `.pinact.yaml` を置き、`pinact run --check` を CI に足す。step の action は無視し、reusable workflow だけを対象にする。
+
+```yaml
+version: 3
+rules:
+  - ignore: true
+    conditions:
+      - expr: '!(ActionName contains ".github/workflows/")'
+```
+
+composite action（`action.yml`）は、上の ignore があると対象外になる。ignore の無い設定を `--config` で渡し、ファイルを明示する。
+
+```bash
+pinact --config .pinact-action.yaml run --check .github/actions/<name>/action.yml
+```
+
+`.pinact-action.yaml` は次だけにする。
+
+```yaml
+version: 3
+```
+
+CI には実際に使う方だけ載せる。両方使うなら両方のコマンドを走らせる。引数なしの `pinact run --check` は置かない。
 
 ```yaml
   pinact:
@@ -83,7 +104,7 @@ updates:
           GITHUB_TOKEN: ${{ github.token }}
 ```
 
-設定ファイルは不要（必要なら `pinact init` で `.pinact.yaml`）。
+composite action だけのときは `run` を `pinact --config .pinact-action.yaml run --check .github/actions/<name>/action.yml` にする。
 
 ## Action の選び方
 
@@ -188,7 +209,7 @@ Go の lint には fallow も `fetch-depth: 0` も不要。main への push で�
 
 ## 書いたあとの確認
 
-1. `gh actions-lock` → `uses:` が完全なタグになり、`.github/workflows/actions.lock` ができている。reusable workflow か composite action があるときだけ、続けて `pinact run`
+1. `gh actions-lock` → `.github/workflows/actions.lock` ができる。部分バージョン（`v4` や `v7`）だけ、その範囲で最も新しい完全なタグへ narrow される（表の full semver とは限らない。2026-10-30 に `jdx/mise-action@v4` は `v4.3.0` になった）。もともと完全なタグの `uses:` は変わらない
 2. `actionlint` があれば `actionlint`（mise に `actionlint` あり）
-3. `gh actions-lock --verify`。pinact を使ったときだけ `pinact run --check` も通す
+3. `gh actions-lock --verify` と `gh actions-lock --verify-local`。reusable workflow があるときは ignore 付きの `pinact run --check`、composite action があるときは `--config` でファイルを明示した `pinact run --check` も通す
 4. `gh workflow list` でワークフローが認識されている（push 後）

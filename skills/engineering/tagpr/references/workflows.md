@@ -1,6 +1,6 @@
 # ワークフロー雛形
 
-Action のバージョンは 2026-08-23 時点の最新メジャー。書く前に Releases で確認し、`uses:` は表の full semver で書く。書いたあと `gh actions-lock` で `.github/workflows/actions.lock` を生成してコミットする（手で編集しない）。他リポジトリの reusable workflow と composite action（`action.yml`）だけ pinact v5 の `pinact run` で SHA に固定する（検証は `pinact run --check`）。
+Action のバージョンは 2026-08-23 時点の最新メジャー。書く前に Releases で確認し、`uses:` は表の full semver で書く。書いたあと `gh actions-lock` で `.github/workflows/actions.lock` を生成してコミットする（手で編集しない）。部分バージョンだけ完全なタグへ narrow され、もともと完全なタグの `uses:` は変わらない。他リポジトリの reusable workflow と composite action（`action.yml`）を SHA に固定するときだけ pinact v5.0.2 を使う。この版は lockfile を読まない。引数なしの `pinact run --check` は lock 済みの step action も exit 1 にする。reusable workflow は `.pinact.yaml` で step の action を ignore し、composite action は `--config` でファイルを明示する。
 
 | Action | 最新メジャー | full semver |
 | --- | --- | --- |
@@ -178,7 +178,7 @@ jobs:
 
 ## 書いた後の確認
 
-1. `gh actions-lock` → `uses:` が完全なタグになり、`.github/workflows/actions.lock` ができている。reusable workflow か composite action があるときだけ、続けて `pinact run`
+1. `gh actions-lock` → `.github/workflows/actions.lock` ができる。部分バージョンだけ完全なタグへ narrow される。もともと完全なタグの `uses:` は変わらない
 2. `actionlint`（mise に `actionlint` あり）
-3. `gh actions-lock --verify`。pinact を使ったときだけ `pinact run --check` も通す
+3. `gh actions-lock --verify` と `gh actions-lock --verify-local`。reusable workflow か composite action があるときだけ、範囲を絞った `pinact run --check` も通す
 4. リリースブランチへの反映まで許可された場合は、`gh run list --workflow tagpr.yml` と `gh pr list --label tagpr` で実行結果を確認する

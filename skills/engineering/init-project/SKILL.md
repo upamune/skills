@@ -28,6 +28,6 @@ disable-model-invocation: true
 
 ## 完了まで進める
 
-依存を入れ、最小実装と意味のある動作確認を用意し、README から起動できるところまで仕上げる。言語ごとの `mise run ci` と `gh actions-lock --verify` を通す。他リポジトリの reusable workflow か composite action を使うときだけ、あわせて `pinact run --check` を通す。Web アプリは起動した画面・疎通と本番配信を確認する。失敗は修正し、影響する検査を再実行する。変更していない結果を工程の節目だけで取り直さない。
+依存を入れ、最小実装と意味のある動作確認を用意し、README から起動できるところまで仕上げる。言語ごとの `mise run ci` と `gh actions-lock --verify` を通す。他リポジトリの reusable workflow か composite action を使うときだけ、reference のとおり範囲を絞った `pinact run --check` を通す。Web アプリは起動した画面・疎通と本番配信を確認する。失敗は修正し、影響する検査を再実行する。変更していない結果を工程の節目だけで取り直さない。
 
 ローカルの初期化が済んだら成果物・起動方法・検証結果を報告する。commit / push / リポジトリ作成が既に依頼されていれば続ける。リモート公開やアカウント設定は、そのスキルを呼んだことだけで許可されたと扱わない。
