@@ -26,28 +26,28 @@
       "source": "tt-a1i/archify",
       "url": "https://github.com/tt-a1i/archify.git",
       "path": "archify",
-      "commit": "f325d86230553e1dd15d3464324f1fcd01f02352",
+      "commit": "a4065941f12be7967436261d9934784e381d423c",
       "updatedAt": "2026-10-25T17:26:25.228Z"
     },
     "claude-handoff": {
       "source": "mattpocock/skills",
       "url": "https://github.com/mattpocock/skills.git",
       "path": "skills/in-progress/claude-handoff",
-      "commit": "a496f5513d4a4cf889bc48e189e579f4b0bdf6aa",
+      "commit": "4ae2317ddb22b046e26455e4f9c9b3aaaf62212d",
       "updatedAt": "2026-08-23T10:02:54.839Z"
     },
     "code-review": {
       "source": "mattpocock/skills",
       "url": "https://github.com/mattpocock/skills.git",
       "path": "skills/engineering/code-review",
-      "commit": "a496f5513d4a4cf889bc48e189e579f4b0bdf6aa",
+      "commit": "4ae2317ddb22b046e26455e4f9c9b3aaaf62212d",
       "updatedAt": "2026-10-29T17:22:37.098Z"
     },
     "codebase-design": {
       "source": "mattpocock/skills",
       "url": "https://github.com/mattpocock/skills.git",
       "path": "skills/engineering/codebase-design",
-      "commit": "a496f5513d4a4cf889bc48e189e579f4b0bdf6aa",
+      "commit": "4ae2317ddb22b046e26455e4f9c9b3aaaf62212d",
       "updatedAt": "2026-10-29T17:22:37.297Z"
     },
     "cognitive-rhythm-writing": {
@@ -75,14 +75,14 @@
       "source": "mattpocock/skills",
       "url": "https://github.com/mattpocock/skills.git",
       "path": "skills/engineering/diagnosing-bugs",
-      "commit": "a496f5513d4a4cf889bc48e189e579f4b0bdf6aa",
+      "commit": "4ae2317ddb22b046e26455e4f9c9b3aaaf62212d",
       "updatedAt": "2026-08-23T10:02:54.805Z"
     },
     "domain-modeling": {
       "source": "mattpocock/skills",
       "url": "https://github.com/mattpocock/skills.git",
       "path": "skills/engineering/domain-modeling",
-      "commit": "a496f5513d4a4cf889bc48e189e579f4b0bdf6aa",
+      "commit": "4ae2317ddb22b046e26455e4f9c9b3aaaf62212d",
       "updatedAt": "2026-08-23T10:02:54.808Z"
     },
     "eli5": {
@@ -125,21 +125,21 @@
       "source": "mattpocock/skills",
       "url": "https://github.com/mattpocock/skills.git",
       "path": "skills/productivity/grill-me",
-      "commit": "a496f5513d4a4cf889bc48e189e579f4b0bdf6aa",
+      "commit": "4ae2317ddb22b046e26455e4f9c9b3aaaf62212d",
       "updatedAt": "2026-08-23T10:02:54.848Z"
     },
     "grill-with-docs": {
       "source": "mattpocock/skills",
       "url": "https://github.com/mattpocock/skills.git",
       "path": "skills/engineering/grill-with-docs",
-      "commit": "a496f5513d4a4cf889bc48e189e579f4b0bdf6aa",
+      "commit": "4ae2317ddb22b046e26455e4f9c9b3aaaf62212d",
       "updatedAt": "2026-08-23T10:02:54.813Z"
     },
     "handoff": {
       "source": "mattpocock/skills",
       "url": "https://github.com/mattpocock/skills.git",
       "path": "skills/productivity/handoff",
-      "commit": "a496f5513d4a4cf889bc48e189e579f4b0bdf6aa",
+      "commit": "4ae2317ddb22b046e26455e4f9c9b3aaaf62212d",
       "updatedAt": "2026-08-23T10:02:54.856Z"
     },
     "i-have-adhd": {
@@ -153,7 +153,7 @@
       "source": "mattpocock/skills",
       "url": "https://github.com/mattpocock/skills.git",
       "path": "skills/engineering/implement",
-      "commit": "a496f5513d4a4cf889bc48e189e579f4b0bdf6aa",
+      "commit": "4ae2317ddb22b046e26455e4f9c9b3aaaf62212d",
       "updatedAt": "2026-08-23T10:02:54.816Z"
     },
     "improve-animations": {
@@ -167,7 +167,7 @@
       "source": "mattpocock/skills",
       "url": "https://github.com/mattpocock/skills.git",
       "path": "skills/engineering/improve-codebase-architecture",
-      "commit": "a496f5513d4a4cf889bc48e189e579f4b0bdf6aa",
+      "commit": "4ae2317ddb22b046e26455e4f9c9b3aaaf62212d",
       "updatedAt": "2026-10-29T17:22:38.838Z"
     },
     "japanese-tech-writing": {
@@ -181,7 +181,7 @@
       "source": "mattpocock/skills",
       "url": "https://github.com/mattpocock/skills.git",
       "path": "skills/in-progress/loop-me",
-      "commit": "a496f5513d4a4cf889bc48e189e579f4b0bdf6aa",
+      "commit": "4ae2317ddb22b046e26455e4f9c9b3aaaf62212d",
       "updatedAt": "2026-08-23T10:02:54.844Z"
     },
     "loop-on-ci": {
@@ -223,14 +223,14 @@
       "source": "mattpocock/skills",
       "url": "https://github.com/mattpocock/skills.git",
       "path": "skills/engineering/prototype",
-      "commit": "a496f5513d4a4cf889bc48e189e579f4b0bdf6aa",
+      "commit": "4ae2317ddb22b046e26455e4f9c9b3aaaf62212d",
       "updatedAt": "2026-08-23T10:02:54.823Z"
     },
     "research": {
       "source": "mattpocock/skills",
       "url": "https://github.com/mattpocock/skills.git",
       "path": "skills/engineering/research",
-      "commit": "a496f5513d4a4cf889bc48e189e579f4b0bdf6aa",
+      "commit": "4ae2317ddb22b046e26455e4f9c9b3aaaf62212d",
       "updatedAt": "2026-10-29T17:22:39.515Z"
     },
     "review-and-ship": {
@@ -252,7 +252,7 @@
       "url": "https://github.com/humanlayer/skills.git",
       "path": "plugins/show-me/skills/show-me",
       "ref": "main",
-      "commit": "653b6411c1f70c275a18e37673b042ff99f67ceb",
+      "commit": "69d5fc61d6ca6f7056d283a2ee2a045be741a1d6",
       "updatedAt": "2026-10-15T17:22:24.187Z"
     },
     "simplify": {
@@ -273,7 +273,7 @@
       "source": "mattpocock/skills",
       "url": "https://github.com/mattpocock/skills.git",
       "path": "skills/productivity/teach",
-      "commit": "a496f5513d4a4cf889bc48e189e579f4b0bdf6aa",
+      "commit": "4ae2317ddb22b046e26455e4f9c9b3aaaf62212d",
       "updatedAt": "2026-10-15T17:22:24.572Z"
     },
     "thermo-nuclear-code-quality-review": {
@@ -308,7 +308,7 @@
       "source": "mattpocock/skills",
       "url": "https://github.com/mattpocock/skills.git",
       "path": "skills/productivity/writing-for-agents",
-      "commit": "a496f5513d4a4cf889bc48e189e579f4b0bdf6aa",
+      "commit": "4ae2317ddb22b046e26455e4f9c9b3aaaf62212d",
       "updatedAt": "2026-08-23T10:02:54.863Z"
     },
     "yomiyasu": {
