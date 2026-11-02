@@ -5,21 +5,21 @@
       "source": "emilkowalski/skills",
       "url": "https://github.com/emilkowalski/skills.git",
       "path": "skills/animate",
-      "commit": "a81dbca07f2217b7103e510c0f13f8d5b017afc9",
-      "updatedAt": "2026-08-23T10:43:46.886Z"
+      "commit": "f1090bec277140d02ed202440185ad9d02ac1490",
+      "updatedAt": "2026-11-02T17:21:49.526Z"
     },
     "animation-vocabulary": {
       "source": "emilkowalski/skills",
       "url": "https://github.com/emilkowalski/skills.git",
       "path": "skills/animation-vocabulary",
-      "commit": "a81dbca07f2217b7103e510c0f13f8d5b017afc9",
+      "commit": "f1090bec277140d02ed202440185ad9d02ac1490",
       "updatedAt": "2026-08-23T10:43:46.889Z"
     },
     "apple-design": {
       "source": "emilkowalski/skills",
       "url": "https://github.com/emilkowalski/skills.git",
       "path": "skills/apple-design",
-      "commit": "a81dbca07f2217b7103e510c0f13f8d5b017afc9",
+      "commit": "f1090bec277140d02ed202440185ad9d02ac1490",
       "updatedAt": "2026-08-23T10:43:46.892Z"
     },
     "archify": {
@@ -97,14 +97,14 @@
       "source": "emilkowalski/skills",
       "url": "https://github.com/emilkowalski/skills.git",
       "path": "skills/emil-design-eng",
-      "commit": "a81dbca07f2217b7103e510c0f13f8d5b017afc9",
-      "updatedAt": "2026-08-23T10:43:46.894Z"
+      "commit": "f1090bec277140d02ed202440185ad9d02ac1490",
+      "updatedAt": "2026-11-02T17:21:50.923Z"
     },
     "find-animation-opportunities": {
       "source": "emilkowalski/skills",
       "url": "https://github.com/emilkowalski/skills.git",
       "path": "skills/find-animation-opportunities",
-      "commit": "a81dbca07f2217b7103e510c0f13f8d5b017afc9",
+      "commit": "f1090bec277140d02ed202440185ad9d02ac1490",
       "updatedAt": "2026-08-23T10:43:46.898Z"
     },
     "first-reader": {
@@ -160,8 +160,8 @@
       "source": "emilkowalski/skills",
       "url": "https://github.com/emilkowalski/skills.git",
       "path": "skills/improve-animations",
-      "commit": "a81dbca07f2217b7103e510c0f13f8d5b017afc9",
-      "updatedAt": "2026-08-23T10:43:46.900Z"
+      "commit": "f1090bec277140d02ed202440185ad9d02ac1490",
+      "updatedAt": "2026-11-02T17:21:51.733Z"
     },
     "improve-codebase-architecture": {
       "source": "mattpocock/skills",
@@ -209,7 +209,7 @@
       "source": "emilkowalski/skills",
       "url": "https://github.com/emilkowalski/skills.git",
       "path": "skills/pick-ui-library",
-      "commit": "a81dbca07f2217b7103e510c0f13f8d5b017afc9",
+      "commit": "f1090bec277140d02ed202440185ad9d02ac1490",
       "updatedAt": "2026-08-23T10:43:46.902Z"
     },
     "pr-review-canvas": {
@@ -244,15 +244,15 @@
       "source": "emilkowalski/skills",
       "url": "https://github.com/emilkowalski/skills.git",
       "path": "skills/review-animations",
-      "commit": "a81dbca07f2217b7103e510c0f13f8d5b017afc9",
-      "updatedAt": "2026-10-15T17:22:23.959Z"
+      "commit": "f1090bec277140d02ed202440185ad9d02ac1490",
+      "updatedAt": "2026-11-02T17:21:52.582Z"
     },
     "show-me": {
       "source": "humanlayer/skills",
       "url": "https://github.com/humanlayer/skills.git",
       "path": "plugins/show-me/skills/show-me",
       "ref": "main",
-      "commit": "69d5fc61d6ca6f7056d283a2ee2a045be741a1d6",
+      "commit": "4d69d20f6e9b57b4fcf0d501ccfb1be961f0f329",
       "updatedAt": "2026-10-15T17:22:24.187Z"
     },
     "simplify": {
