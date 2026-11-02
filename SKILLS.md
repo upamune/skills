@@ -5,7 +5,7 @@
 このリポジトリに入っている全スキルの一覧。`npx skills add upamune/skills` でインストールできる。
 再生成: `scripts/gen-skills-md.ts`（`scripts/external.ts` の add / sync / remove 後は自動で更新される）。
 
-合計 50 スキル
+合計 51 スキル
 
 | bucket | count | 用途 |
 | --- | --- | --- |
@@ -13,7 +13,7 @@
 | [productivity/](#productivity) | 0 | コード以外のワークフロー向け（自作） |
 | [in-progress/](#in-progress) | 0 | 作りかけ・試用中（自作） |
 | [deprecated/](#deprecated) | 0 | 使わなくなったもの（自作） |
-| [external/](#external) | 45 | 外部リポジトリから vendor したもの |
+| [external/](#external) | 46 | 外部リポジトリから vendor したもの |
 
 ## engineering
 
@@ -95,6 +95,7 @@
 | [review-animations](./skills/external/review-animations/SKILL.md) | Reviews animation and motion code against a high craft bar derived from Emil Kowalski's design engineering philosophy. Default to flagging; approval is earned. | [emilkowalski/skills/skills/review-animations](https://github.com/emilkowalski/skills/tree/a81dbca07f2217b7103e510c0f13f8d5b017afc9/skills/review-animations) | `a81dbca` |
 | [show-me](./skills/external/show-me/SKILL.md) | Help the user understand the current topic visually with concise diagrams, code-shape sketches, and focused HTML artifacts. | [humanlayer/skills/plugins/show-me/skills/show-me](https://github.com/humanlayer/skills/tree/69d5fc61d6ca6f7056d283a2ee2a045be741a1d6/plugins/show-me/skills/show-me) | `69d5fc6` |
 | [simplify](./skills/external/simplify/SKILL.md) | Simplify and refine recently modified code for clarity and consistency. Use after writing code to improve readability without changing functionality. | [brianlovin/agent-config/skills/simplify](https://github.com/brianlovin/agent-config/tree/1a9819ebf3fee811150fc76cbe177ea4e5f747ff/skills/simplify) | `1a9819e` |
+| [stageshow](./skills/external/stageshow/SKILL.md) | Build faux product UI that looks like a real product, as a still illustration or an animated demo with a cursor. Browser and app windows, dashboards, phones, notifications, terminals, bento grids and cursor walkthroughs, framed, masked and cropped the way a marketing page, feature card or docs hero needs them. Use whenever someone wants a fake or mocked UI, a product demo or walkthrough animation, a hero or feature-card illustration of an app, a product shot in the style of a polished marketing site, or an animated cursor doing things in an interface, even if they never say "faux UI". React and plain CSS. | [benjitaylor/skills/stageshow](https://github.com/benjitaylor/skills/tree/802057409787133703c56001080169e347305572/stageshow) | `8020574` |
 | [statechart](./skills/external/statechart/SKILL.md) | Check a TLA+ model of a system that moves between states, such as a product flow, a protocol, or a service, and draw it as a Mermaid statechart. The report gives the shortest path to each state that breaks a rule. Use for /statechart, or to show a bug as a path through states. | [cursor/plugins/pstack/skills/statechart](https://github.com/cursor/plugins/tree/ae5650febf4320793844c12c4adaa937f417f8da/pstack/skills/statechart) | `ae5650f` |
 | [teach](./skills/external/teach/SKILL.md) | Teach the user a new skill or concept, within this workspace. | [mattpocock/skills/skills/productivity/teach](https://github.com/mattpocock/skills/tree/4ae2317ddb22b046e26455e4f9c9b3aaaf62212d/skills/productivity/teach) | `4ae2317` |
 | [thermo-nuclear-code-quality-review](./skills/external/thermo-nuclear-code-quality-review/SKILL.md) | Run an extremely strict maintainability review for abstraction quality, giant files, and spaghetti-condition growth. Use for a thermo-nuclear code quality review, thermonuclear review, deep code quality audit, or especially harsh maintainability review. | [cursor/plugins/cursor-team-kit/skills/thermo-nuclear-code-quality-review](https://github.com/cursor/plugins/tree/ae5650febf4320793844c12c4adaa937f417f8da/cursor-team-kit/skills/thermo-nuclear-code-quality-review) | `ae5650f` |

@@ -262,6 +262,13 @@
       "commit": "1a9819ebf3fee811150fc76cbe177ea4e5f747ff",
       "updatedAt": "2026-08-30T07:20:21.471Z"
     },
+    "stageshow": {
+      "source": "benjitaylor/skills",
+      "url": "https://github.com/benjitaylor/skills.git",
+      "path": "stageshow",
+      "commit": "802057409787133703c56001080169e347305572",
+      "updatedAt": "2026-11-02T00:56:39.912Z"
+    },
     "statechart": {
       "source": "cursor/plugins",
       "url": "https://github.com/cursor/plugins.git",

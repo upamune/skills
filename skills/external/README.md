@@ -46,6 +46,7 @@
 | [review-animations](./review-animations/SKILL.md) | [emilkowalski/skills](https://github.com/emilkowalski/skills/tree/a81dbca07f2217b7103e510c0f13f8d5b017afc9/skills/review-animations) | `default` | `a81dbca` |
 | [show-me](./show-me/SKILL.md) | [humanlayer/skills](https://github.com/humanlayer/skills/tree/69d5fc61d6ca6f7056d283a2ee2a045be741a1d6/plugins/show-me/skills/show-me) | `main` | `69d5fc6` |
 | [simplify](./simplify/SKILL.md) | [brianlovin/agent-config](https://github.com/brianlovin/agent-config/tree/1a9819ebf3fee811150fc76cbe177ea4e5f747ff/skills/simplify) | `default` | `1a9819e` |
+| [stageshow](./stageshow/SKILL.md) | [benjitaylor/skills](https://github.com/benjitaylor/skills/tree/802057409787133703c56001080169e347305572/stageshow) | `default` | `8020574` |
 | [statechart](./statechart/SKILL.md) | [cursor/plugins](https://github.com/cursor/plugins/tree/ae5650febf4320793844c12c4adaa937f417f8da/pstack/skills/statechart) | `default` | `ae5650f` |
 | [teach](./teach/SKILL.md) | [mattpocock/skills](https://github.com/mattpocock/skills/tree/4ae2317ddb22b046e26455e4f9c9b3aaaf62212d/skills/productivity/teach) | `default` | `4ae2317` |
 | [thermo-nuclear-code-quality-review](./thermo-nuclear-code-quality-review/SKILL.md) | [cursor/plugins](https://github.com/cursor/plugins/tree/ae5650febf4320793844c12c4adaa937f417f8da/cursor-team-kit/skills/thermo-nuclear-code-quality-review) | `default` | `ae5650f` |
