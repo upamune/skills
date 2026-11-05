@@ -99,7 +99,7 @@
 | [statechart](./statechart/SKILL.md) | [cursor/plugins](https://github.com/cursor/plugins/tree/ae5650febf4320793844c12c4adaa937f417f8da/pstack/skills/statechart) | `default` | `ae5650f` |
 | [swarm](./swarm/SKILL.md) | [cursor/plugins](https://github.com/cursor/plugins/tree/2776ddd2355d6d6c8747d3964600f28daf62f049/pstack/skills/swarm) | `default` | `2776ddd` |
 | [tdd](./tdd/SKILL.md) | [cursor/plugins](https://github.com/cursor/plugins/tree/2776ddd2355d6d6c8747d3964600f28daf62f049/pstack/skills/tdd) | `default` | `2776ddd` |
-| [teach](./teach/SKILL.md) | [mattpocock/skills](https://github.com/mattpocock/skills/tree/4ae2317ddb22b046e26455e4f9c9b3aaaf62212d/skills/productivity/teach) | `default` | `4ae2317` |
+| [teach](./teach/SKILL.md) | [cursor/plugins](https://github.com/cursor/plugins/tree/2776ddd2355d6d6c8747d3964600f28daf62f049/pstack/skills/teach) | `default` | `2776ddd` |
 | [technical-writing](./technical-writing/SKILL.md) | [cursor/plugins](https://github.com/cursor/plugins/tree/2776ddd2355d6d6c8747d3964600f28daf62f049/pstack/skills/technical-writing) | `default` | `2776ddd` |
 | [thermo-nuclear-code-quality-review](./thermo-nuclear-code-quality-review/SKILL.md) | [cursor/plugins](https://github.com/cursor/plugins/tree/ae5650febf4320793844c12c4adaa937f417f8da/cursor-team-kit/skills/thermo-nuclear-code-quality-review) | `default` | `ae5650f` |
 | [typescript-best-practices](./typescript-best-practices/SKILL.md) | [cursor/plugins](https://github.com/cursor/plugins/tree/2776ddd2355d6d6c8747d3964600f28daf62f049/pstack/skills/typescript-best-practices) | `default` | `2776ddd` |
