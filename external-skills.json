@@ -5,21 +5,21 @@
       "source": "emilkowalski/skills",
       "url": "https://github.com/emilkowalski/skills.git",
       "path": "skills/animate",
-      "commit": "f1090bec277140d02ed202440185ad9d02ac1490",
+      "commit": "c8a79627b59d72d764d6ab6f2c87c09a48169833",
       "updatedAt": "2026-11-02T17:21:49.526Z"
     },
     "animation-vocabulary": {
       "source": "emilkowalski/skills",
       "url": "https://github.com/emilkowalski/skills.git",
       "path": "skills/animation-vocabulary",
-      "commit": "f1090bec277140d02ed202440185ad9d02ac1490",
+      "commit": "c8a79627b59d72d764d6ab6f2c87c09a48169833",
       "updatedAt": "2026-08-23T10:43:46.889Z"
     },
     "apple-design": {
       "source": "emilkowalski/skills",
       "url": "https://github.com/emilkowalski/skills.git",
       "path": "skills/apple-design",
-      "commit": "f1090bec277140d02ed202440185ad9d02ac1490",
+      "commit": "c8a79627b59d72d764d6ab6f2c87c09a48169833",
       "updatedAt": "2026-08-23T10:43:46.892Z"
     },
     "archify": {
@@ -110,7 +110,7 @@
       "source": "cursor/plugins",
       "url": "https://github.com/cursor/plugins.git",
       "path": "pstack/skills/create-formal-verification-skill",
-      "commit": "ae5650febf4320793844c12c4adaa937f417f8da",
+      "commit": "2776ddd2355d6d6c8747d3964600f28daf62f049",
       "updatedAt": "2026-10-30T06:28:46.178Z"
     },
     "create-verification-skill": {
@@ -124,7 +124,7 @@
       "source": "cursor/plugins",
       "url": "https://github.com/cursor/plugins.git",
       "path": "cursor-team-kit/skills/deslop",
-      "commit": "ae5650febf4320793844c12c4adaa937f417f8da",
+      "commit": "2776ddd2355d6d6c8747d3964600f28daf62f049",
       "updatedAt": "2026-08-30T07:10:21.977Z"
     },
     "diagnosing-bugs": {
@@ -146,14 +146,14 @@
       "url": "https://github.com/anthropics/claude-plugins-community.git",
       "path": "eli5/skills/eli5",
       "ref": "main",
-      "commit": "06ec7b6a0a82bdc4bec44bd82d4368c42f20d7c1",
+      "commit": "163301d1904c0a994539f5226ce0fcd65b8652bf",
       "updatedAt": "2026-08-30T13:22:51.059Z"
     },
     "emil-design-eng": {
       "source": "emilkowalski/skills",
       "url": "https://github.com/emilkowalski/skills.git",
       "path": "skills/emil-design-eng",
-      "commit": "f1090bec277140d02ed202440185ad9d02ac1490",
+      "commit": "c8a79627b59d72d764d6ab6f2c87c09a48169833",
       "updatedAt": "2026-11-02T17:21:50.923Z"
     },
     "figure-it-out": {
@@ -167,21 +167,21 @@
       "source": "emilkowalski/skills",
       "url": "https://github.com/emilkowalski/skills.git",
       "path": "skills/find-animation-opportunities",
-      "commit": "f1090bec277140d02ed202440185ad9d02ac1490",
+      "commit": "c8a79627b59d72d764d6ab6f2c87c09a48169833",
       "updatedAt": "2026-08-23T10:43:46.898Z"
     },
     "first-reader": {
       "source": "Shubhamsaboo/awesome-llm-apps",
       "url": "https://github.com/Shubhamsaboo/awesome-llm-apps.git",
       "path": "agent_skills/first-reader",
-      "commit": "6c16b23f1bacd0fdf240bb5141ef45e59e82c306",
-      "updatedAt": "2026-09-19T08:58:26.702Z"
+      "commit": "c129f31036f5ba0bba42cbb63937a66946fdf2c0",
+      "updatedAt": "2026-11-06T17:24:57.686Z"
     },
     "get-pr-comments": {
       "source": "cursor/plugins",
       "url": "https://github.com/cursor/plugins.git",
       "path": "cursor-team-kit/skills/get-pr-comments",
-      "commit": "ae5650febf4320793844c12c4adaa937f417f8da",
+      "commit": "2776ddd2355d6d6c8747d3964600f28daf62f049",
       "updatedAt": "2026-08-30T07:10:22.023Z"
     },
     "grill-me": {
@@ -230,7 +230,7 @@
       "source": "emilkowalski/skills",
       "url": "https://github.com/emilkowalski/skills.git",
       "path": "skills/improve-animations",
-      "commit": "f1090bec277140d02ed202440185ad9d02ac1490",
+      "commit": "c8a79627b59d72d764d6ab6f2c87c09a48169833",
       "updatedAt": "2026-11-02T17:21:51.733Z"
     },
     "improve-codebase-architecture": {
@@ -286,7 +286,7 @@
       "source": "cursor/plugins",
       "url": "https://github.com/cursor/plugins.git",
       "path": "cursor-team-kit/skills/loop-on-ci",
-      "commit": "ae5650febf4320793844c12c4adaa937f417f8da",
+      "commit": "2776ddd2355d6d6c8747d3964600f28daf62f049",
       "updatedAt": "2026-08-30T07:10:21.965Z"
     },
     "maintain-formal-verification-skill": {
@@ -314,14 +314,14 @@
       "source": "cursor/plugins",
       "url": "https://github.com/cursor/plugins.git",
       "path": "cursor-team-kit/skills/make-pr-easy-to-review",
-      "commit": "ae5650febf4320793844c12c4adaa937f417f8da",
+      "commit": "2776ddd2355d6d6c8747d3964600f28daf62f049",
       "updatedAt": "2026-08-30T07:10:22.011Z"
     },
     "new-branch-and-pr": {
       "source": "cursor/plugins",
       "url": "https://github.com/cursor/plugins.git",
       "path": "cursor-team-kit/skills/new-branch-and-pr",
-      "commit": "ae5650febf4320793844c12c4adaa937f417f8da",
+      "commit": "2776ddd2355d6d6c8747d3964600f28daf62f049",
       "updatedAt": "2026-08-30T07:10:21.989Z"
     },
     "no-comments": {
@@ -335,7 +335,7 @@
       "source": "emilkowalski/skills",
       "url": "https://github.com/emilkowalski/skills.git",
       "path": "skills/pick-ui-library",
-      "commit": "f1090bec277140d02ed202440185ad9d02ac1490",
+      "commit": "c8a79627b59d72d764d6ab6f2c87c09a48169833",
       "updatedAt": "2026-08-23T10:43:46.902Z"
     },
     "poteto-help": {
@@ -356,7 +356,7 @@
       "source": "cursor/plugins",
       "url": "https://github.com/cursor/plugins.git",
       "path": "cursor-team-kit/skills/pr-review-canvas",
-      "commit": "ae5650febf4320793844c12c4adaa937f417f8da",
+      "commit": "2776ddd2355d6d6c8747d3964600f28daf62f049",
       "updatedAt": "2026-08-30T07:11:45.400Z"
     },
     "principle-attack-the-premise": {
@@ -559,14 +559,14 @@
       "source": "cursor/plugins",
       "url": "https://github.com/cursor/plugins.git",
       "path": "cursor-team-kit/skills/review-and-ship",
-      "commit": "ae5650febf4320793844c12c4adaa937f417f8da",
+      "commit": "2776ddd2355d6d6c8747d3964600f28daf62f049",
       "updatedAt": "2026-08-30T07:10:22.000Z"
     },
     "review-animations": {
       "source": "emilkowalski/skills",
       "url": "https://github.com/emilkowalski/skills.git",
       "path": "skills/review-animations",
-      "commit": "f1090bec277140d02ed202440185ad9d02ac1490",
+      "commit": "c8a79627b59d72d764d6ab6f2c87c09a48169833",
       "updatedAt": "2026-11-02T17:21:52.582Z"
     },
     "setup-pstack": {
@@ -609,14 +609,14 @@
       "source": "benjitaylor/skills",
       "url": "https://github.com/benjitaylor/skills.git",
       "path": "stageshow",
-      "commit": "802057409787133703c56001080169e347305572",
-      "updatedAt": "2026-11-02T00:56:39.912Z"
+      "commit": "299140fafd08df55a9c234e610c3f64af3f45531",
+      "updatedAt": "2026-11-06T17:24:58.031Z"
     },
     "statechart": {
       "source": "cursor/plugins",
       "url": "https://github.com/cursor/plugins.git",
       "path": "pstack/skills/statechart",
-      "commit": "ae5650febf4320793844c12c4adaa937f417f8da",
+      "commit": "2776ddd2355d6d6c8747d3964600f28daf62f049",
       "updatedAt": "2026-10-30T06:28:40.749Z"
     },
     "swarm": {
@@ -651,7 +651,7 @@
       "source": "cursor/plugins",
       "url": "https://github.com/cursor/plugins.git",
       "path": "cursor-team-kit/skills/thermo-nuclear-code-quality-review",
-      "commit": "ae5650febf4320793844c12c4adaa937f417f8da",
+      "commit": "2776ddd2355d6d6c8747d3964600f28daf62f049",
       "updatedAt": "2026-08-30T07:12:32.225Z"
     },
     "typescript-best-practices": {
@@ -672,14 +672,14 @@
       "source": "cursor/plugins",
       "url": "https://github.com/cursor/plugins.git",
       "path": "cursor-team-kit/skills/weekly-review",
-      "commit": "ae5650febf4320793844c12c4adaa937f417f8da",
+      "commit": "2776ddd2355d6d6c8747d3964600f28daf62f049",
       "updatedAt": "2026-08-30T07:10:22.035Z"
     },
     "what-did-i-get-done": {
       "source": "cursor/plugins",
       "url": "https://github.com/cursor/plugins.git",
       "path": "cursor-team-kit/skills/what-did-i-get-done",
-      "commit": "ae5650febf4320793844c12c4adaa937f417f8da",
+      "commit": "2776ddd2355d6d6c8747d3964600f28daf62f049",
       "updatedAt": "2026-08-30T07:10:22.046Z"
     },
     "why": {
@@ -693,7 +693,7 @@
       "source": "cursor/plugins",
       "url": "https://github.com/cursor/plugins.git",
       "path": "cursor-team-kit/skills/workflow-from-chats",
-      "commit": "ae5650febf4320793844c12c4adaa937f417f8da",
+      "commit": "2776ddd2355d6d6c8747d3964600f28daf62f049",
       "updatedAt": "2026-08-30T07:10:22.058Z"
     },
     "writing-for-agents": {
@@ -707,7 +707,7 @@
       "source": "nanaism/yomiyasu",
       "url": "https://github.com/nanaism/yomiyasu.git",
       "path": "skills/yomiyasu",
-      "commit": "29d67ccb05e370b5958d72920a9cd1aa829dee80",
+      "commit": "8394e099486aaa2e28cf89992e46f5ebe5ed839d",
       "updatedAt": "2026-10-30T17:25:49.012Z"
     }
   }
