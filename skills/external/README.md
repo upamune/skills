@@ -9,10 +9,10 @@
 
 | skill | source | ref | commit |
 | --- | --- | --- | --- |
-| [animate](./animate/SKILL.md) | [emilkowalski/skills](https://github.com/emilkowalski/skills/tree/c8a79627b59d72d764d6ab6f2c87c09a48169833/skills/animate) | `default` | `c8a7962` |
-| [animation-vocabulary](./animation-vocabulary/SKILL.md) | [emilkowalski/skills](https://github.com/emilkowalski/skills/tree/c8a79627b59d72d764d6ab6f2c87c09a48169833/skills/animation-vocabulary) | `default` | `c8a7962` |
-| [apple-design](./apple-design/SKILL.md) | [emilkowalski/skills](https://github.com/emilkowalski/skills/tree/c8a79627b59d72d764d6ab6f2c87c09a48169833/skills/apple-design) | `default` | `c8a7962` |
-| [archify](./archify/SKILL.md) | [tt-a1i/archify](https://github.com/tt-a1i/archify/tree/a4065941f12be7967436261d9934784e381d423c/archify) | `default` | `a406594` |
+| [animate](./animate/SKILL.md) | [emilkowalski/skills](https://github.com/emilkowalski/skills/tree/5206a950b715e0cabe7043ea0b2304332b91494e/skills/animate) | `default` | `5206a95` |
+| [animation-vocabulary](./animation-vocabulary/SKILL.md) | [emilkowalski/skills](https://github.com/emilkowalski/skills/tree/5206a950b715e0cabe7043ea0b2304332b91494e/skills/animation-vocabulary) | `default` | `5206a95` |
+| [apple-design](./apple-design/SKILL.md) | [emilkowalski/skills](https://github.com/emilkowalski/skills/tree/5206a950b715e0cabe7043ea0b2304332b91494e/skills/apple-design) | `default` | `5206a95` |
+| [archify](./archify/SKILL.md) | [tt-a1i/archify](https://github.com/tt-a1i/archify/tree/11b0d6031853bdae89eed57e7979aabbf0034097/archify) | `default` | `11b0d60` |
 | [architect](./architect/SKILL.md) | [cursor/plugins](https://github.com/cursor/plugins/tree/6b0300214a09fd6029cfb7077043125758cd1fd2/pstack/skills/architect) | `default` | `6b03002` |
 | [arena](./arena/SKILL.md) | [cursor/plugins](https://github.com/cursor/plugins/tree/6b0300214a09fd6029cfb7077043125758cd1fd2/pstack/skills/arena) | `default` | `6b03002` |
 | [automate-me](./automate-me/SKILL.md) | [cursor/plugins](https://github.com/cursor/plugins/tree/6b0300214a09fd6029cfb7077043125758cd1fd2/pstack/skills/automate-me) | `default` | `6b03002` |
@@ -30,10 +30,10 @@
 | [diagnosing-bugs](./diagnosing-bugs/SKILL.md) | [mattpocock/skills](https://github.com/mattpocock/skills/tree/4ae2317ddb22b046e26455e4f9c9b3aaaf62212d/skills/engineering/diagnosing-bugs) | `default` | `4ae2317` |
 | [domain-modeling](./domain-modeling/SKILL.md) | [mattpocock/skills](https://github.com/mattpocock/skills/tree/4ae2317ddb22b046e26455e4f9c9b3aaaf62212d/skills/engineering/domain-modeling) | `default` | `4ae2317` |
 | [eli5](./eli5/SKILL.md) | [anthropics/claude-plugins-community](https://github.com/anthropics/claude-plugins-community/tree/163301d1904c0a994539f5226ce0fcd65b8652bf/eli5/skills/eli5) | `main` | `163301d` |
-| [emil-design-eng](./emil-design-eng/SKILL.md) | [emilkowalski/skills](https://github.com/emilkowalski/skills/tree/c8a79627b59d72d764d6ab6f2c87c09a48169833/skills/emil-design-eng) | `default` | `c8a7962` |
+| [emil-design-eng](./emil-design-eng/SKILL.md) | [emilkowalski/skills](https://github.com/emilkowalski/skills/tree/5206a950b715e0cabe7043ea0b2304332b91494e/skills/emil-design-eng) | `default` | `5206a95` |
 | [figure-it-out](./figure-it-out/SKILL.md) | [cursor/plugins](https://github.com/cursor/plugins/tree/6b0300214a09fd6029cfb7077043125758cd1fd2/pstack/skills/figure-it-out) | `default` | `6b03002` |
-| [find-animation-opportunities](./find-animation-opportunities/SKILL.md) | [emilkowalski/skills](https://github.com/emilkowalski/skills/tree/c8a79627b59d72d764d6ab6f2c87c09a48169833/skills/find-animation-opportunities) | `default` | `c8a7962` |
-| [first-reader](./first-reader/SKILL.md) | [Shubhamsaboo/awesome-llm-apps](https://github.com/Shubhamsaboo/awesome-llm-apps/tree/c129f31036f5ba0bba42cbb63937a66946fdf2c0/agent_skills/first-reader) | `default` | `c129f31` |
+| [find-animation-opportunities](./find-animation-opportunities/SKILL.md) | [emilkowalski/skills](https://github.com/emilkowalski/skills/tree/5206a950b715e0cabe7043ea0b2304332b91494e/skills/find-animation-opportunities) | `default` | `5206a95` |
+| [first-reader](./first-reader/SKILL.md) | [Shubhamsaboo/awesome-llm-apps](https://github.com/Shubhamsaboo/awesome-llm-apps/tree/c46144eb61c18cd1a495445c79ec47145722053e/agent_skills/first-reader) | `default` | `c46144e` |
 | [get-pr-comments](./get-pr-comments/SKILL.md) | [cursor/plugins](https://github.com/cursor/plugins/tree/6b0300214a09fd6029cfb7077043125758cd1fd2/cursor-team-kit/skills/get-pr-comments) | `default` | `6b03002` |
 | [grill-me](./grill-me/SKILL.md) | [mattpocock/skills](https://github.com/mattpocock/skills/tree/4ae2317ddb22b046e26455e4f9c9b3aaaf62212d/skills/productivity/grill-me) | `default` | `4ae2317` |
 | [grill-with-docs](./grill-with-docs/SKILL.md) | [mattpocock/skills](https://github.com/mattpocock/skills/tree/4ae2317ddb22b046e26455e4f9c9b3aaaf62212d/skills/engineering/grill-with-docs) | `default` | `4ae2317` |
@@ -41,7 +41,7 @@
 | [how](./how/SKILL.md) | [cursor/plugins](https://github.com/cursor/plugins/tree/6b0300214a09fd6029cfb7077043125758cd1fd2/pstack/skills/how) | `default` | `6b03002` |
 | [i-have-adhd](./i-have-adhd/SKILL.md) | [ayghri/i-have-adhd](https://github.com/ayghri/i-have-adhd/tree/1ecea1993b7fce257ffbd686c070948b5e07eda6/skills/i-have-adhd) | `default` | `1ecea19` |
 | [implement](./implement/SKILL.md) | [mattpocock/skills](https://github.com/mattpocock/skills/tree/4ae2317ddb22b046e26455e4f9c9b3aaaf62212d/skills/engineering/implement) | `default` | `4ae2317` |
-| [improve-animations](./improve-animations/SKILL.md) | [emilkowalski/skills](https://github.com/emilkowalski/skills/tree/c8a79627b59d72d764d6ab6f2c87c09a48169833/skills/improve-animations) | `default` | `c8a7962` |
+| [improve-animations](./improve-animations/SKILL.md) | [emilkowalski/skills](https://github.com/emilkowalski/skills/tree/5206a950b715e0cabe7043ea0b2304332b91494e/skills/improve-animations) | `default` | `5206a95` |
 | [improve-codebase-architecture](./improve-codebase-architecture/SKILL.md) | [mattpocock/skills](https://github.com/mattpocock/skills/tree/4ae2317ddb22b046e26455e4f9c9b3aaaf62212d/skills/engineering/improve-codebase-architecture) | `default` | `4ae2317` |
 | [in-your-own-words](./in-your-own-words/SKILL.md) | [cursor/plugins](https://github.com/cursor/plugins/tree/6b0300214a09fd6029cfb7077043125758cd1fd2/pstack/skills/in-your-own-words) | `default` | `6b03002` |
 | [interrogate](./interrogate/SKILL.md) | [cursor/plugins](https://github.com/cursor/plugins/tree/6b0300214a09fd6029cfb7077043125758cd1fd2/pstack/skills/interrogate) | `default` | `6b03002` |
@@ -56,7 +56,7 @@
 | [make-pr-easy-to-review](./make-pr-easy-to-review/SKILL.md) | [cursor/plugins](https://github.com/cursor/plugins/tree/6b0300214a09fd6029cfb7077043125758cd1fd2/cursor-team-kit/skills/make-pr-easy-to-review) | `default` | `6b03002` |
 | [new-branch-and-pr](./new-branch-and-pr/SKILL.md) | [cursor/plugins](https://github.com/cursor/plugins/tree/6b0300214a09fd6029cfb7077043125758cd1fd2/cursor-team-kit/skills/new-branch-and-pr) | `default` | `6b03002` |
 | [no-comments](./no-comments/SKILL.md) | [cursor/plugins](https://github.com/cursor/plugins/tree/6b0300214a09fd6029cfb7077043125758cd1fd2/pstack/skills/no-comments) | `default` | `6b03002` |
-| [pick-ui-library](./pick-ui-library/SKILL.md) | [emilkowalski/skills](https://github.com/emilkowalski/skills/tree/c8a79627b59d72d764d6ab6f2c87c09a48169833/skills/pick-ui-library) | `default` | `c8a7962` |
+| [pick-ui-library](./pick-ui-library/SKILL.md) | [emilkowalski/skills](https://github.com/emilkowalski/skills/tree/5206a950b715e0cabe7043ea0b2304332b91494e/skills/pick-ui-library) | `default` | `5206a95` |
 | [poteto-help](./poteto-help/SKILL.md) | [cursor/plugins](https://github.com/cursor/plugins/tree/6b0300214a09fd6029cfb7077043125758cd1fd2/pstack/skills/poteto-help) | `default` | `6b03002` |
 | [poteto-mode](./poteto-mode/SKILL.md) | [cursor/plugins](https://github.com/cursor/plugins/tree/6b0300214a09fd6029cfb7077043125758cd1fd2/pstack/skills/poteto-mode) | `default` | `6b03002` |
 | [pr-review-canvas](./pr-review-canvas/SKILL.md) | [cursor/plugins](https://github.com/cursor/plugins/tree/6b0300214a09fd6029cfb7077043125758cd1fd2/cursor-team-kit/skills/pr-review-canvas) | `default` | `6b03002` |
@@ -89,7 +89,7 @@
 | [reflect](./reflect/SKILL.md) | [cursor/plugins](https://github.com/cursor/plugins/tree/6b0300214a09fd6029cfb7077043125758cd1fd2/pstack/skills/reflect) | `default` | `6b03002` |
 | [research](./research/SKILL.md) | [mattpocock/skills](https://github.com/mattpocock/skills/tree/4ae2317ddb22b046e26455e4f9c9b3aaaf62212d/skills/engineering/research) | `default` | `4ae2317` |
 | [review-and-ship](./review-and-ship/SKILL.md) | [cursor/plugins](https://github.com/cursor/plugins/tree/6b0300214a09fd6029cfb7077043125758cd1fd2/cursor-team-kit/skills/review-and-ship) | `default` | `6b03002` |
-| [review-animations](./review-animations/SKILL.md) | [emilkowalski/skills](https://github.com/emilkowalski/skills/tree/c8a79627b59d72d764d6ab6f2c87c09a48169833/skills/review-animations) | `default` | `c8a7962` |
+| [review-animations](./review-animations/SKILL.md) | [emilkowalski/skills](https://github.com/emilkowalski/skills/tree/5206a950b715e0cabe7043ea0b2304332b91494e/skills/review-animations) | `default` | `5206a95` |
 | [setup-pstack](./setup-pstack/SKILL.md) | [cursor/plugins](https://github.com/cursor/plugins/tree/6b0300214a09fd6029cfb7077043125758cd1fd2/pstack/skills/setup-pstack) | `default` | `6b03002` |
 | [sharpen](./sharpen/SKILL.md) | [cursor/plugins](https://github.com/cursor/plugins/tree/6b0300214a09fd6029cfb7077043125758cd1fd2/pstack/skills/sharpen) | `default` | `6b03002` |
 | [show-me](./show-me/SKILL.md) | [humanlayer/skills](https://github.com/humanlayer/skills/tree/4d69d20f6e9b57b4fcf0d501ccfb1be961f0f329/plugins/show-me/skills/show-me) | `main` | `4d69d20` |
