@@ -5,28 +5,28 @@
       "source": "emilkowalski/skills",
       "url": "https://github.com/emilkowalski/skills.git",
       "path": "skills/animate",
-      "commit": "c8a79627b59d72d764d6ab6f2c87c09a48169833",
+      "commit": "5206a950b715e0cabe7043ea0b2304332b91494e",
       "updatedAt": "2026-11-02T17:21:49.526Z"
     },
     "animation-vocabulary": {
       "source": "emilkowalski/skills",
       "url": "https://github.com/emilkowalski/skills.git",
       "path": "skills/animation-vocabulary",
-      "commit": "c8a79627b59d72d764d6ab6f2c87c09a48169833",
+      "commit": "5206a950b715e0cabe7043ea0b2304332b91494e",
       "updatedAt": "2026-08-23T10:43:46.889Z"
     },
     "apple-design": {
       "source": "emilkowalski/skills",
       "url": "https://github.com/emilkowalski/skills.git",
       "path": "skills/apple-design",
-      "commit": "c8a79627b59d72d764d6ab6f2c87c09a48169833",
+      "commit": "5206a950b715e0cabe7043ea0b2304332b91494e",
       "updatedAt": "2026-08-23T10:43:46.892Z"
     },
     "archify": {
       "source": "tt-a1i/archify",
       "url": "https://github.com/tt-a1i/archify.git",
       "path": "archify",
-      "commit": "a4065941f12be7967436261d9934784e381d423c",
+      "commit": "11b0d6031853bdae89eed57e7979aabbf0034097",
       "updatedAt": "2026-10-25T17:26:25.228Z"
     },
     "architect": {
@@ -153,7 +153,7 @@
       "source": "emilkowalski/skills",
       "url": "https://github.com/emilkowalski/skills.git",
       "path": "skills/emil-design-eng",
-      "commit": "c8a79627b59d72d764d6ab6f2c87c09a48169833",
+      "commit": "5206a950b715e0cabe7043ea0b2304332b91494e",
       "updatedAt": "2026-11-02T17:21:50.923Z"
     },
     "figure-it-out": {
@@ -167,14 +167,14 @@
       "source": "emilkowalski/skills",
       "url": "https://github.com/emilkowalski/skills.git",
       "path": "skills/find-animation-opportunities",
-      "commit": "c8a79627b59d72d764d6ab6f2c87c09a48169833",
+      "commit": "5206a950b715e0cabe7043ea0b2304332b91494e",
       "updatedAt": "2026-08-23T10:43:46.898Z"
     },
     "first-reader": {
       "source": "Shubhamsaboo/awesome-llm-apps",
       "url": "https://github.com/Shubhamsaboo/awesome-llm-apps.git",
       "path": "agent_skills/first-reader",
-      "commit": "c129f31036f5ba0bba42cbb63937a66946fdf2c0",
+      "commit": "c46144eb61c18cd1a495445c79ec47145722053e",
       "updatedAt": "2026-11-06T17:24:57.686Z"
     },
     "get-pr-comments": {
@@ -230,7 +230,7 @@
       "source": "emilkowalski/skills",
       "url": "https://github.com/emilkowalski/skills.git",
       "path": "skills/improve-animations",
-      "commit": "c8a79627b59d72d764d6ab6f2c87c09a48169833",
+      "commit": "5206a950b715e0cabe7043ea0b2304332b91494e",
       "updatedAt": "2026-11-02T17:21:51.733Z"
     },
     "improve-codebase-architecture": {
@@ -335,7 +335,7 @@
       "source": "emilkowalski/skills",
       "url": "https://github.com/emilkowalski/skills.git",
       "path": "skills/pick-ui-library",
-      "commit": "c8a79627b59d72d764d6ab6f2c87c09a48169833",
+      "commit": "5206a950b715e0cabe7043ea0b2304332b91494e",
       "updatedAt": "2026-08-23T10:43:46.902Z"
     },
     "poteto-help": {
@@ -566,7 +566,7 @@
       "source": "emilkowalski/skills",
       "url": "https://github.com/emilkowalski/skills.git",
       "path": "skills/review-animations",
-      "commit": "c8a79627b59d72d764d6ab6f2c87c09a48169833",
+      "commit": "5206a950b715e0cabe7043ea0b2304332b91494e",
       "updatedAt": "2026-11-02T17:21:52.582Z"
     },
     "setup-pstack": {
