@@ -5,7 +5,7 @@
 このリポジトリに入っている全スキルの一覧。`npx skills add upamune/skills` でインストールできる。
 再生成: `scripts/gen-skills-md.ts`（`scripts/external.ts` の add / sync / remove 後は自動で更新される）。
 
-合計 106 スキル
+合計 107 スキル
 
 | bucket | count | 用途 |
 | --- | --- | --- |
@@ -13,7 +13,7 @@
 | [productivity/](#productivity) | 0 | コード以外のワークフロー向け（自作） |
 | [in-progress/](#in-progress) | 0 | 作りかけ・試用中（自作） |
 | [deprecated/](#deprecated) | 0 | 使わなくなったもの（自作） |
-| [external/](#external) | 101 | 外部リポジトリから vendor したもの |
+| [external/](#external) | 102 | 外部リポジトリから vendor したもの |
 
 ## engineering
 
@@ -139,6 +139,7 @@
 | [research](./skills/external/research/SKILL.md) | Investigate a question against high-trust primary sources and capture the findings as a Markdown file in the repo. Use when the user wants a topic researched, docs or API facts gathered, or reading legwork delegated to a background agent. | [mattpocock/skills/skills/engineering/research](https://github.com/mattpocock/skills/tree/4ae2317ddb22b046e26455e4f9c9b3aaaf62212d/skills/engineering/research) | `4ae2317` |
 | [review-and-ship](./skills/external/review-and-ship/SKILL.md) | Review the current branch for bugs, intent fit, and test coverage; run or write tests; commit focused work; open or update a PR. | [cursor/plugins/cursor-team-kit/skills/review-and-ship](https://github.com/cursor/plugins/tree/6b0300214a09fd6029cfb7077043125758cd1fd2/cursor-team-kit/skills/review-and-ship) | `6b03002` |
 | [review-animations](./skills/external/review-animations/SKILL.md) | Reviews animation and motion code against a high craft bar derived from Emil Kowalski's design engineering philosophy. Default to flagging; approval is earned. | [emilkowalski/skills/skills/review-animations](https://github.com/emilkowalski/skills/tree/5206a950b715e0cabe7043ea0b2304332b91494e/skills/review-animations) | `5206a95` |
+| [security-audit](./skills/external/security-audit/SKILL.md) | Security guidance and vulnerability review for codebases, APIs, services, CLI tools, libraries, and daemons. Use for security questions, focused reviews, vulnerability research, security audits, or pen tests. Run the complete workflow only for explicit codebase audit or pen-test requests, full/comprehensive/end-to-end reviews, or requested report artifacts. | [cloudflare/security-audit-skill/skills/security-audit](https://github.com/cloudflare/security-audit-skill/tree/c1c8a8c1471069fb0e188eeaff69b8e8db6564a8/skills/security-audit) | `c1c8a8c` |
 | [setup-pstack](./skills/external/setup-pstack/SKILL.md) | Configure which models pstack uses per role and at what reasoning budget. Detects your available models and writes an always-applied rule that overrides the skill defaults. Use for /setup-pstack, "configure pstack models", "pstack budget", or changing pstack's model choices. | [cursor/plugins/pstack/skills/setup-pstack](https://github.com/cursor/plugins/tree/6b0300214a09fd6029cfb7077043125758cd1fd2/pstack/skills/setup-pstack) | `6b03002` |
 | [sharpen](./skills/external/sharpen/SKILL.md) | Make a task deeper, not bigger, then rewrite the prompt. Use for /sharpen. | [cursor/plugins/pstack/skills/sharpen](https://github.com/cursor/plugins/tree/6b0300214a09fd6029cfb7077043125758cd1fd2/pstack/skills/sharpen) | `6b03002` |
 | [show-me](./skills/external/show-me/SKILL.md) | Help the user understand the current topic visually with concise diagrams, code-shape sketches, and focused HTML artifacts. | [humanlayer/skills/plugins/show-me/skills/show-me](https://github.com/humanlayer/skills/tree/4d69d20f6e9b57b4fcf0d501ccfb1be961f0f329/plugins/show-me/skills/show-me) | `4d69d20` |

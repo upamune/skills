@@ -569,6 +569,13 @@
       "commit": "5206a950b715e0cabe7043ea0b2304332b91494e",
       "updatedAt": "2026-11-02T17:21:52.582Z"
     },
+    "security-audit": {
+      "source": "cloudflare/security-audit-skill",
+      "url": "https://github.com/cloudflare/security-audit-skill.git",
+      "path": "skills/security-audit",
+      "commit": "c1c8a8c1471069fb0e188eeaff69b8e8db6564a8",
+      "updatedAt": "2026-11-09T10:24:33.850Z"
+    },
     "setup-pstack": {
       "source": "cursor/plugins",
       "url": "https://github.com/cursor/plugins.git",
