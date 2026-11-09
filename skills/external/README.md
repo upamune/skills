@@ -90,6 +90,7 @@
 | [research](./research/SKILL.md) | [mattpocock/skills](https://github.com/mattpocock/skills/tree/4ae2317ddb22b046e26455e4f9c9b3aaaf62212d/skills/engineering/research) | `default` | `4ae2317` |
 | [review-and-ship](./review-and-ship/SKILL.md) | [cursor/plugins](https://github.com/cursor/plugins/tree/6b0300214a09fd6029cfb7077043125758cd1fd2/cursor-team-kit/skills/review-and-ship) | `default` | `6b03002` |
 | [review-animations](./review-animations/SKILL.md) | [emilkowalski/skills](https://github.com/emilkowalski/skills/tree/5206a950b715e0cabe7043ea0b2304332b91494e/skills/review-animations) | `default` | `5206a95` |
+| [security-audit](./security-audit/SKILL.md) | [cloudflare/security-audit-skill](https://github.com/cloudflare/security-audit-skill/tree/c1c8a8c1471069fb0e188eeaff69b8e8db6564a8/skills/security-audit) | `default` | `c1c8a8c` |
 | [setup-pstack](./setup-pstack/SKILL.md) | [cursor/plugins](https://github.com/cursor/plugins/tree/6b0300214a09fd6029cfb7077043125758cd1fd2/pstack/skills/setup-pstack) | `default` | `6b03002` |
 | [sharpen](./sharpen/SKILL.md) | [cursor/plugins](https://github.com/cursor/plugins/tree/6b0300214a09fd6029cfb7077043125758cd1fd2/pstack/skills/sharpen) | `default` | `6b03002` |
 | [show-me](./show-me/SKILL.md) | [humanlayer/skills](https://github.com/humanlayer/skills/tree/4d69d20f6e9b57b4fcf0d501ccfb1be961f0f329/plugins/show-me/skills/show-me) | `main` | `4d69d20` |
