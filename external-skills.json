@@ -26,49 +26,49 @@
       "source": "tt-a1i/archify",
       "url": "https://github.com/tt-a1i/archify.git",
       "path": "archify",
-      "commit": "7e45f36c66de1254d5ad6ba1d878f6499ea269fd",
+      "commit": "e37848822238e3a61b12739185cdadd49843a620",
       "updatedAt": "2026-11-10T17:21:42.633Z"
     },
     "architect": {
       "source": "cursor/plugins",
       "url": "https://github.com/cursor/plugins.git",
       "path": "pstack/skills/architect",
-      "commit": "a5539b15a3d56e04992565aafee2b37051329ce3",
+      "commit": "24621dbcc59e205a7faadb0e06d540f91712b5cc",
       "updatedAt": "2026-11-05T13:41:12.784Z"
     },
     "arena": {
       "source": "cursor/plugins",
       "url": "https://github.com/cursor/plugins.git",
       "path": "pstack/skills/arena",
-      "commit": "a5539b15a3d56e04992565aafee2b37051329ce3",
+      "commit": "24621dbcc59e205a7faadb0e06d540f91712b5cc",
       "updatedAt": "2026-11-05T13:41:18.332Z"
     },
     "automate-me": {
       "source": "cursor/plugins",
       "url": "https://github.com/cursor/plugins.git",
       "path": "pstack/skills/automate-me",
-      "commit": "a5539b15a3d56e04992565aafee2b37051329ce3",
+      "commit": "24621dbcc59e205a7faadb0e06d540f91712b5cc",
       "updatedAt": "2026-11-05T13:41:33.089Z"
     },
     "benchmark-checklist": {
       "source": "cursor/plugins",
       "url": "https://github.com/cursor/plugins.git",
       "path": "pstack/skills/benchmark-checklist",
-      "commit": "a5539b15a3d56e04992565aafee2b37051329ce3",
+      "commit": "24621dbcc59e205a7faadb0e06d540f91712b5cc",
       "updatedAt": "2026-11-05T13:41:45.975Z"
     },
     "blast-radius": {
       "source": "cursor/plugins",
       "url": "https://github.com/cursor/plugins.git",
       "path": "pstack/skills/blast-radius",
-      "commit": "a5539b15a3d56e04992565aafee2b37051329ce3",
+      "commit": "24621dbcc59e205a7faadb0e06d540f91712b5cc",
       "updatedAt": "2026-11-05T13:41:49.747Z"
     },
     "bro": {
       "source": "cursor/plugins",
       "url": "https://github.com/cursor/plugins.git",
       "path": "pstack/skills/bro",
-      "commit": "a5539b15a3d56e04992565aafee2b37051329ce3",
+      "commit": "24621dbcc59e205a7faadb0e06d540f91712b5cc",
       "updatedAt": "2026-11-05T13:40:59.809Z"
     },
     "claude-handoff": {
@@ -103,28 +103,28 @@
       "source": "cursor/plugins",
       "url": "https://github.com/cursor/plugins.git",
       "path": "pstack/skills/correct",
-      "commit": "a5539b15a3d56e04992565aafee2b37051329ce3",
+      "commit": "24621dbcc59e205a7faadb0e06d540f91712b5cc",
       "updatedAt": "2026-11-05T13:41:58.564Z"
     },
     "create-formal-verification-skill": {
       "source": "cursor/plugins",
       "url": "https://github.com/cursor/plugins.git",
       "path": "pstack/skills/create-formal-verification-skill",
-      "commit": "a5539b15a3d56e04992565aafee2b37051329ce3",
+      "commit": "24621dbcc59e205a7faadb0e06d540f91712b5cc",
       "updatedAt": "2026-10-30T06:28:46.178Z"
     },
     "create-verification-skill": {
       "source": "cursor/plugins",
       "url": "https://github.com/cursor/plugins.git",
       "path": "pstack/skills/create-verification-skill",
-      "commit": "a5539b15a3d56e04992565aafee2b37051329ce3",
+      "commit": "24621dbcc59e205a7faadb0e06d540f91712b5cc",
       "updatedAt": "2026-11-05T13:42:13.545Z"
     },
     "deslop": {
       "source": "cursor/plugins",
       "url": "https://github.com/cursor/plugins.git",
       "path": "cursor-team-kit/skills/deslop",
-      "commit": "a5539b15a3d56e04992565aafee2b37051329ce3",
+      "commit": "24621dbcc59e205a7faadb0e06d540f91712b5cc",
       "updatedAt": "2026-08-30T07:10:21.977Z"
     },
     "diagnosing-bugs": {
@@ -160,7 +160,7 @@
       "source": "cursor/plugins",
       "url": "https://github.com/cursor/plugins.git",
       "path": "pstack/skills/figure-it-out",
-      "commit": "a5539b15a3d56e04992565aafee2b37051329ce3",
+      "commit": "24621dbcc59e205a7faadb0e06d540f91712b5cc",
       "updatedAt": "2026-11-05T13:42:21.722Z"
     },
     "find-animation-opportunities": {
@@ -181,7 +181,7 @@
       "source": "cursor/plugins",
       "url": "https://github.com/cursor/plugins.git",
       "path": "cursor-team-kit/skills/get-pr-comments",
-      "commit": "a5539b15a3d56e04992565aafee2b37051329ce3",
+      "commit": "24621dbcc59e205a7faadb0e06d540f91712b5cc",
       "updatedAt": "2026-08-30T07:10:22.023Z"
     },
     "grill-me": {
@@ -209,7 +209,7 @@
       "source": "cursor/plugins",
       "url": "https://github.com/cursor/plugins.git",
       "path": "pstack/skills/how",
-      "commit": "a5539b15a3d56e04992565aafee2b37051329ce3",
+      "commit": "24621dbcc59e205a7faadb0e06d540f91712b5cc",
       "updatedAt": "2026-11-05T13:42:34.120Z"
     },
     "i-have-adhd": {
@@ -244,14 +244,14 @@
       "source": "cursor/plugins",
       "url": "https://github.com/cursor/plugins.git",
       "path": "pstack/skills/in-your-own-words",
-      "commit": "a5539b15a3d56e04992565aafee2b37051329ce3",
+      "commit": "24621dbcc59e205a7faadb0e06d540f91712b5cc",
       "updatedAt": "2026-11-05T13:42:49.081Z"
     },
     "interrogate": {
       "source": "cursor/plugins",
       "url": "https://github.com/cursor/plugins.git",
       "path": "pstack/skills/interrogate",
-      "commit": "a5539b15a3d56e04992565aafee2b37051329ce3",
+      "commit": "24621dbcc59e205a7faadb0e06d540f91712b5cc",
       "updatedAt": "2026-11-05T13:42:59.016Z"
     },
     "japanese-tech-writing": {
@@ -265,14 +265,14 @@
       "source": "cursor/plugins",
       "url": "https://github.com/cursor/plugins.git",
       "path": "pstack/skills/ketchup",
-      "commit": "a5539b15a3d56e04992565aafee2b37051329ce3",
+      "commit": "24621dbcc59e205a7faadb0e06d540f91712b5cc",
       "updatedAt": "2026-11-05T13:43:04.592Z"
     },
     "ketchup-video": {
       "source": "cursor/plugins",
       "url": "https://github.com/cursor/plugins.git",
       "path": "pstack/skills/ketchup-video",
-      "commit": "a5539b15a3d56e04992565aafee2b37051329ce3",
+      "commit": "24621dbcc59e205a7faadb0e06d540f91712b5cc",
       "updatedAt": "2026-11-05T13:43:10.123Z"
     },
     "loop-me": {
@@ -286,49 +286,49 @@
       "source": "cursor/plugins",
       "url": "https://github.com/cursor/plugins.git",
       "path": "cursor-team-kit/skills/loop-on-ci",
-      "commit": "a5539b15a3d56e04992565aafee2b37051329ce3",
+      "commit": "24621dbcc59e205a7faadb0e06d540f91712b5cc",
       "updatedAt": "2026-08-30T07:10:21.965Z"
     },
     "maintain-formal-verification-skill": {
       "source": "cursor/plugins",
       "url": "https://github.com/cursor/plugins.git",
       "path": "pstack/skills/maintain-formal-verification-skill",
-      "commit": "a5539b15a3d56e04992565aafee2b37051329ce3",
+      "commit": "24621dbcc59e205a7faadb0e06d540f91712b5cc",
       "updatedAt": "2026-11-05T13:43:14.109Z"
     },
     "maintain-verification-skill": {
       "source": "cursor/plugins",
       "url": "https://github.com/cursor/plugins.git",
       "path": "pstack/skills/maintain-verification-skill",
-      "commit": "a5539b15a3d56e04992565aafee2b37051329ce3",
+      "commit": "24621dbcc59e205a7faadb0e06d540f91712b5cc",
       "updatedAt": "2026-11-05T13:43:29.175Z"
     },
     "make-bot-ui": {
       "source": "cursor/plugins",
       "url": "https://github.com/cursor/plugins.git",
       "path": "pstack/skills/make-bot-ui",
-      "commit": "a5539b15a3d56e04992565aafee2b37051329ce3",
+      "commit": "24621dbcc59e205a7faadb0e06d540f91712b5cc",
       "updatedAt": "2026-11-05T13:43:44.216Z"
     },
     "make-pr-easy-to-review": {
       "source": "cursor/plugins",
       "url": "https://github.com/cursor/plugins.git",
       "path": "cursor-team-kit/skills/make-pr-easy-to-review",
-      "commit": "a5539b15a3d56e04992565aafee2b37051329ce3",
+      "commit": "24621dbcc59e205a7faadb0e06d540f91712b5cc",
       "updatedAt": "2026-08-30T07:10:22.011Z"
     },
     "new-branch-and-pr": {
       "source": "cursor/plugins",
       "url": "https://github.com/cursor/plugins.git",
       "path": "cursor-team-kit/skills/new-branch-and-pr",
-      "commit": "a5539b15a3d56e04992565aafee2b37051329ce3",
+      "commit": "24621dbcc59e205a7faadb0e06d540f91712b5cc",
       "updatedAt": "2026-08-30T07:10:21.989Z"
     },
     "no-comments": {
       "source": "cursor/plugins",
       "url": "https://github.com/cursor/plugins.git",
       "path": "pstack/skills/no-comments",
-      "commit": "a5539b15a3d56e04992565aafee2b37051329ce3",
+      "commit": "24621dbcc59e205a7faadb0e06d540f91712b5cc",
       "updatedAt": "2026-11-05T13:43:50.119Z"
     },
     "pick-ui-library": {
@@ -342,189 +342,189 @@
       "source": "cursor/plugins",
       "url": "https://github.com/cursor/plugins.git",
       "path": "pstack/skills/poteto-help",
-      "commit": "a5539b15a3d56e04992565aafee2b37051329ce3",
+      "commit": "24621dbcc59e205a7faadb0e06d540f91712b5cc",
       "updatedAt": "2026-11-05T13:44:05.345Z"
     },
     "poteto-mode": {
       "source": "cursor/plugins",
       "url": "https://github.com/cursor/plugins.git",
       "path": "pstack/skills/poteto-mode",
-      "commit": "a5539b15a3d56e04992565aafee2b37051329ce3",
+      "commit": "24621dbcc59e205a7faadb0e06d540f91712b5cc",
       "updatedAt": "2026-11-05T13:44:14.297Z"
     },
     "pr-review-canvas": {
       "source": "cursor/plugins",
       "url": "https://github.com/cursor/plugins.git",
       "path": "cursor-team-kit/skills/pr-review-canvas",
-      "commit": "a5539b15a3d56e04992565aafee2b37051329ce3",
+      "commit": "24621dbcc59e205a7faadb0e06d540f91712b5cc",
       "updatedAt": "2026-08-30T07:11:45.400Z"
     },
     "principle-attack-the-premise": {
       "source": "cursor/plugins",
       "url": "https://github.com/cursor/plugins.git",
       "path": "pstack/skills/principle-attack-the-premise",
-      "commit": "a5539b15a3d56e04992565aafee2b37051329ce3",
+      "commit": "24621dbcc59e205a7faadb0e06d540f91712b5cc",
       "updatedAt": "2026-11-05T13:44:23.163Z"
     },
     "principle-boundary-discipline": {
       "source": "cursor/plugins",
       "url": "https://github.com/cursor/plugins.git",
       "path": "pstack/skills/principle-boundary-discipline",
-      "commit": "a5539b15a3d56e04992565aafee2b37051329ce3",
+      "commit": "24621dbcc59e205a7faadb0e06d540f91712b5cc",
       "updatedAt": "2026-11-05T13:44:37.534Z"
     },
     "principle-build-the-lever": {
       "source": "cursor/plugins",
       "url": "https://github.com/cursor/plugins.git",
       "path": "pstack/skills/principle-build-the-lever",
-      "commit": "a5539b15a3d56e04992565aafee2b37051329ce3",
+      "commit": "24621dbcc59e205a7faadb0e06d540f91712b5cc",
       "updatedAt": "2026-11-05T13:44:52.127Z"
     },
     "principle-encode-lessons-in-structure": {
       "source": "cursor/plugins",
       "url": "https://github.com/cursor/plugins.git",
       "path": "pstack/skills/principle-encode-lessons-in-structure",
-      "commit": "a5539b15a3d56e04992565aafee2b37051329ce3",
+      "commit": "24621dbcc59e205a7faadb0e06d540f91712b5cc",
       "updatedAt": "2026-11-05T13:52:52.103Z"
     },
     "principle-exhaust-the-design-space": {
       "source": "cursor/plugins",
       "url": "https://github.com/cursor/plugins.git",
       "path": "pstack/skills/principle-exhaust-the-design-space",
-      "commit": "a5539b15a3d56e04992565aafee2b37051329ce3",
+      "commit": "24621dbcc59e205a7faadb0e06d540f91712b5cc",
       "updatedAt": "2026-11-05T13:52:57.643Z"
     },
     "principle-experience-first": {
       "source": "cursor/plugins",
       "url": "https://github.com/cursor/plugins.git",
       "path": "pstack/skills/principle-experience-first",
-      "commit": "a5539b15a3d56e04992565aafee2b37051329ce3",
+      "commit": "24621dbcc59e205a7faadb0e06d540f91712b5cc",
       "updatedAt": "2026-11-05T13:53:06.527Z"
     },
     "principle-explain-the-number": {
       "source": "cursor/plugins",
       "url": "https://github.com/cursor/plugins.git",
       "path": "pstack/skills/principle-explain-the-number",
-      "commit": "a5539b15a3d56e04992565aafee2b37051329ce3",
+      "commit": "24621dbcc59e205a7faadb0e06d540f91712b5cc",
       "updatedAt": "2026-11-05T13:53:12.209Z"
     },
     "principle-fix-root-causes": {
       "source": "cursor/plugins",
       "url": "https://github.com/cursor/plugins.git",
       "path": "pstack/skills/principle-fix-root-causes",
-      "commit": "a5539b15a3d56e04992565aafee2b37051329ce3",
+      "commit": "24621dbcc59e205a7faadb0e06d540f91712b5cc",
       "updatedAt": "2026-11-05T13:48:10.760Z"
     },
     "principle-foundational-thinking": {
       "source": "cursor/plugins",
       "url": "https://github.com/cursor/plugins.git",
       "path": "pstack/skills/principle-foundational-thinking",
-      "commit": "a5539b15a3d56e04992565aafee2b37051329ce3",
+      "commit": "24621dbcc59e205a7faadb0e06d540f91712b5cc",
       "updatedAt": "2026-11-05T13:48:24.718Z"
     },
     "principle-guard-the-context-window": {
       "source": "cursor/plugins",
       "url": "https://github.com/cursor/plugins.git",
       "path": "pstack/skills/principle-guard-the-context-window",
-      "commit": "a5539b15a3d56e04992565aafee2b37051329ce3",
+      "commit": "24621dbcc59e205a7faadb0e06d540f91712b5cc",
       "updatedAt": "2026-11-05T13:48:28.830Z"
     },
     "principle-laziness-protocol": {
       "source": "cursor/plugins",
       "url": "https://github.com/cursor/plugins.git",
       "path": "pstack/skills/principle-laziness-protocol",
-      "commit": "a5539b15a3d56e04992565aafee2b37051329ce3",
+      "commit": "24621dbcc59e205a7faadb0e06d540f91712b5cc",
       "updatedAt": "2026-11-05T13:48:36.939Z"
     },
     "principle-make-operations-idempotent": {
       "source": "cursor/plugins",
       "url": "https://github.com/cursor/plugins.git",
       "path": "pstack/skills/principle-make-operations-idempotent",
-      "commit": "a5539b15a3d56e04992565aafee2b37051329ce3",
+      "commit": "24621dbcc59e205a7faadb0e06d540f91712b5cc",
       "updatedAt": "2026-11-05T13:48:52.403Z"
     },
     "principle-migrate-callers-then-delete-legacy-apis": {
       "source": "cursor/plugins",
       "url": "https://github.com/cursor/plugins.git",
       "path": "pstack/skills/principle-migrate-callers-then-delete-legacy-apis",
-      "commit": "a5539b15a3d56e04992565aafee2b37051329ce3",
+      "commit": "24621dbcc59e205a7faadb0e06d540f91712b5cc",
       "updatedAt": "2026-11-05T13:49:07.181Z"
     },
     "principle-minimize-reader-load": {
       "source": "cursor/plugins",
       "url": "https://github.com/cursor/plugins.git",
       "path": "pstack/skills/principle-minimize-reader-load",
-      "commit": "a5539b15a3d56e04992565aafee2b37051329ce3",
+      "commit": "24621dbcc59e205a7faadb0e06d540f91712b5cc",
       "updatedAt": "2026-11-05T13:49:12.765Z"
     },
     "principle-model-the-domain": {
       "source": "cursor/plugins",
       "url": "https://github.com/cursor/plugins.git",
       "path": "pstack/skills/principle-model-the-domain",
-      "commit": "a5539b15a3d56e04992565aafee2b37051329ce3",
+      "commit": "24621dbcc59e205a7faadb0e06d540f91712b5cc",
       "updatedAt": "2026-11-05T13:49:27.749Z"
     },
     "principle-never-block-on-the-human": {
       "source": "cursor/plugins",
       "url": "https://github.com/cursor/plugins.git",
       "path": "pstack/skills/principle-never-block-on-the-human",
-      "commit": "a5539b15a3d56e04992565aafee2b37051329ce3",
+      "commit": "24621dbcc59e205a7faadb0e06d540f91712b5cc",
       "updatedAt": "2026-11-05T13:49:36.886Z"
     },
     "principle-outcome-oriented-execution": {
       "source": "cursor/plugins",
       "url": "https://github.com/cursor/plugins.git",
       "path": "pstack/skills/principle-outcome-oriented-execution",
-      "commit": "a5539b15a3d56e04992565aafee2b37051329ce3",
+      "commit": "24621dbcc59e205a7faadb0e06d540f91712b5cc",
       "updatedAt": "2026-11-05T13:49:43.040Z"
     },
     "principle-prove-it-works": {
       "source": "cursor/plugins",
       "url": "https://github.com/cursor/plugins.git",
       "path": "pstack/skills/principle-prove-it-works",
-      "commit": "a5539b15a3d56e04992565aafee2b37051329ce3",
+      "commit": "24621dbcc59e205a7faadb0e06d540f91712b5cc",
       "updatedAt": "2026-11-05T13:49:48.781Z"
     },
     "principle-redesign-from-first-principles": {
       "source": "cursor/plugins",
       "url": "https://github.com/cursor/plugins.git",
       "path": "pstack/skills/principle-redesign-from-first-principles",
-      "commit": "a5539b15a3d56e04992565aafee2b37051329ce3",
+      "commit": "24621dbcc59e205a7faadb0e06d540f91712b5cc",
       "updatedAt": "2026-11-05T13:49:55.100Z"
     },
     "principle-separate-before-serializing-shared-state": {
       "source": "cursor/plugins",
       "url": "https://github.com/cursor/plugins.git",
       "path": "pstack/skills/principle-separate-before-serializing-shared-state",
-      "commit": "a5539b15a3d56e04992565aafee2b37051329ce3",
+      "commit": "24621dbcc59e205a7faadb0e06d540f91712b5cc",
       "updatedAt": "2026-11-05T13:50:04.614Z"
     },
     "principle-sequence-verifiable-units": {
       "source": "cursor/plugins",
       "url": "https://github.com/cursor/plugins.git",
       "path": "pstack/skills/principle-sequence-verifiable-units",
-      "commit": "a5539b15a3d56e04992565aafee2b37051329ce3",
+      "commit": "24621dbcc59e205a7faadb0e06d540f91712b5cc",
       "updatedAt": "2026-11-05T13:50:19.569Z"
     },
     "principle-subtract-before-you-add": {
       "source": "cursor/plugins",
       "url": "https://github.com/cursor/plugins.git",
       "path": "pstack/skills/principle-subtract-before-you-add",
-      "commit": "a5539b15a3d56e04992565aafee2b37051329ce3",
+      "commit": "24621dbcc59e205a7faadb0e06d540f91712b5cc",
       "updatedAt": "2026-11-05T13:50:35.031Z"
     },
     "principle-test-behavior-not-implementation": {
       "source": "cursor/plugins",
       "url": "https://github.com/cursor/plugins.git",
       "path": "pstack/skills/principle-test-behavior-not-implementation",
-      "commit": "a5539b15a3d56e04992565aafee2b37051329ce3",
+      "commit": "24621dbcc59e205a7faadb0e06d540f91712b5cc",
       "updatedAt": "2026-11-05T13:50:40.956Z"
     },
     "principle-type-system-discipline": {
       "source": "cursor/plugins",
       "url": "https://github.com/cursor/plugins.git",
       "path": "pstack/skills/principle-type-system-discipline",
-      "commit": "a5539b15a3d56e04992565aafee2b37051329ce3",
+      "commit": "24621dbcc59e205a7faadb0e06d540f91712b5cc",
       "updatedAt": "2026-11-05T13:50:44.829Z"
     },
     "prototype": {
@@ -538,14 +538,14 @@
       "source": "cursor/plugins",
       "url": "https://github.com/cursor/plugins.git",
       "path": "pstack/skills/recall",
-      "commit": "a5539b15a3d56e04992565aafee2b37051329ce3",
+      "commit": "24621dbcc59e205a7faadb0e06d540f91712b5cc",
       "updatedAt": "2026-11-05T13:50:57.524Z"
     },
     "reflect": {
       "source": "cursor/plugins",
       "url": "https://github.com/cursor/plugins.git",
       "path": "pstack/skills/reflect",
-      "commit": "a5539b15a3d56e04992565aafee2b37051329ce3",
+      "commit": "24621dbcc59e205a7faadb0e06d540f91712b5cc",
       "updatedAt": "2026-11-05T13:51:03.431Z"
     },
     "research": {
@@ -559,7 +559,7 @@
       "source": "cursor/plugins",
       "url": "https://github.com/cursor/plugins.git",
       "path": "cursor-team-kit/skills/review-and-ship",
-      "commit": "a5539b15a3d56e04992565aafee2b37051329ce3",
+      "commit": "24621dbcc59e205a7faadb0e06d540f91712b5cc",
       "updatedAt": "2026-08-30T07:10:22.000Z"
     },
     "review-animations": {
@@ -573,14 +573,14 @@
       "source": "cursor/plugins",
       "url": "https://github.com/cursor/plugins.git",
       "path": "pstack/skills/setup-pstack",
-      "commit": "a5539b15a3d56e04992565aafee2b37051329ce3",
+      "commit": "24621dbcc59e205a7faadb0e06d540f91712b5cc",
       "updatedAt": "2026-11-05T13:51:17.704Z"
     },
     "sharpen": {
       "source": "cursor/plugins",
       "url": "https://github.com/cursor/plugins.git",
       "path": "pstack/skills/sharpen",
-      "commit": "a5539b15a3d56e04992565aafee2b37051329ce3",
+      "commit": "24621dbcc59e205a7faadb0e06d540f91712b5cc",
       "updatedAt": "2026-11-05T13:51:26.395Z"
     },
     "show-me": {
@@ -595,7 +595,7 @@
       "source": "cursor/plugins",
       "url": "https://github.com/cursor/plugins.git",
       "path": "pstack/skills/show-me-your-work",
-      "commit": "a5539b15a3d56e04992565aafee2b37051329ce3",
+      "commit": "24621dbcc59e205a7faadb0e06d540f91712b5cc",
       "updatedAt": "2026-11-05T13:51:41.520Z"
     },
     "simplify": {
@@ -616,84 +616,84 @@
       "source": "cursor/plugins",
       "url": "https://github.com/cursor/plugins.git",
       "path": "pstack/skills/statechart",
-      "commit": "a5539b15a3d56e04992565aafee2b37051329ce3",
+      "commit": "24621dbcc59e205a7faadb0e06d540f91712b5cc",
       "updatedAt": "2026-10-30T06:28:40.749Z"
     },
     "swarm": {
       "source": "cursor/plugins",
       "url": "https://github.com/cursor/plugins.git",
       "path": "pstack/skills/swarm",
-      "commit": "a5539b15a3d56e04992565aafee2b37051329ce3",
+      "commit": "24621dbcc59e205a7faadb0e06d540f91712b5cc",
       "updatedAt": "2026-11-05T13:51:55.476Z"
     },
     "tdd": {
       "source": "cursor/plugins",
       "url": "https://github.com/cursor/plugins.git",
       "path": "pstack/skills/tdd",
-      "commit": "a5539b15a3d56e04992565aafee2b37051329ce3",
+      "commit": "24621dbcc59e205a7faadb0e06d540f91712b5cc",
       "updatedAt": "2026-11-05T13:51:59.538Z"
     },
     "teach": {
       "source": "cursor/plugins",
       "url": "https://github.com/cursor/plugins.git",
       "path": "pstack/skills/teach",
-      "commit": "a5539b15a3d56e04992565aafee2b37051329ce3",
+      "commit": "24621dbcc59e205a7faadb0e06d540f91712b5cc",
       "updatedAt": "2026-11-05T13:56:26.629Z"
     },
     "technical-writing": {
       "source": "cursor/plugins",
       "url": "https://github.com/cursor/plugins.git",
       "path": "pstack/skills/technical-writing",
-      "commit": "a5539b15a3d56e04992565aafee2b37051329ce3",
+      "commit": "24621dbcc59e205a7faadb0e06d540f91712b5cc",
       "updatedAt": "2026-11-05T13:52:14.152Z"
     },
     "thermo-nuclear-code-quality-review": {
       "source": "cursor/plugins",
       "url": "https://github.com/cursor/plugins.git",
       "path": "cursor-team-kit/skills/thermo-nuclear-code-quality-review",
-      "commit": "a5539b15a3d56e04992565aafee2b37051329ce3",
+      "commit": "24621dbcc59e205a7faadb0e06d540f91712b5cc",
       "updatedAt": "2026-08-30T07:12:32.225Z"
     },
     "typescript-best-practices": {
       "source": "cursor/plugins",
       "url": "https://github.com/cursor/plugins.git",
       "path": "pstack/skills/typescript-best-practices",
-      "commit": "a5539b15a3d56e04992565aafee2b37051329ce3",
+      "commit": "24621dbcc59e205a7faadb0e06d540f91712b5cc",
       "updatedAt": "2026-11-05T13:52:23.852Z"
     },
     "unslop": {
       "source": "cursor/plugins",
       "url": "https://github.com/cursor/plugins.git",
       "path": "pstack/skills/unslop",
-      "commit": "a5539b15a3d56e04992565aafee2b37051329ce3",
+      "commit": "24621dbcc59e205a7faadb0e06d540f91712b5cc",
       "updatedAt": "2026-11-05T13:52:32.047Z"
     },
     "weekly-review": {
       "source": "cursor/plugins",
       "url": "https://github.com/cursor/plugins.git",
       "path": "cursor-team-kit/skills/weekly-review",
-      "commit": "a5539b15a3d56e04992565aafee2b37051329ce3",
+      "commit": "24621dbcc59e205a7faadb0e06d540f91712b5cc",
       "updatedAt": "2026-08-30T07:10:22.035Z"
     },
     "what-did-i-get-done": {
       "source": "cursor/plugins",
       "url": "https://github.com/cursor/plugins.git",
       "path": "cursor-team-kit/skills/what-did-i-get-done",
-      "commit": "a5539b15a3d56e04992565aafee2b37051329ce3",
+      "commit": "24621dbcc59e205a7faadb0e06d540f91712b5cc",
       "updatedAt": "2026-08-30T07:10:22.046Z"
     },
     "why": {
       "source": "cursor/plugins",
       "url": "https://github.com/cursor/plugins.git",
       "path": "pstack/skills/why",
-      "commit": "a5539b15a3d56e04992565aafee2b37051329ce3",
+      "commit": "24621dbcc59e205a7faadb0e06d540f91712b5cc",
       "updatedAt": "2026-11-05T13:52:44.524Z"
     },
     "workflow-from-chats": {
       "source": "cursor/plugins",
       "url": "https://github.com/cursor/plugins.git",
       "path": "cursor-team-kit/skills/workflow-from-chats",
-      "commit": "a5539b15a3d56e04992565aafee2b37051329ce3",
+      "commit": "24621dbcc59e205a7faadb0e06d540f91712b5cc",
       "updatedAt": "2026-08-30T07:10:22.058Z"
     },
     "writing-for-agents": {
