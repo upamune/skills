@@ -16,6 +16,7 @@ import { basename, join, relative } from "node:path";
 import { applyExternalOverrides, externalOverrideNoticeLines } from "./external-overrides";
 import { writeSkillsMd } from "./gen-skills-md";
 import {
+  cloneRequestForRef,
   EXTERNAL_DIR,
   findSkillDirs,
   frontmatterName,
@@ -44,6 +45,7 @@ Examples:
   scripts/external.ts add mattpocock/skills --list        # 一覧だけ見る
   scripts/external.ts add mattpocock/skills grilling tdd
   scripts/external.ts add vercel-labs/agent-browser agent-browser --ref main
+  scripts/external.ts add owner/repo skill --ref <40-hex-commit> --path <path>
   scripts/external.ts add https://github.com/openai/plugins/tree/main/plugins/build-ios-apps/skills/ios-debugger-agent
   scripts/external.ts add https://gist.github.com/k16shikano/fd287c3133457c4fd8f5601d34aa817d
   scripts/external.ts sync            # 全部を最新 ref に更新
@@ -468,7 +470,12 @@ async function cmdAdd(positional: string[], flags: Flags): Promise<void> {
   if (names.length > 1 && explicitPath) throw new Error("--path は 1 スキルずつ指定してください");
 
   const manifest = await readManifest();
-  const { dir, commit } = await cloneRepo(src.url, { ref });
+  const requested = cloneRequestForRef(ref);
+  const { dir, commit } = await cloneRepo(src.url, requested);
+  if (requested.commit && commit !== requested.commit) {
+    rmSync(dir, { recursive: true, force: true });
+    throw new Error(`pin ${requested.commit} を取得できませんでした (HEAD=${commit})`);
+  }
   try {
     if (flags.list) {
       const found = await discoverSkills(dir);
@@ -507,7 +514,7 @@ async function cmdAdd(positional: string[], flags: Flags): Promise<void> {
         source: src.source,
         url: src.url,
         path: result.path,
-        ...(ref ? { ref } : {}),
+        ...(requested.ref ? { ref: requested.ref } : {}),
         commit,
         updatedAt: new Date().toISOString(),
       };

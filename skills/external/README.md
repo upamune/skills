@@ -6,6 +6,7 @@
 次のスキルはコピー直後にローカル override を再適用する。`skills/external/` 側を手で戻しても、次の add / sync で同じ差分が入る。アンカーが上流とずれたらコマンドは失敗し、直前のツリーは残る。
 
 - archify: 更新確認は既定でオフ。`ARCHIFY_UPDATE_CHECK=1` のときだけ https://tt-a1i.github.io/archify/skill-updates/archify/stable.json へ GET する。`ARCHIFY_UPDATE_CHECK_DISABLED=1` はオプトインより優先して止める。オプトイン時も、新しい版があること以外はリモート manifest の文面を出さず、自己更新は案内しない。グローバルな agent ルールファイルは書き換えない。再適用は `scripts/external-overrides.ts`。
+- modern-web-guidance: npm の `npx -y modern-web-guidance@latest` は実行しない。ガイドは同梱の `guides/` を読む。ガイド間の `@latest retrieve` 参照も同梱ファイルへの参照に置き換える。`AGENTS.md` / `CLAUDE.md` やグローバルな agent ルールファイルは書き換えない。再適用は `scripts/external-overrides.ts`。
 
 | skill | source | ref | commit |
 | --- | --- | --- | --- |
@@ -19,6 +20,7 @@
 | [benchmark-checklist](./benchmark-checklist/SKILL.md) | [cursor/plugins](https://github.com/cursor/plugins/tree/24621dbcc59e205a7faadb0e06d540f91712b5cc/pstack/skills/benchmark-checklist) | `default` | `24621db` |
 | [blast-radius](./blast-radius/SKILL.md) | [cursor/plugins](https://github.com/cursor/plugins/tree/24621dbcc59e205a7faadb0e06d540f91712b5cc/pstack/skills/blast-radius) | `default` | `24621db` |
 | [bro](./bro/SKILL.md) | [cursor/plugins](https://github.com/cursor/plugins/tree/24621dbcc59e205a7faadb0e06d540f91712b5cc/pstack/skills/bro) | `default` | `24621db` |
+| [chrome-extensions](./chrome-extensions/SKILL.md) | [GoogleChrome/modern-web-guidance](https://github.com/GoogleChrome/modern-web-guidance/tree/4dd968349e54ca45a05dd5c818fb035c9054b022/skills/chrome-extensions) | `default` | `4dd9683` |
 | [claude-handoff](./claude-handoff/SKILL.md) | [mattpocock/skills](https://github.com/mattpocock/skills/tree/5863806dd4e15c63174bee4e7515a4256792ecfa/skills/in-progress/claude-handoff) | `default` | `5863806` |
 | [code-review](./code-review/SKILL.md) | [mattpocock/skills](https://github.com/mattpocock/skills/tree/5863806dd4e15c63174bee4e7515a4256792ecfa/skills/engineering/code-review) | `default` | `5863806` |
 | [codebase-design](./codebase-design/SKILL.md) | [mattpocock/skills](https://github.com/mattpocock/skills/tree/5863806dd4e15c63174bee4e7515a4256792ecfa/skills/engineering/codebase-design) | `default` | `5863806` |
@@ -54,6 +56,7 @@
 | [maintain-verification-skill](./maintain-verification-skill/SKILL.md) | [cursor/plugins](https://github.com/cursor/plugins/tree/24621dbcc59e205a7faadb0e06d540f91712b5cc/pstack/skills/maintain-verification-skill) | `default` | `24621db` |
 | [make-bot-ui](./make-bot-ui/SKILL.md) | [cursor/plugins](https://github.com/cursor/plugins/tree/24621dbcc59e205a7faadb0e06d540f91712b5cc/pstack/skills/make-bot-ui) | `default` | `24621db` |
 | [make-pr-easy-to-review](./make-pr-easy-to-review/SKILL.md) | [cursor/plugins](https://github.com/cursor/plugins/tree/24621dbcc59e205a7faadb0e06d540f91712b5cc/cursor-team-kit/skills/make-pr-easy-to-review) | `default` | `24621db` |
+| [modern-web-guidance](./modern-web-guidance/SKILL.md) | [GoogleChrome/modern-web-guidance](https://github.com/GoogleChrome/modern-web-guidance/tree/4dd968349e54ca45a05dd5c818fb035c9054b022/skills/modern-web-guidance) | `default` | `4dd9683` |
 | [new-branch-and-pr](./new-branch-and-pr/SKILL.md) | [cursor/plugins](https://github.com/cursor/plugins/tree/24621dbcc59e205a7faadb0e06d540f91712b5cc/cursor-team-kit/skills/new-branch-and-pr) | `default` | `24621db` |
 | [no-comments](./no-comments/SKILL.md) | [cursor/plugins](https://github.com/cursor/plugins/tree/24621dbcc59e205a7faadb0e06d540f91712b5cc/pstack/skills/no-comments) | `default` | `24621db` |
 | [pick-ui-library](./pick-ui-library/SKILL.md) | [emilkowalski/skills](https://github.com/emilkowalski/skills/tree/f7ce8c02d6e3c8f0d980a44c57bcc41a40254349/skills/pick-ui-library) | `default` | `f7ce8c0` |

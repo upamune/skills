@@ -102,3 +102,10 @@ export function sourceUrl(e: Entry): string | null {
 export function oneLine(text: string | null): string {
   return text ? text.replace(/\s+/g, " ").trim() : "";
 }
+
+// `--ref` が 40 桁の commit SHA なら branch ではなくその commit を fetch する。
+// manifest の `ref` には残さない（`sync` は branch 名として `--branch` する）。
+export function cloneRequestForRef(ref: string | undefined): { ref?: string; commit?: string } {
+  if (ref && /^[0-9a-f]{40}$/i.test(ref)) return { commit: ref.toLowerCase() };
+  return ref ? { ref } : {};
+}
