@@ -1,7 +1,7 @@
 import { describe, test } from "bun:test";
 import assert from "node:assert/strict";
 import { spawnSync } from "node:child_process";
-import { existsSync, mkdtempSync, mkdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
+import { existsSync, mkdtempSync, mkdirSync, readdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { dirname, join } from "node:path";
 import { applyExternalOverrides, EXTERNAL_OVERRIDES, externalOverrideNoticeLines } from "./external-overrides";
@@ -130,6 +130,80 @@ describe("external overrides", () => {
     assert.match(delivery, /The installed Skill has not changed/);
     assert.doesNotMatch(checker, /summary: candidate\.summary \?\? null/);
     assert.match(checker, /do not surface the remote manifest summary/);
+  });
+
+  test("applies modern-web-guidance anchors once and rewrites repeated cli invocations", () => {
+    const spec = EXTERNAL_OVERRIDES["modern-web-guidance"]!;
+    const root = mkdtempSync(join(tmpdir(), "mwg-override-"));
+    const guide = join(root, "guides/ui/dialog.md");
+    const crossLink =
+      'see `npx -y modern-web-guidance@latest retrieve "dialog"` and `npx -y modern-web-guidance@latest retrieve "menu"`\n';
+    try {
+      const upstream = groupedBodies(spec.replacements.map((replacement) => ({
+        file: replacement.file,
+        text: replacement.from,
+      })));
+      writeFixture(root, [...upstream].map(([file, body]) => ({ file, body })));
+      mkdirSync(join(root, "guides/ui"), { recursive: true });
+      writeFileSync(guide, crossLink);
+      applyExternalOverrides("modern-web-guidance", root);
+      applyExternalOverrides("modern-web-guidance", root);
+      const expected = groupedBodies(spec.replacements.map((replacement) => ({
+        file: replacement.file,
+        text: replacement.to,
+      })));
+      for (const [file, body] of expected) {
+        assert.equal(readFileSync(join(root, file), "utf8"), body);
+      }
+      assert.equal(
+        readFileSync(guide, "utf8"),
+        'see `the vendored guide file "dialog"` and `the vendored guide file "menu"`\n',
+      );
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
+  });
+
+  test("a missed modern-web-guidance anchor writes nothing", () => {
+    const spec = EXTERNAL_OVERRIDES["modern-web-guidance"]!;
+    const root = mkdtempSync(join(tmpdir(), "mwg-override-miss-"));
+    const guide = join(root, "guides/ui/dialog.md");
+    const crossLink = 'see `npx -y modern-web-guidance@latest retrieve "dialog"`\n';
+    const original = spec.replacements[0]!.from;
+    try {
+      writeFixture(root, [{ file: "SKILL.md", body: original }]);
+      mkdirSync(join(root, "guides/ui"), { recursive: true });
+      writeFileSync(guide, crossLink);
+      assert.throws(() => applyExternalOverrides("modern-web-guidance", root), /アンカーが一致しません/);
+      assert.equal(readFileSync(join(root, "SKILL.md"), "utf8"), original);
+      assert.equal(readFileSync(guide, "utf8"), crossLink);
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
+  });
+
+  test("vendored modern-web-guidance does not invoke the npm cli", () => {
+    const root = join(REPO, "skills/external/modern-web-guidance");
+    const files: string[] = [];
+    const walk = (dir: string) => {
+      for (const entry of readdirSync(dir, { withFileTypes: true })) {
+        const path = join(dir, entry.name);
+        if (entry.isDirectory()) walk(path);
+        else files.push(path);
+      }
+    };
+    walk(root);
+    assert.ok(files.every((file) => file.endsWith(".md")));
+    const combined = files.map((file) => readFileSync(file, "utf8")).join("\n");
+    const skill = readFileSync(join(root, "SKILL.md"), "utf8");
+    assert.match(skill, /upamune\/skills local override/);
+    assert.match(skill, /does not execute the npm package/);
+    assert.match(skill, /does not modify agent rule files/);
+    assert.doesNotMatch(combined, /modern-web-guidance@latest/);
+    assert.doesNotMatch(combined, /npx -y modern-web-guidance/);
+    assert.doesNotMatch(skill, /~\/\.npm/);
+    assert.doesNotMatch(skill, /AGENTS\.md/);
+    assert.doesNotMatch(skill, /CLAUDE\.md/);
   });
 });
 

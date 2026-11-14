@@ -71,6 +71,13 @@
       "commit": "24621dbcc59e205a7faadb0e06d540f91712b5cc",
       "updatedAt": "2026-11-05T13:40:59.809Z"
     },
+    "chrome-extensions": {
+      "source": "GoogleChrome/modern-web-guidance",
+      "url": "https://github.com/GoogleChrome/modern-web-guidance.git",
+      "path": "skills/chrome-extensions",
+      "commit": "4dd968349e54ca45a05dd5c818fb035c9054b022",
+      "updatedAt": "2026-11-14T14:20:32.805Z"
+    },
     "claude-handoff": {
       "source": "mattpocock/skills",
       "url": "https://github.com/mattpocock/skills.git",
@@ -316,6 +323,13 @@
       "path": "cursor-team-kit/skills/make-pr-easy-to-review",
       "commit": "24621dbcc59e205a7faadb0e06d540f91712b5cc",
       "updatedAt": "2026-08-30T07:10:22.011Z"
+    },
+    "modern-web-guidance": {
+      "source": "GoogleChrome/modern-web-guidance",
+      "url": "https://github.com/GoogleChrome/modern-web-guidance.git",
+      "path": "skills/modern-web-guidance",
+      "commit": "4dd968349e54ca45a05dd5c818fb035c9054b022",
+      "updatedAt": "2026-11-14T14:20:58.184Z"
     },
     "new-branch-and-pr": {
       "source": "cursor/plugins",
