@@ -29,7 +29,7 @@
 | [deslop](./deslop/SKILL.md) | [cursor/plugins](https://github.com/cursor/plugins/tree/7a583913eb1b8d1a0ee76753d1a2cf072e7b54f9/cursor-team-kit/skills/deslop) | `default` | `7a58391` |
 | [diagnosing-bugs](./diagnosing-bugs/SKILL.md) | [mattpocock/skills](https://github.com/mattpocock/skills/tree/abeeaf95660ba9e8b7c753eb38f441ca707a8823/skills/engineering/diagnosing-bugs) | `default` | `abeeaf9` |
 | [domain-modeling](./domain-modeling/SKILL.md) | [mattpocock/skills](https://github.com/mattpocock/skills/tree/abeeaf95660ba9e8b7c753eb38f441ca707a8823/skills/engineering/domain-modeling) | `default` | `abeeaf9` |
-| [eli5](./eli5/SKILL.md) | [anthropics/claude-plugins-community](https://github.com/anthropics/claude-plugins-community/tree/163301d1904c0a994539f5226ce0fcd65b8652bf/eli5/skills/eli5) | `main` | `163301d` |
+| [eli5](./eli5/SKILL.md) | [anthropics/claude-plugins-community](https://github.com/anthropics/claude-plugins-community/tree/24479d5a1fb7a1c4f068a6d3b74d0c0fbc1acfda/eli5/skills/eli5) | `main` | `24479d5` |
 | [emil-design-eng](./emil-design-eng/SKILL.md) | [emilkowalski/skills](https://github.com/emilkowalski/skills/tree/64eb3deb9a5fbfa041faf783e0bc3fd635872e9c/skills/emil-design-eng) | `default` | `64eb3de` |
 | [figure-it-out](./figure-it-out/SKILL.md) | [cursor/plugins](https://github.com/cursor/plugins/tree/7a583913eb1b8d1a0ee76753d1a2cf072e7b54f9/pstack/skills/figure-it-out) | `default` | `7a58391` |
 | [find-animation-opportunities](./find-animation-opportunities/SKILL.md) | [emilkowalski/skills](https://github.com/emilkowalski/skills/tree/64eb3deb9a5fbfa041faf783e0bc3fd635872e9c/skills/find-animation-opportunities) | `default` | `64eb3de` |
@@ -109,4 +109,4 @@
 | [why](./why/SKILL.md) | [cursor/plugins](https://github.com/cursor/plugins/tree/7a583913eb1b8d1a0ee76753d1a2cf072e7b54f9/pstack/skills/why) | `default` | `7a58391` |
 | [workflow-from-chats](./workflow-from-chats/SKILL.md) | [cursor/plugins](https://github.com/cursor/plugins/tree/7a583913eb1b8d1a0ee76753d1a2cf072e7b54f9/cursor-team-kit/skills/workflow-from-chats) | `default` | `7a58391` |
 | [writing-for-agents](./writing-for-agents/SKILL.md) | [mattpocock/skills](https://github.com/mattpocock/skills/tree/abeeaf95660ba9e8b7c753eb38f441ca707a8823/skills/productivity/writing-for-agents) | `default` | `abeeaf9` |
-| [yomiyasu](./yomiyasu/SKILL.md) | [nanaism/yomiyasu](https://github.com/nanaism/yomiyasu/tree/49a2c536ada1519e686eff43427021153af7efdc/skills/yomiyasu) | `default` | `49a2c53` |
+| [yomiyasu](./yomiyasu/SKILL.md) | [nanaism/yomiyasu](https://github.com/nanaism/yomiyasu/tree/ddf365b5d5b36a7aa4ffab798dce1b694dbb1afd/skills/yomiyasu) | `default` | `ddf365b` |
