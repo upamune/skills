@@ -146,7 +146,7 @@
       "url": "https://github.com/anthropics/claude-plugins-community.git",
       "path": "eli5/skills/eli5",
       "ref": "main",
-      "commit": "163301d1904c0a994539f5226ce0fcd65b8652bf",
+      "commit": "24479d5a1fb7a1c4f068a6d3b74d0c0fbc1acfda",
       "updatedAt": "2026-08-30T13:22:51.059Z"
     },
     "emil-design-eng": {
@@ -707,8 +707,8 @@
       "source": "nanaism/yomiyasu",
       "url": "https://github.com/nanaism/yomiyasu.git",
       "path": "skills/yomiyasu",
-      "commit": "49a2c536ada1519e686eff43427021153af7efdc",
-      "updatedAt": "2026-11-22T17:21:10.788Z"
+      "commit": "ddf365b5d5b36a7aa4ffab798dce1b694dbb1afd",
+      "updatedAt": "2026-11-23T17:24:56.112Z"
     }
   }
 }
