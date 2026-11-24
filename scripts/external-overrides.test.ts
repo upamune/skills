@@ -1,7 +1,8 @@
+import { createHash } from "node:crypto";
 import { describe, test } from "bun:test";
 import assert from "node:assert/strict";
 import { spawnSync } from "node:child_process";
-import { existsSync, mkdtempSync, mkdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
+import { cpSync, existsSync, mkdtempSync, mkdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { dirname, join } from "node:path";
 import { applyExternalOverrides, EXTERNAL_OVERRIDES, externalOverrideNoticeLines } from "./external-overrides";
@@ -222,57 +223,146 @@ process.stdout.write('{"status":"silent","reason":"spawned"}\\n');
   }
 });
 
+const IMPECCABLE_ROOT = join(REPO, "skills/external/impeccable");
+const MODERN_SCREENSHOT_LICENSE_SHA256 = "1daae2db27daba18a7e21bb56e12e19b8de6c1197658921f09bbe550f7106579";
+
+function copyImpeccable(dest: string): void {
+  cpSync(IMPECCABLE_ROOT, dest, { recursive: true });
+}
+
+function withImpeccableCopy(run: (skill: string, repo: string) => void): void {
+  const repo = mkdtempSync(join(tmpdir(), "impeccable-repo-"));
+  const skill = mkdtempSync(join(tmpdir(), "impeccable-skill-"));
+  try {
+    writeFileSync(join(repo, "LICENSE"), "Apache-2.0\n");
+    writeFileSync(join(repo, "NOTICE.md"), "third-party\n");
+    copyImpeccable(skill);
+    run(skill, repo);
+  } finally {
+    rmSync(repo, { recursive: true, force: true });
+    rmSync(skill, { recursive: true, force: true });
+  }
+}
+
 describe("impeccable legal files", () => {
-  test("notice names the Apache-2.0 files that travel with the skill", () => {
+  test("notice names the license files and the local distribution fixes", () => {
     const notice = externalOverrideNoticeLines().join("\n");
     assert.match(notice, /impeccable/);
     assert.match(notice, /LICENSE/);
     assert.match(notice, /NOTICE\.md/);
+    assert.match(notice, /modern-screenshot 4\.7\.0/);
+    assert.match(notice, /System32/);
+    assert.match(notice, /reference\/degraded/);
+    assert.match(notice, /IMPECCABLE_NO_TELEMETRY=1/);
+  });
+
+  test("replacement text does not still contain its anchor", () => {
+    for (const replacement of EXTERNAL_OVERRIDES.impeccable!.replacements) {
+      assert.equal(replacement.to.includes(replacement.from), false, replacement.file);
+    }
   });
 
   test("copies LICENSE and NOTICE.md from the upstream root", () => {
-    const repo = mkdtempSync(join(tmpdir(), "impeccable-repo-"));
-    const skill = mkdtempSync(join(tmpdir(), "impeccable-skill-"));
-    try {
-      writeFileSync(join(repo, "LICENSE"), "Apache-2.0\n");
-      writeFileSync(join(repo, "NOTICE.md"), "third-party\n");
+    withImpeccableCopy((skill, repo) => {
+      rmSync(join(skill, "LICENSE"));
+      rmSync(join(skill, "NOTICE.md"));
       applyExternalOverrides("impeccable", skill, repo);
       applyExternalOverrides("impeccable", skill, repo);
       assert.equal(readFileSync(join(skill, "LICENSE"), "utf8"), "Apache-2.0\n");
       assert.equal(readFileSync(join(skill, "NOTICE.md"), "utf8"), "third-party\n");
-    } finally {
-      rmSync(repo, { recursive: true, force: true });
-      rmSync(skill, { recursive: true, force: true });
-    }
+    });
   });
 
   test("keeps a license already shipped inside the skill directory", () => {
-    const repo = mkdtempSync(join(tmpdir(), "impeccable-repo-"));
-    const skill = mkdtempSync(join(tmpdir(), "impeccable-skill-"));
-    try {
-      writeFileSync(join(repo, "LICENSE"), "root\n");
-      writeFileSync(join(repo, "NOTICE.md"), "root notice\n");
+    withImpeccableCopy((skill, repo) => {
       writeFileSync(join(skill, "LICENSE"), "skill\n");
+      rmSync(join(skill, "NOTICE.md"));
       applyExternalOverrides("impeccable", skill, repo);
       assert.equal(readFileSync(join(skill, "LICENSE"), "utf8"), "skill\n");
-      assert.equal(readFileSync(join(skill, "NOTICE.md"), "utf8"), "root notice\n");
-    } finally {
-      rmSync(repo, { recursive: true, force: true });
-      rmSync(skill, { recursive: true, force: true });
-    }
+      assert.equal(readFileSync(join(skill, "NOTICE.md"), "utf8"), "third-party\n");
+    });
   });
 
   test("a missing upstream license writes nothing", () => {
-    const repo = mkdtempSync(join(tmpdir(), "impeccable-repo-"));
-    const skill = mkdtempSync(join(tmpdir(), "impeccable-skill-"));
-    try {
-      writeFileSync(join(repo, "NOTICE.md"), "third-party\n");
+    withImpeccableCopy((skill, repo) => {
+      rmSync(join(repo, "LICENSE"));
+      rmSync(join(skill, "LICENSE"));
+      rmSync(join(skill, "NOTICE.md"));
+      const launcher = join(skill, "scripts/impeccable.cmd");
+      const bundledLicense = join(skill, "scripts/modern-screenshot.LICENSE");
+      const before = readFileSync(launcher);
+      const licenseBefore = existsSync(bundledLicense) ? readFileSync(bundledLicense) : null;
       assert.throws(() => applyExternalOverrides("impeccable", skill, repo), /同梱元がありません: LICENSE/);
       assert.equal(existsSync(join(skill, "LICENSE")), false);
       assert.equal(existsSync(join(skill, "NOTICE.md")), false);
-    } finally {
-      rmSync(repo, { recursive: true, force: true });
-      rmSync(skill, { recursive: true, force: true });
-    }
+      assert.deepEqual(readFileSync(launcher), before);
+      assert.deepEqual(existsSync(bundledLicense) ? readFileSync(bundledLicense) : null, licenseBefore);
+    });
+  });
+
+  test("a changed screenshot bundle writes nothing", () => {
+    withImpeccableCopy((skill, repo) => {
+      const bundle = join(skill, "scripts/modern-screenshot.umd.js");
+      const bytes = readFileSync(bundle);
+      bytes[0] = bytes[0] === 0x28 ? 0x29 : 0x28;
+      writeFileSync(bundle, bytes);
+      const launcher = join(skill, "scripts/impeccable.cmd");
+      const bundledLicense = join(skill, "scripts/modern-screenshot.LICENSE");
+      const before = readFileSync(launcher);
+      const licenseBefore = existsSync(bundledLicense) ? readFileSync(bundledLicense) : null;
+      assert.throws(
+        () => applyExternalOverrides("impeccable", skill, repo),
+        /modern-screenshot 4\.7\.0 の配布物と一致しません/,
+      );
+      assert.deepEqual(readFileSync(launcher), before);
+      assert.deepEqual(existsSync(bundledLicense) ? readFileSync(bundledLicense) : null, licenseBefore);
+    });
+  });
+
+  test("applies the distribution fixes and leaves them in place on a second run", () => {
+    withImpeccableCopy((skill, repo) => {
+      applyExternalOverrides("impeccable", skill, repo);
+      const launcher = readFileSync(join(skill, "scripts/impeccable.cmd"), "utf8");
+      const license = readFileSync(join(skill, "scripts/modern-screenshot.LICENSE"));
+      applyExternalOverrides("impeccable", skill, repo);
+      assert.equal(readFileSync(join(skill, "scripts/impeccable.cmd"), "utf8"), launcher);
+      assert.deepEqual(readFileSync(join(skill, "scripts/modern-screenshot.LICENSE")), license);
+
+      assert.equal(createHash("sha256").update(license).digest("hex"), MODERN_SCREENSHOT_LICENSE_SHA256);
+      assert.match(license.toString("utf8"), /Copyright \(c\) 2021-present wxm/);
+      assert.doesNotMatch(launcher, /where impeccable/);
+      assert.doesNotMatch(launcher, /where curl\.exe/);
+      assert.doesNotMatch(launcher, /^curl\.exe /m);
+      assert.doesNotMatch(launcher, /^certutil -hashfile/m);
+      assert.match(launcher, /%SystemRoot%\\System32\\curl\.exe/);
+      assert.match(launcher, /%SystemRoot%\\System32\\certutil\.exe/);
+      assert.match(launcher, /:path_consider/);
+      assert.doesNotMatch(launcher, /\(\r?\n/);
+
+      const finish = readFileSync(join(skill, "reference/new-work.md"), "utf8");
+      assert.match(finish, /when `impeccable-finish-reviewer` is registered/);
+      assert.match(finish, /or `impeccable-finish-reviewer` is not registered/);
+      assert.match(finish, /or when `impeccable-documenter` is not registered/);
+      const animate = readFileSync(join(skill, "reference/animate.md"), "utf8");
+      assert.match(animate, /when it is registered/);
+      assert.match(animate, /or `impeccable-motion-reviewer` is not registered/);
+      const comp = readFileSync(join(skill, "reference/new-work-comp.md"), "utf8");
+      assert.match(comp, /when `impeccable-asset-producer` is registered/);
+      assert.match(comp, /or when that agent is not registered/);
+      for (const name of ["asset-producer", "documenter", "finish-reviewer", "manual-edit-applier", "motion-reviewer"]) {
+        const degraded = readFileSync(join(skill, "reference/degraded", `${name}.md`), "utf8");
+        assert.match(degraded, /or the named agent is not registered/);
+      }
+      for (const name of ["audit.md", "audit.native.md"]) {
+        const audit = readFileSync(join(skill, "reference", name), "utf8");
+        assert.match(audit, /IMPECCABLE_NO_TELEMETRY=1 IMPECCABLE_REPORT_META=/);
+        assert.match(audit, /audit-storage write/);
+      }
+      const critique = readFileSync(join(skill, "reference/critique.md"), "utf8");
+      assert.match(critique, /IMPECCABLE_NO_TELEMETRY=1 IMPECCABLE_CRITIQUE_META=/);
+      assert.match(critique, /critique-storage write/);
+      assert.match(critique, /critique-storage trend/);
+      assert.doesNotMatch(critique, /IMPECCABLE_NO_TELEMETRY=1 "<skill-base-dir>\/scripts\/impeccable" critique-storage trend/);
+    });
   });
 });

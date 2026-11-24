@@ -54,7 +54,7 @@
 
 次のスキルはコピー直後にローカル override を再適用する。`skills/external/` 側を手で戻しても、次の add / sync で同じ差分が入る。アンカーが上流とずれたらコマンドは失敗し、直前のツリーは残る。
 
-- impeccable: Apache-2.0 の再配布条件として、上流リポジトリ直下の LICENSE と NOTICE.md をスキルディレクトリへ同梱する。add / sync がコピー直後に再配置する。スキル側に同名ファイルがあれば上流のスキル同梱分を優先する。
+- impeccable: Apache-2.0 の再配布条件として、上流リポジトリ直下の LICENSE と NOTICE.md をスキルディレクトリへ同梱する。同梱の modern-screenshot 4.7.0 にはその版の MIT LICENSE を添える。Windows ランチャーは作業ディレクトリと相対パスを検索せず、curl と certutil は %SystemRoot%\System32 の絶対パスだけを使う。名前付きサブエージェントが未登録のときは reference/degraded/ に分岐する。audit と critique の保存は IMPECCABLE_NO_TELEMETRY=1 を付けてローカルだけにし、アカウントへの同期は利用者が明示したときだけ行う。add / sync がコピー直後に再適用する。スキル側に LICENSE または NOTICE.md があれば上流のスキル同梱分を優先する。
 - archify: 更新確認は既定でオフ。`ARCHIFY_UPDATE_CHECK=1` のときだけ https://tt-a1i.github.io/archify/skill-updates/archify/stable.json へ GET する。`ARCHIFY_UPDATE_CHECK_DISABLED=1` はオプトインより優先して止める。オプトイン時も、新しい版があること以外はリモート manifest の文面を出さず、自己更新は案内しない。グローバルな agent ルールファイルは書き換えない。再適用は `scripts/external-overrides.ts`。
 
 | skill | description | source | commit |

@@ -98,11 +98,21 @@ rem the same file. A batch shim (npm writes impeccable.cmd) must run under
 rem call to return here (#1240), and call expands % in the arguments a second
 rem time; a real binary runs directly so a target such as a%20b reaches it intact.
 set "path_bin="
-rem where also lists npm's extensionless POSIX shim, which cmd cannot run:
-rem take the first match with a runnable extension.
-rem Loop letters c and k are not path modifiers, so %%~xc reads as the
-rem extension of c and never as a loop variable followed by text.
-for /f "delims=" %%c in ('where impeccable 2^>nul') do if not defined path_bin for %%k in (.exe .com .cmd .bat) do if /I "%%~xc"=="%%k" set "path_bin=%%c"
+rem upamune/skills local override: where.exe searches the working directory
+rem before PATH, so a project-local program would run before the checksum
+rem check. Walk PATH and keep a drive-absolute or UNC directory that is not
+rem the working directory. Extensionless shims stay skipped.
+set "IMPECCABLE_PATH_LEFT=%PATH%"
+set "IMPECCABLE_PATH_GUARD=0"
+:path_scan
+if defined path_bin goto path_scan_done
+if not defined IMPECCABLE_PATH_LEFT goto path_scan_done
+set /a IMPECCABLE_PATH_GUARD+=1
+if %IMPECCABLE_PATH_GUARD% GTR 64 goto path_scan_done
+for /f "eol=# tokens=1* delims=;" %%a in ("%IMPECCABLE_PATH_LEFT%") do set "IMPECCABLE_PATH_DIR=%%a"& set "IMPECCABLE_PATH_LEFT=%%b"
+call :path_consider
+goto path_scan
+:path_scan_done
 if not defined path_bin goto download
 call :probe "%path_bin%"
 if not "%probe_ok%"=="1" goto download
@@ -123,8 +133,8 @@ if defined IMPECCABLE_LAUNCHER_PROBE exit /b 127
 if not defined version goto fail
 call :read_expected
 if not defined expected if not defined expected_x64 goto no_checksum
-where curl.exe >nul 2>nul
-if errorlevel 1 goto curl_missing
+rem upamune/skills local override: an unqualified curl.exe runs from the working directory first.
+if not exist "%SystemRoot%\System32\curl.exe" goto curl_missing
 if not defined IMPECCABLE_DOWNLOAD_BASE set "IMPECCABLE_DOWNLOAD_BASE=https://github.com/pbakaus/impeccable/releases/download"
 if exist "%IMPECCABLE_HOME%\bin\%version%\" goto cache_ready
 mkdir "%IMPECCABLE_HOME%\bin\%version%" >nul 2>nul
@@ -191,7 +201,7 @@ exit /b 127
 set "http_status="
 set "effective_url="
 set "download_host="
-curl.exe -fsSL --retry 2 -w "%%{http_code} %%{url_effective}" -o "%part%" "%url%" >"%staging%\http.txt" 2>nul
+"%SystemRoot%\System32\curl.exe" -fsSL --retry 2 -w "%%{http_code} %%{url_effective}" -o "%part%" "%url%" >"%staging%\http.txt" 2>nul
 set "fetch_result=%errorlevel%"
 for /f "usebackq tokens=1" %%a in ("%staging%\http.txt") do set "http_status=%%a"
 for /f "usebackq tokens=2" %%a in ("%staging%\http.txt") do set "effective_url=%%a"
@@ -227,7 +237,7 @@ rem Sets actual to the sha256 of %~1, empty when certutil fails. %~2 is the
 rem scratch file for its output. Check certutil's status before parsing: its
 rem error text on stdout is not a digest.
 set "actual="
-certutil -hashfile "%~1" SHA256 >"%~2" 2>nul
+"%SystemRoot%\System32\certutil.exe" -hashfile "%~1" SHA256 >"%~2" 2>nul
 if errorlevel 1 goto sha256_done
 for /f "usebackq skip=1 delims=" %%h in ("%~2") do if not defined actual set "actual=%%h"
 if not defined actual goto sha256_done
@@ -284,8 +294,33 @@ exit /b 127
 "%run%" %*
 exit /b %errorlevel%
 
+:path_consider
+rem upamune/skills local override. A relative entry, ".", or the working
+rem directory is skipped. Comparisons append a dot so a backslash never sits
+rem against the closing quote, which cmd would treat as an escaped quote.
+if not defined IMPECCABLE_PATH_DIR exit /b 0
+if "%IMPECCABLE_PATH_DIR%"=="." exit /b 0
+set "IMPECCABLE_PATH_MARK=%IMPECCABLE_PATH_DIR:~1,2%."
+if "%IMPECCABLE_PATH_MARK%"==":\." goto path_consider_abs
+set "IMPECCABLE_PATH_MARK=%IMPECCABLE_PATH_DIR:~0,2%."
+if "%IMPECCABLE_PATH_MARK%"=="\\." goto path_consider_abs
+exit /b 0
+:path_consider_abs
+set "IMPECCABLE_PATH_ABS=%IMPECCABLE_PATH_DIR%"
+set "IMPECCABLE_PATH_CD=%CD%"
+set "IMPECCABLE_PATH_MARK=%IMPECCABLE_PATH_ABS:~-1%."
+if "%IMPECCABLE_PATH_MARK%"=="\." set "IMPECCABLE_PATH_ABS=%IMPECCABLE_PATH_ABS:~0,-1%"
+set "IMPECCABLE_PATH_MARK=%IMPECCABLE_PATH_CD:~-1%."
+if "%IMPECCABLE_PATH_MARK%"=="\." set "IMPECCABLE_PATH_CD=%IMPECCABLE_PATH_CD:~0,-1%"
+if /I "%IMPECCABLE_PATH_ABS%"=="%IMPECCABLE_PATH_CD%" exit /b 0
+if exist "%IMPECCABLE_PATH_ABS%\impeccable.exe" set "path_bin=%IMPECCABLE_PATH_ABS%\impeccable.exe"& exit /b 0
+if exist "%IMPECCABLE_PATH_ABS%\impeccable.com" set "path_bin=%IMPECCABLE_PATH_ABS%\impeccable.com"& exit /b 0
+if exist "%IMPECCABLE_PATH_ABS%\impeccable.cmd" set "path_bin=%IMPECCABLE_PATH_ABS%\impeccable.cmd"& exit /b 0
+if exist "%IMPECCABLE_PATH_ABS%\impeccable.bat" set "path_bin=%IMPECCABLE_PATH_ABS%\impeccable.bat"& exit /b 0
+exit /b 0
+
 :probe
-rem Sets probe_ok=1 when %1 answers the engine handshake: prints
+rem Sets probe_ok=1 when %1 answers the engine handshake. It prints
 rem "impeccable-engine <version>" and exits 0, and probe_version to that
 rem version. The 3.x npm CLI answers any unknown verb with "Unknown command",
 rem exit 1, so it never passes.
