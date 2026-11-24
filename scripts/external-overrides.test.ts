@@ -5,6 +5,7 @@ import { spawnSync } from "node:child_process";
 import { cpSync, existsSync, mkdtempSync, mkdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { dirname, join } from "node:path";
+import { cloneRepo } from "./external";
 import { applyExternalOverrides, EXTERNAL_OVERRIDES, externalOverrideNoticeLines } from "./external-overrides";
 import { REPO } from "./lib";
 
@@ -337,6 +338,12 @@ describe("impeccable legal files", () => {
       assert.match(launcher, /%SystemRoot%\\System32\\curl\.exe/);
       assert.match(launcher, /%SystemRoot%\\System32\\certutil\.exe/);
       assert.match(launcher, /:path_consider/);
+      assert.match(launcher, /do \(set "IMPECCABLE_PATH_DIR=%%a"& set "IMPECCABLE_PATH_LEFT=%%b"\)/);
+      assert.match(
+        launcher,
+        /if exist "%IMPECCABLE_PATH_ABS%\\impeccable\.cmd" \(set "path_bin=%IMPECCABLE_PATH_ABS%\\impeccable\.cmd"& exit \/b 0\)/,
+      );
+      assert.doesNotMatch(launcher, /do set "IMPECCABLE_PATH_DIR=%%a"& set "IMPECCABLE_PATH_LEFT=%%b"/);
       assert.doesNotMatch(launcher, /\(\r?\n/);
 
       const finish = readFileSync(join(skill, "reference/new-work.md"), "utf8");
@@ -365,4 +372,43 @@ describe("impeccable legal files", () => {
       assert.doesNotMatch(critique, /IMPECCABLE_NO_TELEMETRY=1 "<skill-base-dir>\/scripts\/impeccable" critique-storage trend/);
     });
   });
+});
+
+test("frozen checkout keeps LF text and CRLF cmd when autocrlf is globally true", async () => {
+  const root = mkdtempSync(join(tmpdir(), "external-autocrlf-"));
+  const origin = join(root, "origin");
+  const gitconfig = join(root, "gitconfig");
+  mkdirSync(origin);
+  const git = (args: string[], cwd = origin) => {
+    const result = spawnSync("git", args, { cwd, encoding: "utf8" });
+    if (result.status !== 0) throw new Error(`${args.join(" ")}\n${result.stderr || result.stdout}`);
+  };
+  git(["init", "-q", "-b", "main"]);
+  git(["config", "user.email", "vendor@example.com"]);
+  git(["config", "user.name", "vendor"]);
+  git(["config", "core.autocrlf", "false"]);
+  writeFileSync(join(origin, ".gitattributes"), "*.cmd text eol=crlf\n");
+  writeFileSync(join(origin, "sample.js"), "const n = 1;\n");
+  writeFileSync(join(origin, "sample.cmd"), "@echo off\r\necho hi\r\n");
+  git(["add", "."]);
+  git(["commit", "-q", "-m", "fixture"]);
+  const commit = spawnSync("git", ["rev-parse", "HEAD"], { cwd: origin, encoding: "utf8" }).stdout.trim();
+  writeFileSync(gitconfig, "[core]\n\tautocrlf = true\n");
+  const previous = process.env.GIT_CONFIG_GLOBAL;
+  process.env.GIT_CONFIG_GLOBAL = gitconfig;
+  let checked: { dir: string } | undefined;
+  try {
+    checked = await cloneRepo(origin, { commit });
+    assert.equal(readFileSync(join(checked.dir, "sample.js"), "utf8"), "const n = 1;\n");
+    assert.equal(readFileSync(join(checked.dir, "sample.cmd"), "utf8"), "@echo off\r\necho hi\r\n");
+    assert.equal(
+      spawnSync("git", ["config", "--local", "core.autocrlf"], { cwd: checked.dir, encoding: "utf8" }).stdout.trim(),
+      "false",
+    );
+  } finally {
+    if (previous === undefined) delete process.env.GIT_CONFIG_GLOBAL;
+    else process.env.GIT_CONFIG_GLOBAL = previous;
+    if (checked) rmSync(checked.dir, { recursive: true, force: true });
+    rmSync(root, { recursive: true, force: true });
+  }
 });

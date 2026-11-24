@@ -17,6 +17,8 @@ skill 名省略時は対話選択。TTY がない場合は名前を指定する�
 
 `add` / `sync` / `remove` は `skills/external/README.md` と `SKILLS.md` も再生成する。manifest の名前・pin、実ディレクトリ、生成一覧が一致し、取得差分が意図した内容なら完了。特に description と invocation policy の変化を見る。
 
+一時 checkout は `core.autocrlf=false` をそのリポジトリだけに設定する。利用者のグローバル設定が `true` でも、Markdown や JS は上流 blob の改行のままになる。上流の `.gitattributes` は適用されたままなので、`*.cmd text eol=crlf` のような指定は残る。
+
 外部スキルを独自に修正する場合は fork への出所変更か、自作バケットへの別名コピーを選ぶ。同期時に消える手修正や、依頼されていない一括更新・削除を行わない。再適用する差分だけは下のローカル override に載せる。
 
 ## ローカル override

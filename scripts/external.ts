@@ -91,16 +91,20 @@ function resolveSource(input: string): Source {
   throw new Error(`source の形式を解釈できません: ${input}`);
 }
 
-async function cloneRepo(url: string, opts: { ref?: string; commit?: string }): Promise<{ dir: string; commit: string }> {
+// 一時 checkout は利用者の core.autocrlf を引き継がない。
+// true のままだと Markdown と JS が CRLF になり、override のアンカーとハッシュが落ちる。
+// ローカル設定はグローバルより優先する。上流の .gitattributes（*.cmd の eol=crlf など）はそのまま適用する。
+export async function cloneRepo(url: string, opts: { ref?: string; commit?: string }): Promise<{ dir: string; commit: string }> {
   const dir = mkdtempSync(join(tmpdir(), "external-skill-"));
   if (opts.commit) {
     await $`git init -q`.cwd(dir).quiet();
+    await $`git config core.autocrlf false`.cwd(dir).quiet();
     await $`git remote add origin ${url}`.cwd(dir).quiet();
     await $`git fetch -q --depth 1 origin ${opts.commit}`.cwd(dir);
     await $`git checkout -q FETCH_HEAD`.cwd(dir).quiet();
   } else {
     const branch = opts.ref ? ["--branch", opts.ref] : [];
-    await $`git clone -q --depth 1 ${branch} ${url} ${dir}`;
+    await $`git clone -q --depth 1 -c core.autocrlf=false ${branch} ${url} ${dir}`;
   }
   const commit = (await $`git rev-parse HEAD`.cwd(dir).text()).trim();
   return { dir, commit };
@@ -570,29 +574,31 @@ async function cmdList(): Promise<void> {
   }
 }
 
-const [command, ...rest] = Bun.argv.slice(2);
-const { positional, flags } = parseArgs(rest);
-try {
-  switch (command) {
-    case "add":
-      await cmdAdd(positional, flags);
-      break;
-    case "sync":
-    case "update":
-      await cmdSync(positional, flags);
-      break;
-    case "remove":
-    case "rm":
-      await cmdRemove(positional);
-      break;
-    case "list":
-    case "ls":
-      await cmdList();
-      break;
-    default:
-      usage();
+if (import.meta.main) {
+  const [command, ...rest] = Bun.argv.slice(2);
+  const { positional, flags } = parseArgs(rest);
+  try {
+    switch (command) {
+      case "add":
+        await cmdAdd(positional, flags);
+        break;
+      case "sync":
+      case "update":
+        await cmdSync(positional, flags);
+        break;
+      case "remove":
+      case "rm":
+        await cmdRemove(positional);
+        break;
+      case "list":
+      case "ls":
+        await cmdList();
+        break;
+      default:
+        usage();
+    }
+  } catch (err) {
+    console.error(`error: ${err instanceof Error ? err.message : String(err)}`);
+    process.exit(1);
   }
-} catch (err) {
-  console.error(`error: ${err instanceof Error ? err.message : String(err)}`);
-  process.exit(1);
 }

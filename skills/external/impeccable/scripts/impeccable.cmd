@@ -109,10 +109,14 @@ if defined path_bin goto path_scan_done
 if not defined IMPECCABLE_PATH_LEFT goto path_scan_done
 set /a IMPECCABLE_PATH_GUARD+=1
 if %IMPECCABLE_PATH_GUARD% GTR 64 goto path_scan_done
-for /f "eol=# tokens=1* delims=;" %%a in ("%IMPECCABLE_PATH_LEFT%") do set "IMPECCABLE_PATH_DIR=%%a"& set "IMPECCABLE_PATH_LEFT=%%b"
+rem Both assignments stay inside the for body. A bare & would run the second
+rem set outside the loop, where %%b is not the remainder of PATH.
+for /f "eol=# tokens=1* delims=;" %%a in ("%IMPECCABLE_PATH_LEFT%") do (set "IMPECCABLE_PATH_DIR=%%a"& set "IMPECCABLE_PATH_LEFT=%%b")
 call :path_consider
 goto path_scan
 :path_scan_done
+rem IMPECCABLE_PATH_TEST reports the chosen path and stops before probe or download.
+if defined IMPECCABLE_PATH_TEST goto path_test_report
 if not defined path_bin goto download
 call :probe "%path_bin%"
 if not "%probe_ok%"=="1" goto download
@@ -313,10 +317,15 @@ if "%IMPECCABLE_PATH_MARK%"=="\." set "IMPECCABLE_PATH_ABS=%IMPECCABLE_PATH_ABS:
 set "IMPECCABLE_PATH_MARK=%IMPECCABLE_PATH_CD:~-1%."
 if "%IMPECCABLE_PATH_MARK%"=="\." set "IMPECCABLE_PATH_CD=%IMPECCABLE_PATH_CD:~0,-1%"
 if /I "%IMPECCABLE_PATH_ABS%"=="%IMPECCABLE_PATH_CD%" exit /b 0
-if exist "%IMPECCABLE_PATH_ABS%\impeccable.exe" set "path_bin=%IMPECCABLE_PATH_ABS%\impeccable.exe"& exit /b 0
-if exist "%IMPECCABLE_PATH_ABS%\impeccable.com" set "path_bin=%IMPECCABLE_PATH_ABS%\impeccable.com"& exit /b 0
-if exist "%IMPECCABLE_PATH_ABS%\impeccable.cmd" set "path_bin=%IMPECCABLE_PATH_ABS%\impeccable.cmd"& exit /b 0
-if exist "%IMPECCABLE_PATH_ABS%\impeccable.bat" set "path_bin=%IMPECCABLE_PATH_ABS%\impeccable.bat"& exit /b 0
+rem exit /b stays inside the if. A bare & would return before later extensions.
+if exist "%IMPECCABLE_PATH_ABS%\impeccable.exe" (set "path_bin=%IMPECCABLE_PATH_ABS%\impeccable.exe"& exit /b 0)
+if exist "%IMPECCABLE_PATH_ABS%\impeccable.com" (set "path_bin=%IMPECCABLE_PATH_ABS%\impeccable.com"& exit /b 0)
+if exist "%IMPECCABLE_PATH_ABS%\impeccable.cmd" (set "path_bin=%IMPECCABLE_PATH_ABS%\impeccable.cmd"& exit /b 0)
+if exist "%IMPECCABLE_PATH_ABS%\impeccable.bat" (set "path_bin=%IMPECCABLE_PATH_ABS%\impeccable.bat"& exit /b 0)
+exit /b 0
+
+:path_test_report
+echo(%path_bin%
 exit /b 0
 
 :probe
