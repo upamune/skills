@@ -2,7 +2,7 @@
 // 残したい差分だけをここに置き、コピー直後に再適用する。
 // アンカーが上流と一致しない場合は何も書かずに失敗する。
 
-import { readFileSync, writeFileSync } from "node:fs";
+import { cpSync, existsSync, readFileSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 
 type TextReplacement = {
@@ -11,9 +11,17 @@ type TextReplacement = {
   to: string;
 };
 
+// 上流リポジトリ直下のファイルを、スキルディレクトリへ同梱する。
+// スキル側に同名ファイルがあれば上流のスキル同梱分を残す。
+type ExtraFile = {
+  fromRepo: string;
+  to: string;
+};
+
 type OverrideSpec = {
   readmeLine: string;
   replacements: TextReplacement[];
+  extraFiles?: ExtraFile[];
 };
 
 const ARCHIFY_UPDATE_MANIFEST = "https://tt-a1i.github.io/archify/skill-updates/archify/stable.json";
@@ -89,6 +97,15 @@ const ARCHIFY_UPDATE_AWARENESS_TO = `upamune/skills local override: when the opt
 Do not describe release changes, and do not invent them or fetch release history.`;
 
 export const EXTERNAL_OVERRIDES: Record<string, OverrideSpec> = {
+  impeccable: {
+    readmeLine:
+      "impeccable: Apache-2.0 の再配布条件として、上流リポジトリ直下の LICENSE と NOTICE.md をスキルディレクトリへ同梱する。add / sync がコピー直後に再配置する。スキル側に同名ファイルがあれば上流のスキル同梱分を優先する。",
+    replacements: [],
+    extraFiles: [
+      { fromRepo: "LICENSE", to: "LICENSE" },
+      { fromRepo: "NOTICE.md", to: "NOTICE.md" },
+    ],
+  },
   archify: {
     readmeLine:
       `archify: 更新確認は既定でオフ。\`ARCHIFY_UPDATE_CHECK=1\` のときだけ ${ARCHIFY_UPDATE_MANIFEST} へ GET する。\`ARCHIFY_UPDATE_CHECK_DISABLED=1\` はオプトインより優先して止める。オプトイン時も、新しい版があること以外はリモート manifest の文面を出さず、自己更新は案内しない。グローバルな agent ルールファイルは書き換えない。再適用は \`scripts/external-overrides.ts\`。`,
@@ -167,7 +184,8 @@ function replaceOnce(source: string, from: string, to: string, file: string): st
 
 // 検証が全部通ってから書く。途中のファイルだけパッチ済みにはしない。
 // 同一ファイルの複数アンカーは、直前までの置換結果に次のアンカーを当てる。
-export function applyExternalOverrides(name: string, dest: string): void {
+// extraFiles は置換のあと、同梱元が全部あることを確認してからコピーする。
+export function applyExternalOverrides(name: string, dest: string, repoDir?: string): void {
   const spec = EXTERNAL_OVERRIDES[name];
   if (!spec) return;
   const pending = new Map<string, { original: string; next: string }>();
@@ -187,7 +205,18 @@ export function applyExternalOverrides(name: string, dest: string): void {
     }
     state.next = replaceOnce(state.next, replacement.from, replacement.to, replacement.file);
   }
+  const pendingCopies: { src: string; target: string }[] = [];
+  if (spec.extraFiles && spec.extraFiles.length > 0) {
+    if (!repoDir) throw new Error(`local override の同梱には上流リポジトリが必要です: ${name}`);
+    for (const extra of spec.extraFiles) {
+      const src = join(repoDir, extra.fromRepo);
+      if (!existsSync(src)) throw new Error(`local override の同梱元がありません: ${extra.fromRepo}`);
+      const target = join(dest, extra.to);
+      if (!existsSync(target)) pendingCopies.push({ src, target });
+    }
+  }
   for (const [file, state] of pending) {
     if (state.next !== state.original) writeFileSync(file, state.next);
   }
+  for (const copy of pendingCopies) cpSync(copy.src, copy.target);
 }

@@ -219,6 +219,13 @@
       "commit": "1ecea1993b7fce257ffbd686c070948b5e07eda6",
       "updatedAt": "2026-09-19T08:58:27.045Z"
     },
+    "impeccable": {
+      "source": "pbakaus/impeccable",
+      "url": "https://github.com/pbakaus/impeccable.git",
+      "path": "plugin/skills/impeccable",
+      "commit": "b49177d32788f2dc585c42831d845dacf1ebed2c",
+      "updatedAt": "2026-11-24T07:58:05.031Z"
+    },
     "implement": {
       "source": "mattpocock/skills",
       "url": "https://github.com/mattpocock/skills.git",

@@ -221,3 +221,58 @@ process.stdout.write('{"status":"silent","reason":"spawned"}\\n');
     rmSync(spawnRoot, { recursive: true, force: true });
   }
 });
+
+describe("impeccable legal files", () => {
+  test("notice names the Apache-2.0 files that travel with the skill", () => {
+    const notice = externalOverrideNoticeLines().join("\n");
+    assert.match(notice, /impeccable/);
+    assert.match(notice, /LICENSE/);
+    assert.match(notice, /NOTICE\.md/);
+  });
+
+  test("copies LICENSE and NOTICE.md from the upstream root", () => {
+    const repo = mkdtempSync(join(tmpdir(), "impeccable-repo-"));
+    const skill = mkdtempSync(join(tmpdir(), "impeccable-skill-"));
+    try {
+      writeFileSync(join(repo, "LICENSE"), "Apache-2.0\n");
+      writeFileSync(join(repo, "NOTICE.md"), "third-party\n");
+      applyExternalOverrides("impeccable", skill, repo);
+      applyExternalOverrides("impeccable", skill, repo);
+      assert.equal(readFileSync(join(skill, "LICENSE"), "utf8"), "Apache-2.0\n");
+      assert.equal(readFileSync(join(skill, "NOTICE.md"), "utf8"), "third-party\n");
+    } finally {
+      rmSync(repo, { recursive: true, force: true });
+      rmSync(skill, { recursive: true, force: true });
+    }
+  });
+
+  test("keeps a license already shipped inside the skill directory", () => {
+    const repo = mkdtempSync(join(tmpdir(), "impeccable-repo-"));
+    const skill = mkdtempSync(join(tmpdir(), "impeccable-skill-"));
+    try {
+      writeFileSync(join(repo, "LICENSE"), "root\n");
+      writeFileSync(join(repo, "NOTICE.md"), "root notice\n");
+      writeFileSync(join(skill, "LICENSE"), "skill\n");
+      applyExternalOverrides("impeccable", skill, repo);
+      assert.equal(readFileSync(join(skill, "LICENSE"), "utf8"), "skill\n");
+      assert.equal(readFileSync(join(skill, "NOTICE.md"), "utf8"), "root notice\n");
+    } finally {
+      rmSync(repo, { recursive: true, force: true });
+      rmSync(skill, { recursive: true, force: true });
+    }
+  });
+
+  test("a missing upstream license writes nothing", () => {
+    const repo = mkdtempSync(join(tmpdir(), "impeccable-repo-"));
+    const skill = mkdtempSync(join(tmpdir(), "impeccable-skill-"));
+    try {
+      writeFileSync(join(repo, "NOTICE.md"), "third-party\n");
+      assert.throws(() => applyExternalOverrides("impeccable", skill, repo), /同梱元がありません: LICENSE/);
+      assert.equal(existsSync(join(skill, "LICENSE")), false);
+      assert.equal(existsSync(join(skill, "NOTICE.md")), false);
+    } finally {
+      rmSync(repo, { recursive: true, force: true });
+      rmSync(skill, { recursive: true, force: true });
+    }
+  });
+});

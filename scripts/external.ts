@@ -356,7 +356,7 @@ async function copySkill(
     const staged = join(stagingParent, name);
     // スキルが repo ルート直下（gist など）の場合に .git を持ち込まないよう除外する
     cpSync(src, staged, { recursive: true, filter: (p) => !SKIP_DIRS.has(basename(p)) });
-    applyExternalOverrides(name, staged);
+    applyExternalOverrides(name, staged, repoDir);
     rmSync(dest, { recursive: true, force: true });
     cpSync(staged, dest, { recursive: true });
   } finally {
