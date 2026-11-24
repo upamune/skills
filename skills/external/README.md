@@ -5,6 +5,7 @@
 
 次のスキルはコピー直後にローカル override を再適用する。`skills/external/` 側を手で戻しても、次の add / sync で同じ差分が入る。アンカーが上流とずれたらコマンドは失敗し、直前のツリーは残る。
 
+- impeccable: Apache-2.0 の再配布条件として、上流リポジトリ直下の LICENSE と NOTICE.md をスキルディレクトリへ同梱する。同梱の modern-screenshot 4.7.0 にはその版の MIT LICENSE を添える。Windows ランチャーは作業ディレクトリと相対パスを検索せず、curl と certutil は %SystemRoot%\System32 の絶対パスだけを使う。名前付きサブエージェントが未登録のときは reference/degraded/ に分岐する。audit と critique の保存は IMPECCABLE_NO_TELEMETRY=1 を付けてローカルだけにし、アカウントへの同期は利用者が明示したときだけ行う。add / sync がコピー直後に再適用する。スキル側に LICENSE または NOTICE.md があれば上流のスキル同梱分を優先する。
 - archify: 更新確認は既定でオフ。`ARCHIFY_UPDATE_CHECK=1` のときだけ https://tt-a1i.github.io/archify/skill-updates/archify/stable.json へ GET する。`ARCHIFY_UPDATE_CHECK_DISABLED=1` はオプトインより優先して止める。オプトイン時も、新しい版があること以外はリモート manifest の文面を出さず、自己更新は案内しない。グローバルな agent ルールファイルは書き換えない。再適用は `scripts/external-overrides.ts`。
 
 | skill | source | ref | commit |
@@ -40,6 +41,7 @@
 | [handoff](./handoff/SKILL.md) | [mattpocock/skills](https://github.com/mattpocock/skills/tree/abeeaf95660ba9e8b7c753eb38f441ca707a8823/skills/productivity/handoff) | `default` | `abeeaf9` |
 | [how](./how/SKILL.md) | [cursor/plugins](https://github.com/cursor/plugins/tree/7a583913eb1b8d1a0ee76753d1a2cf072e7b54f9/pstack/skills/how) | `default` | `7a58391` |
 | [i-have-adhd](./i-have-adhd/SKILL.md) | [ayghri/i-have-adhd](https://github.com/ayghri/i-have-adhd/tree/1ecea1993b7fce257ffbd686c070948b5e07eda6/skills/i-have-adhd) | `default` | `1ecea19` |
+| [impeccable](./impeccable/SKILL.md) | [pbakaus/impeccable](https://github.com/pbakaus/impeccable/tree/b49177d32788f2dc585c42831d845dacf1ebed2c/plugin/skills/impeccable) | `default` | `b49177d` |
 | [implement](./implement/SKILL.md) | [mattpocock/skills](https://github.com/mattpocock/skills/tree/abeeaf95660ba9e8b7c753eb38f441ca707a8823/skills/engineering/implement) | `default` | `abeeaf9` |
 | [improve-animations](./improve-animations/SKILL.md) | [emilkowalski/skills](https://github.com/emilkowalski/skills/tree/64eb3deb9a5fbfa041faf783e0bc3fd635872e9c/skills/improve-animations) | `default` | `64eb3de` |
 | [improve-codebase-architecture](./improve-codebase-architecture/SKILL.md) | [mattpocock/skills](https://github.com/mattpocock/skills/tree/abeeaf95660ba9e8b7c753eb38f441ca707a8823/skills/engineering/improve-codebase-architecture) | `default` | `abeeaf9` |

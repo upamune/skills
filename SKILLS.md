@@ -5,7 +5,7 @@
 このリポジトリに入っている全スキルの一覧。`npx skills add upamune/skills` でインストールできる。
 再生成: `scripts/gen-skills-md.ts`（`scripts/external.ts` の add / sync / remove 後は自動で更新される）。
 
-合計 106 スキル
+合計 107 スキル
 
 | bucket | count | 用途 |
 | --- | --- | --- |
@@ -13,7 +13,7 @@
 | [productivity/](#productivity) | 0 | コード以外のワークフロー向け（自作） |
 | [in-progress/](#in-progress) | 0 | 作りかけ・試用中（自作） |
 | [deprecated/](#deprecated) | 0 | 使わなくなったもの（自作） |
-| [external/](#external) | 101 | 外部リポジトリから vendor したもの |
+| [external/](#external) | 102 | 外部リポジトリから vendor したもの |
 
 ## engineering
 
@@ -54,6 +54,7 @@
 
 次のスキルはコピー直後にローカル override を再適用する。`skills/external/` 側を手で戻しても、次の add / sync で同じ差分が入る。アンカーが上流とずれたらコマンドは失敗し、直前のツリーは残る。
 
+- impeccable: Apache-2.0 の再配布条件として、上流リポジトリ直下の LICENSE と NOTICE.md をスキルディレクトリへ同梱する。同梱の modern-screenshot 4.7.0 にはその版の MIT LICENSE を添える。Windows ランチャーは作業ディレクトリと相対パスを検索せず、curl と certutil は %SystemRoot%\System32 の絶対パスだけを使う。名前付きサブエージェントが未登録のときは reference/degraded/ に分岐する。audit と critique の保存は IMPECCABLE_NO_TELEMETRY=1 を付けてローカルだけにし、アカウントへの同期は利用者が明示したときだけ行う。add / sync がコピー直後に再適用する。スキル側に LICENSE または NOTICE.md があれば上流のスキル同梱分を優先する。
 - archify: 更新確認は既定でオフ。`ARCHIFY_UPDATE_CHECK=1` のときだけ https://tt-a1i.github.io/archify/skill-updates/archify/stable.json へ GET する。`ARCHIFY_UPDATE_CHECK_DISABLED=1` はオプトインより優先して止める。オプトイン時も、新しい版があること以外はリモート manifest の文面を出さず、自己更新は案内しない。グローバルな agent ルールファイルは書き換えない。再適用は `scripts/external-overrides.ts`。
 
 | skill | description | source | commit |
@@ -89,6 +90,7 @@
 | [handoff](./skills/external/handoff/SKILL.md) | Compact the current conversation into a handoff document for another agent to pick up. | [mattpocock/skills/skills/productivity/handoff](https://github.com/mattpocock/skills/tree/abeeaf95660ba9e8b7c753eb38f441ca707a8823/skills/productivity/handoff) | `abeeaf9` |
 | [how](./skills/external/how/SKILL.md) | Use for "how does X work", code walkthroughs before changing something, and placement / ownership / layering questions ("where should this live", "which package owns this", "is this the right layer"). Explains subsystem architecture, runtime flow, onboarding mental models. Use why for motivation. | [cursor/plugins/pstack/skills/how](https://github.com/cursor/plugins/tree/7a583913eb1b8d1a0ee76753d1a2cf072e7b54f9/pstack/skills/how) | `7a58391` |
 | [i-have-adhd](./skills/external/i-have-adhd/SKILL.md) | Shape output for a reader with ADHD: lead with the next action, number multi-step work, restate state across turns, suppress tangents, give specific time estimates, make wins visible. Invoke with /i-have-adhd; stays on until "stop adhd mode". | [ayghri/i-have-adhd/skills/i-have-adhd](https://github.com/ayghri/i-have-adhd/tree/1ecea1993b7fce257ffbd686c070948b5e07eda6/skills/i-have-adhd) | `1ecea19` |
+| [impeccable](./skills/external/impeccable/SKILL.md) | Use to design, redesign, critique, audit, polish or animate a frontend: websites, landing pages, dashboards, app UI, components, native iOS/Android screens, or a design system (DESIGN.md). | [pbakaus/impeccable/plugin/skills/impeccable](https://github.com/pbakaus/impeccable/tree/b49177d32788f2dc585c42831d845dacf1ebed2c/plugin/skills/impeccable) | `b49177d` |
 | [implement](./skills/external/implement/SKILL.md) | Implement a piece of work based on a spec or set of tickets. | [mattpocock/skills/skills/engineering/implement](https://github.com/mattpocock/skills/tree/abeeaf95660ba9e8b7c753eb38f441ca707a8823/skills/engineering/implement) | `abeeaf9` |
 | [improve-animations](./skills/external/improve-animations/SKILL.md) | Survey a codebase's animation and motion code as a senior motion advisor, then produce a prioritized audit and self-contained implementation plans for other agents (or cheaper models) to execute. Read-only on source code — it plans improvements, it does not apply them. Use when the user asks to "improve the animations", "audit the motion", "make this app feel better", or wants a roadmap of animation fixes rather than a review of a single diff. | [emilkowalski/skills/skills/improve-animations](https://github.com/emilkowalski/skills/tree/64eb3deb9a5fbfa041faf783e0bc3fd635872e9c/skills/improve-animations) | `64eb3de` |
 | [improve-codebase-architecture](./skills/external/improve-codebase-architecture/SKILL.md) | Scan a codebase for deepening opportunities, present them as a visual HTML report, then grill through whichever one you pick. | [mattpocock/skills/skills/engineering/improve-codebase-architecture](https://github.com/mattpocock/skills/tree/abeeaf95660ba9e8b7c753eb38f441ca707a8823/skills/engineering/improve-codebase-architecture) | `abeeaf9` |

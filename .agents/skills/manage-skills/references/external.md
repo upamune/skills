@@ -17,10 +17,13 @@ skill 名省略時は対話選択。TTY がない場合は名前を指定する�
 
 `add` / `sync` / `remove` は `skills/external/README.md` と `SKILLS.md` も再生成する。manifest の名前・pin、実ディレクトリ、生成一覧が一致し、取得差分が意図した内容なら完了。特に description と invocation policy の変化を見る。
 
+一時 checkout は `core.autocrlf=false` をそのリポジトリだけに設定する。利用者のグローバル設定が `true` でも、Markdown や JS は上流 blob の改行のままになる。上流の `.gitattributes` は適用されたままなので、`*.cmd text eol=crlf` のような指定は残る。
+
 外部スキルを独自に修正する場合は fork への出所変更か、自作バケットへの別名コピーを選ぶ。同期時に消える手修正や、依頼されていない一括更新・削除を行わない。再適用する差分だけは下のローカル override に載せる。
 
 ## ローカル override
 
 `skills/external/` への手修正は `sync` で消える。残したい差分は `scripts/external-overrides.ts` に置き、`add` / `sync` がコピー直後へ再適用する。対象スキルは一時ディレクトリで差分を当て、成功してから `skills/external/<name>/` を置き換える。アンカーが上流と一致しない場合は失敗し、置き換えない。
 
+- impeccable: Apache-2.0 で再配布するため、上流リポジトリ直下の `LICENSE` と `NOTICE.md` をスキルディレクトリへ同梱する。同梱の `scripts/modern-screenshot.umd.js` は modern-screenshot 4.7.0 の `dist/index.js` とバイト一致するときだけ、その版の MIT `LICENSE` を `scripts/modern-screenshot.LICENSE` として添える。Windows ランチャーは作業ディレクトリと相対パスを検索せず、`curl.exe` と `certutil.exe` は `%SystemRoot%\System32` だけを使う。名前付きサブエージェントが未登録のときは `reference/degraded/` に分岐する。audit と critique の保存コマンドは `IMPECCABLE_NO_TELEMETRY=1` を付けてローカルだけにし、アカウントへの同期は利用者が明示したときだけ行う。`add` / `sync` がコピー直後に再適用する。スキル側に `LICENSE` または `NOTICE.md` があれば、そちらの内容を残す。
 - archify: 更新確認を既定で止める。`finalize` / `deliver` と `scripts/check-update.mjs` は `ARCHIFY_UPDATE_CHECK=1` のときだけ `https://tt-a1i.github.io/archify/skill-updates/archify/stable.json` を GET する。`ARCHIFY_UPDATE_CHECK_DISABLED=1` はオプトインより優先する。オプトイン時の通知は、新しい版があることまでで、リモート manifest の `summary` や文面は出さず、自己更新は案内しない。グローバルな agent ルールファイル（`~/.claude/CLAUDE.md` など）への書き込みも案内もしない。上流の `updatesDisabled()`、`startDeliveryUpdateCheck`、通知文、または SKILL.md の該当箇所が変わったら、override のアンカーを合わせてから `bun scripts/external.ts sync archify --frozen` する。上流の更新確認テストは変数未設定で通信する前提なので、このツリーでは失敗する。
