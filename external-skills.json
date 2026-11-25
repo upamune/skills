@@ -177,6 +177,14 @@
       "commit": "14c5f8ff0094659f321801385d2b52ccc65fea3b",
       "updatedAt": "2026-11-06T17:24:57.686Z"
     },
+    "gemini-frontend-design": {
+      "source": "google-gemini/demolab",
+      "url": "https://github.com/google-gemini/demolab.git",
+      "path": "skills/gemini-frontend-design",
+      "ref": "main",
+      "commit": "cd0c1f8540c0186ec9592af972a0700fa20909d4",
+      "updatedAt": "2026-11-25T12:31:17.918Z"
+    },
     "get-pr-comments": {
       "source": "cursor/plugins",
       "url": "https://github.com/cursor/plugins.git",

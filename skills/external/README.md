@@ -7,6 +7,7 @@
 
 - impeccable: Apache-2.0 の再配布条件として、上流リポジトリ直下の LICENSE と NOTICE.md をスキルディレクトリへ同梱する。同梱の modern-screenshot 4.7.0 にはその版の MIT LICENSE を添える。Windows ランチャーは作業ディレクトリと相対パスを検索せず、curl と certutil は %SystemRoot%\System32 の絶対パスだけを使う。名前付きサブエージェントが未登録のときは reference/degraded/ に分岐する。audit と critique の保存は IMPECCABLE_NO_TELEMETRY=1 を付けてローカルだけにし、アカウントへの同期は利用者が明示したときだけ行う。add / sync がコピー直後に再適用する。スキル側に LICENSE または NOTICE.md があれば上流のスキル同梱分を優先する。
 - archify: 更新確認は既定でオフ。`ARCHIFY_UPDATE_CHECK=1` のときだけ https://tt-a1i.github.io/archify/skill-updates/archify/stable.json へ GET する。`ARCHIFY_UPDATE_CHECK_DISABLED=1` はオプトインより優先して止める。オプトイン時も、新しい版があること以外はリモート manifest の文面を出さず、自己更新は案内しない。グローバルな agent ルールファイルは書き換えない。再適用は `scripts/external-overrides.ts`。
+- gemini-frontend-design: Apache-2.0 の再配布条件として、上流リポジトリ直下の LICENSE をスキルディレクトリへ同梱する。NOTICE は上流に無い。スキル側に LICENSE があれば上流のスキル同梱分を優先する。add / sync がコピー直後に再適用する。
 
 | skill | source | ref | commit |
 | --- | --- | --- | --- |
@@ -35,6 +36,7 @@
 | [figure-it-out](./figure-it-out/SKILL.md) | [cursor/plugins](https://github.com/cursor/plugins/tree/ca782ed8b3c2c521cead8e1720d55c3a5dbf2347/pstack/skills/figure-it-out) | `default` | `ca782ed` |
 | [find-animation-opportunities](./find-animation-opportunities/SKILL.md) | [emilkowalski/skills](https://github.com/emilkowalski/skills/tree/64eb3deb9a5fbfa041faf783e0bc3fd635872e9c/skills/find-animation-opportunities) | `default` | `64eb3de` |
 | [first-reader](./first-reader/SKILL.md) | [Shubhamsaboo/awesome-llm-apps](https://github.com/Shubhamsaboo/awesome-llm-apps/tree/14c5f8ff0094659f321801385d2b52ccc65fea3b/agent_skills/first-reader) | `default` | `14c5f8f` |
+| [gemini-frontend-design](./gemini-frontend-design/SKILL.md) | [google-gemini/demolab](https://github.com/google-gemini/demolab/tree/cd0c1f8540c0186ec9592af972a0700fa20909d4/skills/gemini-frontend-design) | `main` | `cd0c1f8` |
 | [get-pr-comments](./get-pr-comments/SKILL.md) | [cursor/plugins](https://github.com/cursor/plugins/tree/ca782ed8b3c2c521cead8e1720d55c3a5dbf2347/cursor-team-kit/skills/get-pr-comments) | `default` | `ca782ed` |
 | [grill-me](./grill-me/SKILL.md) | [mattpocock/skills](https://github.com/mattpocock/skills/tree/d65391149dbb5fe76478e76fa8d5122b2aa5a70e/skills/productivity/grill-me) | `default` | `d653911` |
 | [grill-with-docs](./grill-with-docs/SKILL.md) | [mattpocock/skills](https://github.com/mattpocock/skills/tree/d65391149dbb5fe76478e76fa8d5122b2aa5a70e/skills/engineering/grill-with-docs) | `default` | `d653911` |

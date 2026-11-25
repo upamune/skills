@@ -5,7 +5,7 @@
 このリポジトリに入っている全スキルの一覧。`npx skills add upamune/skills` でインストールできる。
 再生成: `scripts/gen-skills-md.ts`（`scripts/external.ts` の add / sync / remove 後は自動で更新される）。
 
-合計 107 スキル
+合計 108 スキル
 
 | bucket | count | 用途 |
 | --- | --- | --- |
@@ -13,7 +13,7 @@
 | [productivity/](#productivity) | 0 | コード以外のワークフロー向け（自作） |
 | [in-progress/](#in-progress) | 0 | 作りかけ・試用中（自作） |
 | [deprecated/](#deprecated) | 0 | 使わなくなったもの（自作） |
-| [external/](#external) | 102 | 外部リポジトリから vendor したもの |
+| [external/](#external) | 103 | 外部リポジトリから vendor したもの |
 
 ## engineering
 
@@ -56,6 +56,7 @@
 
 - impeccable: Apache-2.0 の再配布条件として、上流リポジトリ直下の LICENSE と NOTICE.md をスキルディレクトリへ同梱する。同梱の modern-screenshot 4.7.0 にはその版の MIT LICENSE を添える。Windows ランチャーは作業ディレクトリと相対パスを検索せず、curl と certutil は %SystemRoot%\System32 の絶対パスだけを使う。名前付きサブエージェントが未登録のときは reference/degraded/ に分岐する。audit と critique の保存は IMPECCABLE_NO_TELEMETRY=1 を付けてローカルだけにし、アカウントへの同期は利用者が明示したときだけ行う。add / sync がコピー直後に再適用する。スキル側に LICENSE または NOTICE.md があれば上流のスキル同梱分を優先する。
 - archify: 更新確認は既定でオフ。`ARCHIFY_UPDATE_CHECK=1` のときだけ https://tt-a1i.github.io/archify/skill-updates/archify/stable.json へ GET する。`ARCHIFY_UPDATE_CHECK_DISABLED=1` はオプトインより優先して止める。オプトイン時も、新しい版があること以外はリモート manifest の文面を出さず、自己更新は案内しない。グローバルな agent ルールファイルは書き換えない。再適用は `scripts/external-overrides.ts`。
+- gemini-frontend-design: Apache-2.0 の再配布条件として、上流リポジトリ直下の LICENSE をスキルディレクトリへ同梱する。NOTICE は上流に無い。スキル側に LICENSE があれば上流のスキル同梱分を優先する。add / sync がコピー直後に再適用する。
 
 | skill | description | source | commit |
 | --- | --- | --- | --- |
@@ -84,6 +85,7 @@
 | [figure-it-out](./skills/external/figure-it-out/SKILL.md) | Design an auditable playbook when no narrower one fits: a large migration, an ambitious multi-part change, or work a human reviews after stepping away. Scales rigor to the task, runs a hypothesis loop, and logs decisions. Use for /figure-it-out or 'figure it out'. | [cursor/plugins/pstack/skills/figure-it-out](https://github.com/cursor/plugins/tree/ca782ed8b3c2c521cead8e1720d55c3a5dbf2347/pstack/skills/figure-it-out) | `ca782ed` |
 | [find-animation-opportunities](./skills/external/find-animation-opportunities/SKILL.md) | Search a codebase or UI for places that don't animate but should, and reject everything that shouldn't. Read-only; it proposes motion with exact values, it does not implement it. Use when the user asks "what could be animated here?" or wants to "make this feel more alive". For fixing existing animations, use improve-animations or review-animations instead. | [emilkowalski/skills/skills/find-animation-opportunities](https://github.com/emilkowalski/skills/tree/64eb3deb9a5fbfa041faf783e0bc3fd635872e9c/skills/find-animation-opportunities) | `64eb3de` |
 | [first-reader](./skills/external/first-reader/SKILL.md) | Beta readers for any draft, run by simulating how a real reader experiences it, moment by moment. A skim gate, a no-lookahead timed read producing an attention transcript with quit points, a recall test of what a reader remembers the next day, and a trust ledger of the implied author. Use when the user asks for a beta read, beta readers, test readers, human review, reader review, to read something like a human, to be a first reader, whether a piece holds attention or will actually get read, for a quick read of whether a busy skimmer would even open a post, what readers will remember or take away tomorrow, where readers stop reading or bounce, or why a draft still feels off or hollow after anti-slop or humanizer edits. Final gate before publishing; reports where the reading broke; never rewrites. | [Shubhamsaboo/awesome-llm-apps/agent_skills/first-reader](https://github.com/Shubhamsaboo/awesome-llm-apps/tree/14c5f8ff0094659f321801385d2b52ccc65fea3b/agent_skills/first-reader) | `14c5f8f` |
+| [gemini-frontend-design](./skills/external/gemini-frontend-design/SKILL.md) | Design and build polished websites and web apps tailored to the brief. Use when creating or redesigning web interfaces, covering layout, color, typography, custom imagery, and motion. | [google-gemini/demolab/skills/gemini-frontend-design](https://github.com/google-gemini/demolab/tree/cd0c1f8540c0186ec9592af972a0700fa20909d4/skills/gemini-frontend-design) | `cd0c1f8` |
 | [get-pr-comments](./skills/external/get-pr-comments/SKILL.md) | Fetch and summarize review comments from the active pull request | [cursor/plugins/cursor-team-kit/skills/get-pr-comments](https://github.com/cursor/plugins/tree/ca782ed8b3c2c521cead8e1720d55c3a5dbf2347/cursor-team-kit/skills/get-pr-comments) | `ca782ed` |
 | [grill-me](./skills/external/grill-me/SKILL.md) | A relentless interview to sharpen a plan or design. | [mattpocock/skills/skills/productivity/grill-me](https://github.com/mattpocock/skills/tree/d65391149dbb5fe76478e76fa8d5122b2aa5a70e/skills/productivity/grill-me) | `d653911` |
 | [grill-with-docs](./skills/external/grill-with-docs/SKILL.md) | A relentless interview to sharpen a plan or design, which also creates docs (ADR's and glossary) as we go. | [mattpocock/skills/skills/engineering/grill-with-docs](https://github.com/mattpocock/skills/tree/d65391149dbb5fe76478e76fa8d5122b2aa5a70e/skills/engineering/grill-with-docs) | `d653911` |
