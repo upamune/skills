@@ -356,6 +356,12 @@ export const EXTERNAL_OVERRIDES: Record<string, OverrideSpec> = {
       },
     ],
   },
+  "gemini-frontend-design": {
+    readmeLine:
+      "gemini-frontend-design: Apache-2.0 の再配布条件として、上流リポジトリ直下の LICENSE をスキルディレクトリへ同梱する。NOTICE は上流に無い。スキル側に LICENSE があれば上流のスキル同梱分を優先する。add / sync がコピー直後に再適用する。",
+    replacements: [],
+    extraFiles: [{ fromRepo: "LICENSE", to: "LICENSE" }],
+  },
 };
 
 export function externalOverrideNoticeLines(): string[] {

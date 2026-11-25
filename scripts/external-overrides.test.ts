@@ -412,3 +412,63 @@ test("frozen checkout keeps LF text and CRLF cmd when autocrlf is globally true"
     rmSync(root, { recursive: true, force: true });
   }
 });
+
+const GEMINI_FRONTEND_DESIGN_ROOT = join(REPO, "skills/external/gemini-frontend-design");
+
+function withGeminiFrontendDesignCopy(run: (skill: string, repo: string) => void): void {
+  const repo = mkdtempSync(join(tmpdir(), "gemini-frontend-design-repo-"));
+  const skill = mkdtempSync(join(tmpdir(), "gemini-frontend-design-skill-"));
+  try {
+    writeFileSync(join(repo, "LICENSE"), "Apache-2.0\n");
+    writeFileSync(join(skill, "SKILL.md"), "name: gemini-frontend-design\n");
+    run(skill, repo);
+  } finally {
+    rmSync(repo, { recursive: true, force: true });
+    rmSync(skill, { recursive: true, force: true });
+  }
+}
+
+describe("gemini-frontend-design legal files", () => {
+  test("notice names the upstream license", () => {
+    const notice = externalOverrideNoticeLines().join("\n");
+    assert.match(notice, /gemini-frontend-design/);
+    assert.match(notice, /Apache-2\.0/);
+    assert.match(notice, /LICENSE/);
+  });
+
+  test("copies LICENSE from the upstream root", () => {
+    withGeminiFrontendDesignCopy((skill, repo) => {
+      applyExternalOverrides("gemini-frontend-design", skill, repo);
+      applyExternalOverrides("gemini-frontend-design", skill, repo);
+      assert.equal(readFileSync(join(skill, "LICENSE"), "utf8"), "Apache-2.0\n");
+      assert.equal(readFileSync(join(skill, "SKILL.md"), "utf8"), "name: gemini-frontend-design\n");
+    });
+  });
+
+  test("keeps a license already shipped inside the skill directory", () => {
+    withGeminiFrontendDesignCopy((skill, repo) => {
+      writeFileSync(join(skill, "LICENSE"), "skill\n");
+      applyExternalOverrides("gemini-frontend-design", skill, repo);
+      assert.equal(readFileSync(join(skill, "LICENSE"), "utf8"), "skill\n");
+    });
+  });
+
+  test("a missing upstream license writes nothing", () => {
+    withGeminiFrontendDesignCopy((skill, repo) => {
+      rmSync(join(repo, "LICENSE"));
+      const before = readFileSync(join(skill, "SKILL.md"));
+      assert.throws(() => applyExternalOverrides("gemini-frontend-design", skill, repo), /同梱元がありません: LICENSE/);
+      assert.equal(existsSync(join(skill, "LICENSE")), false);
+      assert.deepEqual(readFileSync(join(skill, "SKILL.md")), before);
+    });
+  });
+
+  test("vendored copy includes the Apache license and leaves SKILL.md unchanged", () => {
+    const license = readFileSync(join(GEMINI_FRONTEND_DESIGN_ROOT, "LICENSE"), "utf8");
+    const skill = readFileSync(join(GEMINI_FRONTEND_DESIGN_ROOT, "SKILL.md"), "utf8");
+    assert.match(license, /Apache License/);
+    assert.match(license, /Version 2\.0/);
+    assert.match(skill, /^name: gemini-frontend-design$/m);
+    assert.doesNotMatch(skill, /upamune\/skills local override/);
+  });
+});
