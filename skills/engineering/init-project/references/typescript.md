@@ -114,7 +114,20 @@ depends = ["format:check", "lint", "typecheck", "test", "build"]
 }
 ```
 
-依存は次の順で入れる。`bun add` は caret で書き、実際の版は `bun.lock` が固定する。`bun.lock` をコミットし、`package-lock.json` が紛れ込んでいたら消す。
+依存は次の順で入れる。`bun add` は caret で書き、実際の版は `bun.lock` が固定する。`bun.lock` をコミットし、`package-lock.json` が紛れ込んでいたら消す。Node は入れないので、peer の確認は `bun add` の前に `bun pm view` で行う。
+
+```bash
+bun pm view @mantine/hooks peerDependencies
+```
+
+2026-11 時点の最新 v9.8.2 は `react` ^19.2.0 のみ。runtime dependency は無く、`react-dom` も `@mantine/core` も要らない。同時に入れる React がこの範囲なら、下の `bun add` に `@mantine/hooks` を含める。指定された React が範囲外なら React は上げず、前のメジャーを確認する。
+
+```bash
+bun pm view @mantine/hooks@8 version
+bun pm view @mantine/hooks@8 peerDependencies
+```
+
+`@8` は Bun 1.4.5 でそのメジャーの最新（v8.3.18）に解決し、peer は `react` ^18.x || ^19.x。React 18.2 でもこの版は入る。合う版が見つかったら `bun add @mantine/hooks@<その版>` にする。合う版が無ければ `@mantine/hooks` は入れず、knip と fallow の `ignoreDependencies` にも、`CLAUDE.md` の一行にも書かない。
 
 ```bash
 bun add react react-dom @mantine/hooks effect \
@@ -136,7 +149,7 @@ bun add -D fallow@<確認した版>
 
 Devtools 3 つは `__root.tsx` から import するので `dependencies` に置く（本番ビルドには含まれない）。`@types/node` ではなく `@types/bun` を使う。
 
-`@mantine/hooks` は Web React の既定依存で、骨組みではまだ import しない。入れる前に `npm view @mantine/hooks peerDependencies` で React の peer が合うことを確認する（2026-11 時点の v9.8.2 は `react` ^19.2.0 のみ。runtime dependency は無く、`react-dom` も `@mantine/core` も要らない）。knip の `ignoreDependencies` に入れ、フックを import し始めたら外す。React Native、および native を含む Expo には入れない。
+`@mantine/hooks` は骨組みではまだ import しない。knip の `ignoreDependencies` は fallow に効かないので、fallow の `ignoreDependencies` にも同じ名前を入れる。フックを import し始めたら両方から外す。React Native、および native を含む Expo には入れない。
 
 ## 設定ファイル
 
@@ -332,7 +345,7 @@ overrides: [
 
 - ルートファイルは生成される `routeTree.gen.ts` からしか参照されないので `entry` にする（knip の tanstack-router plugin が `routeTree.gen.ts` と `src/router.tsx` は自動で entry にする）
 - shadcn のコンポーネントは使う前から置かれるので `entry` にして未使用 export を報告させない。`src/lib/utils.ts` も shadcn の規約上のファイルなので同様
-- `ignoreDependencies` は CSS の `@import` 経由でしか使われない依存（knip は CSS を追わない）と、shadcn が既定で入れる `lucide-react`、骨組みでは未使用の `@mantine/hooks`。アイコンを使い始めたら `lucide-react` を外し、フックを import し始めたら `@mantine/hooks` を外す。`@effect/language-service` は `@effect/tsgo` の plugin 名で実パッケージが無い。`@shadcn/lint` は `oxlint.config.ts` の `jsPlugins` 文字列だけで参照されるので knip からは未使用に見える
+- `ignoreDependencies` は CSS の `@import` 経由でしか使われない依存（knip は CSS を追わない）と、shadcn が既定で入れる `lucide-react`、骨組みでは未使用の `@mantine/hooks`。アイコンを使い始めたら `lucide-react` を外し、フックを import し始めたら `@mantine/hooks` を knip と fallow の両方から外す。`@effect/language-service` は `@effect/tsgo` の plugin 名で実パッケージが無い。`@shadcn/lint` は `oxlint.config.ts` の `jsPlugins` 文字列だけで参照されるので knip からは未使用に見える
 
 ### .fallowrc.json
 
@@ -348,11 +361,13 @@ overrides: [
     "src/routeTree.gen.ts",
     "src/components/ui/**",
     "server.ts"
-  ]
+  ],
+  "ignoreDependencies": ["@mantine/hooks"]
 }
 ```
 
 - 組み込み plugin が TanStack Router / Start と Vitest の entry を検出する。初回の誤検知は生成ファイルがほとんどなので `ignorePatterns` で外す
+- `ignoreDependencies` は未使用依存の検出から外す。knip の同名キーは fallow に効かない。骨組みで未使用の `@mantine/hooks` をここに置かないと、`fallow audit` が新しい未使用依存として exit 1 になる。フックを import し始めたら外す。パッケージを入れなかったときはこの配列に書かない
 - `src/components/ui/**` は shadcn CLI 所有（knip の entry、oxlint の ignore と同じ理由）
 - `server.ts` は TanStack の start-bun example からコピーした本番サーバ
 - Fallow Runtime（有料）は入れない。`fallow license activate`、coverage の upload、runtime intelligence は使わない
