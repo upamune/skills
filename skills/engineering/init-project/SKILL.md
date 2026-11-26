@@ -12,7 +12,9 @@ disable-model-invocation: true
 
 - 共通: mise でツール管理、確認した安定版をマイナー以上で固定、Actions の `uses:` は完全なタグで書き `.github/workflows/actions.lock` に固定、backlog でタスク管理。
 - Go: goimports / gofumpt / go vet / go fix / cccc と標準 testing。
-- TypeScript Web: Bun + React / TanStack Start、Tailwind / shadcn/ui、Effect、Ultracite（Oxlint / Oxfmt）+ `@shadcn/lint` + knip + fallow + cccc。具体的な互換性制約は TypeScript reference に置く。
+- TypeScript Web: Bun + React / TanStack Start、Tailwind / shadcn/ui、Effect、`@mantine/hooks`、Ultracite（Oxlint / Oxfmt）+ `@shadcn/lint` + knip + fallow + cccc。具体的な互換性制約は TypeScript reference に置く。
+- 指定された別の Web React（Next.js、Vite + React、Expo Web を含む）でも `@mantine/hooks` を dependencies に入れる。`@mantine/core` と Mantine のスタイルは足さない。peer は React のみなので、入れる前に `npm view @mantine/hooks peerDependencies` で React の版が合うことを確認する。ユーティリティフックを自作する前にこのパッケージを探す。TanStack に同じ用途があるもの（debounce / throttle は Pacer）はそちらを使う。
+- React Native、および native を含む Expo には `@mantine/hooks` を入れない。[公式](https://mantine.dev/hooks/package/) はパッケージを Web React 向けとし、状態管理フック（use-pagination、use-queue など）だけ React Native 互換と書いている。useClickOutside、useMediaQuery、useHotkeys、useClipboard、useIntersection、useLocalStorage のように DOM やブラウザ API に依存するフックは native では使わない。
 
 これらは新規作成時の既定。ユーザーが指定した構成や既存の設定を置き換えない。既存ファイルには必要な差分を統合し、未確定の方針変更や破壊的な置換だけ確認する。
 

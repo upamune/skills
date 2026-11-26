@@ -8,6 +8,7 @@
 | ルーティング | TanStack Router（file-based、`src/routes/`） | Start に同梱 |
 | サーバ状態 | TanStack Query + `@tanstack/react-router-ssr-query` | SSR で dehydrate/hydrate |
 | UI | Tailwind CSS v4 + shadcn/ui（Base UI、nova preset） | `bunx --bun shadcn add <component>` |
+| ユーティリティフック | `@mantine/hooks` | peer は React のみ。`@mantine/core` は入れない |
 | アイコン | lucide-react | shadcn の既定 |
 | アプリ基盤・バリデーション | Effect / Effect Schema | `Schema.standardSchemaV1` で TanStack Form にも渡せる |
 | 品質 | Ultracite（Oxlint + Oxfmt、react / tanstack / vitest preset）+ @shadcn/lint（デザインシステム）+ knip + fallow + cccc + tsc + Effect TSGO | knip は未使用 export / 依存。fallow は循環・重複・CSS drift と PR の `fallow audit` ゲート。複雑度の gate は cccc で行う。併用し、置換しない |
@@ -20,6 +21,7 @@
 - **React / TanStack を第一候補にする**。同じ用途のライブラリが TanStack にあるなら他を入れない
 - **TanStack に無い領域だけ探す**。まず [tanstack.com/libraries](https://tanstack.com/libraries) と TanStack CLI の add-on（`bunx @tanstack/cli create --list-add-ons`）を見て無いことを確認してから、React エコシステムで最も標準的なものを選び、選定理由を README か CLAUDE.md に一行書く
 - UI コンポーネントは shadcn/ui。別の UI ライブラリを重ねない
+- **ユーティリティフックは自作する前に `@mantine/hooks` を使う**。開閉、クリック外、メディアクエリ、ホットキー、クリップボード、交差、localStorage など、TanStack に同じ用途が無いものはここから取る。TanStack に同じ用途があるもの（debounce / throttle は Pacer）はそちら。`@mantine/core` と Mantine のスタイルは入れない。React Native、および native を含む Expo には入れない（範囲は SKILL.md）
 
 | 用途 | 使うもの |
 | --- | --- |
@@ -32,6 +34,7 @@
 | debounce / throttle / rate limit | TanStack Pacer |
 | クライアント DB・同期 | TanStack DB |
 | UI / アイコン | shadcn/ui / lucide-react（TanStack に無い） |
+| ユーティリティフック | `@mantine/hooks`（TanStack に無いもの。自作しない） |
 | バリデーション | Effect Schema（TanStack に無い。zod は入れない） |
 | テスト | Vitest + Testing Library（TanStack に無い） |
 
@@ -114,7 +117,7 @@ depends = ["format:check", "lint", "typecheck", "test", "build"]
 依存は次の順で入れる。`bun add` は caret で書き、実際の版は `bun.lock` が固定する。`bun.lock` をコミットし、`package-lock.json` が紛れ込んでいたら消す。
 
 ```bash
-bun add react react-dom effect \
+bun add react react-dom @mantine/hooks effect \
   @tanstack/react-start @tanstack/react-router \
   @tanstack/react-query @tanstack/react-router-ssr-query \
   @tanstack/react-devtools @tanstack/react-router-devtools @tanstack/react-query-devtools
@@ -132,6 +135,8 @@ bun add -D fallow@<確認した版>
 ```
 
 Devtools 3 つは `__root.tsx` から import するので `dependencies` に置く（本番ビルドには含まれない）。`@types/node` ではなく `@types/bun` を使う。
+
+`@mantine/hooks` は Web React の既定依存で、骨組みではまだ import しない。入れる前に `npm view @mantine/hooks peerDependencies` で React の peer が合うことを確認する（2026-11 時点の v9.8.2 は `react` ^19.2.0 のみ。runtime dependency は無く、`react-dom` も `@mantine/core` も要らない）。knip の `ignoreDependencies` に入れ、フックを import し始めたら外す。React Native、および native を含む Expo には入れない。
 
 ## 設定ファイル
 
@@ -315,6 +320,7 @@ overrides: [
   "ignoreDependencies": [
     "@effect/language-service",
     "@fontsource-variable/geist",
+    "@mantine/hooks",
     "@shadcn/lint",
     "lucide-react",
     "shadcn",
@@ -326,7 +332,7 @@ overrides: [
 
 - ルートファイルは生成される `routeTree.gen.ts` からしか参照されないので `entry` にする（knip の tanstack-router plugin が `routeTree.gen.ts` と `src/router.tsx` は自動で entry にする）
 - shadcn のコンポーネントは使う前から置かれるので `entry` にして未使用 export を報告させない。`src/lib/utils.ts` も shadcn の規約上のファイルなので同様
-- `ignoreDependencies` は CSS の `@import` 経由でしか使われない依存（knip は CSS を追わない）と、shadcn が既定で入れる `lucide-react`。アイコンを使い始めたら `lucide-react` は外す。`@effect/language-service` は `@effect/tsgo` の plugin 名で実パッケージが無い。`@shadcn/lint` は `oxlint.config.ts` の `jsPlugins` 文字列だけで参照されるので knip からは未使用に見える
+- `ignoreDependencies` は CSS の `@import` 経由でしか使われない依存（knip は CSS を追わない）と、shadcn が既定で入れる `lucide-react`、骨組みでは未使用の `@mantine/hooks`。アイコンを使い始めたら `lucide-react` を外し、フックを import し始めたら `@mantine/hooks` を外す。`@effect/language-service` は `@effect/tsgo` の plugin 名で実パッケージが無い。`@shadcn/lint` は `oxlint.config.ts` の `jsPlugins` 文字列だけで参照されるので knip からは未使用に見える
 
 ### .fallowrc.json
 
