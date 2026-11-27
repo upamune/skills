@@ -75,21 +75,21 @@
       "source": "mattpocock/skills",
       "url": "https://github.com/mattpocock/skills.git",
       "path": "skills/in-progress/claude-handoff",
-      "commit": "6f7f7831a625f040a8e06a0e7954826b87ce775a",
+      "commit": "bbadaa631c37af594e5a05c9cefacd9956136b18",
       "updatedAt": "2026-08-23T10:02:54.839Z"
     },
     "code-review": {
       "source": "mattpocock/skills",
       "url": "https://github.com/mattpocock/skills.git",
       "path": "skills/engineering/code-review",
-      "commit": "6f7f7831a625f040a8e06a0e7954826b87ce775a",
+      "commit": "bbadaa631c37af594e5a05c9cefacd9956136b18",
       "updatedAt": "2026-10-29T17:22:37.098Z"
     },
     "codebase-design": {
       "source": "mattpocock/skills",
       "url": "https://github.com/mattpocock/skills.git",
       "path": "skills/engineering/codebase-design",
-      "commit": "6f7f7831a625f040a8e06a0e7954826b87ce775a",
+      "commit": "bbadaa631c37af594e5a05c9cefacd9956136b18",
       "updatedAt": "2026-10-29T17:22:37.297Z"
     },
     "cognitive-rhythm-writing": {
@@ -131,14 +131,14 @@
       "source": "mattpocock/skills",
       "url": "https://github.com/mattpocock/skills.git",
       "path": "skills/engineering/diagnosing-bugs",
-      "commit": "6f7f7831a625f040a8e06a0e7954826b87ce775a",
+      "commit": "bbadaa631c37af594e5a05c9cefacd9956136b18",
       "updatedAt": "2026-08-23T10:02:54.805Z"
     },
     "domain-modeling": {
       "source": "mattpocock/skills",
       "url": "https://github.com/mattpocock/skills.git",
       "path": "skills/engineering/domain-modeling",
-      "commit": "6f7f7831a625f040a8e06a0e7954826b87ce775a",
+      "commit": "bbadaa631c37af594e5a05c9cefacd9956136b18",
       "updatedAt": "2026-11-25T17:19:17.253Z"
     },
     "eli5": {
@@ -188,21 +188,21 @@
       "source": "mattpocock/skills",
       "url": "https://github.com/mattpocock/skills.git",
       "path": "skills/productivity/grill-me",
-      "commit": "6f7f7831a625f040a8e06a0e7954826b87ce775a",
+      "commit": "bbadaa631c37af594e5a05c9cefacd9956136b18",
       "updatedAt": "2026-08-23T10:02:54.848Z"
     },
     "grill-with-docs": {
       "source": "mattpocock/skills",
       "url": "https://github.com/mattpocock/skills.git",
       "path": "skills/engineering/grill-with-docs",
-      "commit": "6f7f7831a625f040a8e06a0e7954826b87ce775a",
+      "commit": "bbadaa631c37af594e5a05c9cefacd9956136b18",
       "updatedAt": "2026-08-23T10:02:54.813Z"
     },
     "handoff": {
       "source": "mattpocock/skills",
       "url": "https://github.com/mattpocock/skills.git",
       "path": "skills/productivity/handoff",
-      "commit": "6f7f7831a625f040a8e06a0e7954826b87ce775a",
+      "commit": "bbadaa631c37af594e5a05c9cefacd9956136b18",
       "updatedAt": "2026-08-23T10:02:54.856Z"
     },
     "how": {
@@ -223,14 +223,14 @@
       "source": "pbakaus/impeccable",
       "url": "https://github.com/pbakaus/impeccable.git",
       "path": "plugin/skills/impeccable",
-      "commit": "b49177d32788f2dc585c42831d845dacf1ebed2c",
-      "updatedAt": "2026-11-24T08:25:19.064Z"
+      "commit": "2fc5e1459efbbf06d92c7306517c286bf12490cf",
+      "updatedAt": "2026-11-27T17:26:07.462Z"
     },
     "implement": {
       "source": "mattpocock/skills",
       "url": "https://github.com/mattpocock/skills.git",
       "path": "skills/engineering/implement",
-      "commit": "6f7f7831a625f040a8e06a0e7954826b87ce775a",
+      "commit": "bbadaa631c37af594e5a05c9cefacd9956136b18",
       "updatedAt": "2026-08-23T10:02:54.816Z"
     },
     "improve-animations": {
@@ -244,7 +244,7 @@
       "source": "mattpocock/skills",
       "url": "https://github.com/mattpocock/skills.git",
       "path": "skills/engineering/improve-codebase-architecture",
-      "commit": "6f7f7831a625f040a8e06a0e7954826b87ce775a",
+      "commit": "bbadaa631c37af594e5a05c9cefacd9956136b18",
       "updatedAt": "2026-10-29T17:22:38.838Z"
     },
     "in-your-own-words": {
@@ -286,7 +286,7 @@
       "source": "mattpocock/skills",
       "url": "https://github.com/mattpocock/skills.git",
       "path": "skills/in-progress/loop-me",
-      "commit": "6f7f7831a625f040a8e06a0e7954826b87ce775a",
+      "commit": "bbadaa631c37af594e5a05c9cefacd9956136b18",
       "updatedAt": "2026-08-23T10:02:54.844Z"
     },
     "loop-on-ci": {
@@ -538,7 +538,7 @@
       "source": "mattpocock/skills",
       "url": "https://github.com/mattpocock/skills.git",
       "path": "skills/engineering/prototype",
-      "commit": "6f7f7831a625f040a8e06a0e7954826b87ce775a",
+      "commit": "bbadaa631c37af594e5a05c9cefacd9956136b18",
       "updatedAt": "2026-08-23T10:02:54.823Z"
     },
     "recall": {
@@ -559,7 +559,7 @@
       "source": "mattpocock/skills",
       "url": "https://github.com/mattpocock/skills.git",
       "path": "skills/engineering/research",
-      "commit": "6f7f7831a625f040a8e06a0e7954826b87ce775a",
+      "commit": "bbadaa631c37af594e5a05c9cefacd9956136b18",
       "updatedAt": "2026-10-29T17:22:39.515Z"
     },
     "review-and-ship": {
@@ -707,7 +707,7 @@
       "source": "mattpocock/skills",
       "url": "https://github.com/mattpocock/skills.git",
       "path": "skills/productivity/writing-for-agents",
-      "commit": "6f7f7831a625f040a8e06a0e7954826b87ce775a",
+      "commit": "bbadaa631c37af594e5a05c9cefacd9956136b18",
       "updatedAt": "2026-08-23T10:02:54.863Z"
     },
     "yomiyasu": {
