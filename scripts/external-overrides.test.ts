@@ -336,6 +336,11 @@ describe("impeccable legal files", () => {
       assert.doesNotMatch(launcher, /^curl\.exe /m);
       assert.doesNotMatch(launcher, /^certutil -hashfile/m);
       assert.match(launcher, /%SystemRoot%\\System32\\curl\.exe/);
+      assert.match(
+        launcher,
+        /"%SystemRoot%\\System32\\curl\.exe" -fsSL --retry 2 -w "%%\{http_code\} %%\{url_effective\} %%\{errormsg\}"/,
+      );
+      assert.doesNotMatch(launcher, /curl\.exe -fsSL/);
       assert.match(launcher, /%SystemRoot%\\System32\\certutil\.exe/);
       assert.match(launcher, /:path_consider/);
       assert.match(launcher, /do \(set "IMPECCABLE_PATH_DIR=%%a"& set "IMPECCABLE_PATH_LEFT=%%b"\)/);
@@ -363,10 +368,21 @@ describe("impeccable legal files", () => {
       for (const name of ["audit.md", "audit.native.md"]) {
         const audit = readFileSync(join(skill, "reference", name), "utf8");
         assert.match(audit, /IMPECCABLE_NO_TELEMETRY=1 IMPECCABLE_REPORT_META=/);
+        assert.doesNotMatch(audit, /(?<!IMPECCABLE_NO_TELEMETRY=1 )IMPECCABLE_REPORT_META=/);
         assert.match(audit, /audit-storage write/);
+        assert.match(audit, /does not upload it/);
       }
+      const webAudit = readFileSync(join(skill, "reference/audit.md"), "utf8");
+      assert.match(webAudit, /"title":"<page title, or empty>"/);
+      assert.match(webAudit, /prints no sync line/);
       const critique = readFileSync(join(skill, "reference/critique.md"), "utf8");
       assert.match(critique, /IMPECCABLE_NO_TELEMETRY=1 IMPECCABLE_CRITIQUE_META=/);
+      assert.doesNotMatch(critique, /(?<!IMPECCABLE_NO_TELEMETRY=1 )IMPECCABLE_CRITIQUE_META=/);
+      assert.match(critique, /"title":"<page title, or empty>"/);
+      assert.match(critique, /"url":"<http\(s\) URL you viewed, or empty>"/);
+      assert.match(critique, /"pr":"<PR number checked out, or empty>"/);
+      assert.match(critique, /does not upload it/);
+      assert.match(critique, /prints no sync line/);
       assert.match(critique, /critique-storage write/);
       assert.match(critique, /critique-storage trend/);
       assert.doesNotMatch(critique, /IMPECCABLE_NO_TELEMETRY=1 "<skill-base-dir>\/scripts\/impeccable" critique-storage trend/);

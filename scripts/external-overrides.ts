@@ -196,11 +196,11 @@ const CMD_CURL_TO = crlf(`rem upamune/skills local override: an unqualified curl
 if not exist "%SystemRoot%\\System32\\curl.exe" goto curl_missing`);
 
 const CMD_FETCH_FROM = crlf(
-  `curl.exe -fsSL --retry 2 -w "%%{http_code} %%{url_effective}" -o "%part%" "%url%" >"%staging%\\http.txt" 2>nul`,
+  `curl.exe -fsSL --retry 2 -w "%%{http_code} %%{url_effective} %%{errormsg}" -o "%part%" "%url%" >"%staging%\\http.txt" 2>nul`,
 );
 
 const CMD_FETCH_TO = crlf(
-  `"%SystemRoot%\\System32\\curl.exe" -fsSL --retry 2 -w "%%{http_code} %%{url_effective}" -o "%part%" "%url%" >"%staging%\\http.txt" 2>nul`,
+  `"%SystemRoot%\\System32\\curl.exe" -fsSL --retry 2 -w "%%{http_code} %%{url_effective} %%{errormsg}" -o "%part%" "%url%" >"%staging%\\http.txt" 2>nul`,
 );
 
 const CMD_HASH_FROM = crlf(`set "actual="
@@ -214,29 +214,43 @@ const UNREGISTERED_ROLE_FROM = "This harness has no subagent capability, so you 
 const UNREGISTERED_ROLE_TO =
   "upamune/skills local override: this copy does not register the named subagents. You are running this role inline because the harness has no subagent capability, or the named agent is not registered.";
 
-const AUDIT_SAVE_FROM = `then run the write command with the scores as metadata and delete the temp file:
+const AUDIT_NATIVE_SAVE_FROM = `then run the write command with the scores as metadata and delete the temp file:
 
 \`\`\`bash
 IMPECCABLE_REPORT_META='{"target":"<user phrasing, or .>","total_score":<n>,"max_score":20,"p0_count":<n>,"p1_count":<n>,"p2_count":<n>,"p3_count":<n>}' \\
   "<skill-base-dir>/scripts/impeccable" audit-storage write "<resolved target, or . for the whole project>" <temp-file>
 \`\`\``;
 
-const AUDIT_SAVE_TO = `then run the write command with the scores as metadata and delete the temp file. upamune/skills local override: this copy saves the report locally and does not upload it. Prefix the write with IMPECCABLE_NO_TELEMETRY=1 so a signed-in engine still writes the local file and does not send the report. Omit that variable only when the user explicitly asks to sync the report to their Impeccable account.
+const AUDIT_NATIVE_SAVE_TO = `then run the write command with the scores as metadata and delete the temp file. upamune/skills local override: this copy saves the report locally and does not upload it. Prefix the write with IMPECCABLE_NO_TELEMETRY=1 so a signed-in engine still writes the local file and does not send the report. Omit that variable only when the user explicitly asks to sync the report to their Impeccable account.
 
 \`\`\`bash
 IMPECCABLE_NO_TELEMETRY=1 IMPECCABLE_REPORT_META='{"target":"<user phrasing, or .>","total_score":<n>,"max_score":20,"p0_count":<n>,"p1_count":<n>,"p2_count":<n>,"p3_count":<n>}' \\
   "<skill-base-dir>/scripts/impeccable" audit-storage write "<resolved target, or . for the whole project>" <temp-file>
 \`\`\``;
 
+const AUDIT_SAVE_FROM = `then run the write command with the scores as metadata and delete the temp file:
+
+\`\`\`bash
+IMPECCABLE_REPORT_META='{"target":"<user phrasing, or .>","title":"<page title, or empty>","total_score":<n>,"max_score":20,"p0_count":<n>,"p1_count":<n>,"p2_count":<n>,"p3_count":<n>}' \\
+  "<skill-base-dir>/scripts/impeccable" audit-storage write "<resolved target, or . for the whole project>" <temp-file>
+\`\`\``;
+
+const AUDIT_SAVE_TO = `then run the write command with the scores as metadata and delete the temp file. upamune/skills local override: this copy saves the report locally and does not upload it. Prefix the write with IMPECCABLE_NO_TELEMETRY=1 so a signed-in engine still writes the local file and does not send the report. Omit that variable only when the user explicitly asks to sync the report to their Impeccable account. With that variable set, the helper prints no sync line; do not invent one or follow a remote URL from it.
+
+\`\`\`bash
+IMPECCABLE_NO_TELEMETRY=1 IMPECCABLE_REPORT_META='{"target":"<user phrasing, or .>","title":"<page title, or empty>","total_score":<n>,"max_score":20,"p0_count":<n>,"p1_count":<n>,"p2_count":<n>,"p3_count":<n>}' \\
+  "<skill-base-dir>/scripts/impeccable" audit-storage write "<resolved target, or . for the whole project>" <temp-file>
+\`\`\``;
+
 const CRITIQUE_SAVE_FROM = `2. **Pass the structured metadata** through \`IMPECCABLE_CRITIQUE_META\` (JSON), then run the write command:
    \`\`\`bash
-   IMPECCABLE_CRITIQUE_META='{"target":"<user phrasing>","total_score":<n>,"max_score":<n>,"na_heuristics":"<comma-separated numbers, or empty>","p0_count":<n>,"p1_count":<n>}' \\
+   IMPECCABLE_CRITIQUE_META='{"target":"<user phrasing>","title":"<page title, or empty>","url":"<http(s) URL you viewed, or empty>","pr":"<PR number checked out, or empty>","heuristics":[{"n":<1-10>,"score":<0-4>}],"total_score":<n>,"max_score":<n>,"na_heuristics":"<comma-separated numbers, or empty>","p0_count":<n>,"p1_count":<n>,"p2_count":<n>,"p3_count":<n>}' \\
      "<skill-base-dir>/scripts/impeccable" critique-storage write "<resolved target>" <body-file>
    \`\`\``;
 
-const CRITIQUE_SAVE_TO = `2. **Pass the structured metadata** through \`IMPECCABLE_CRITIQUE_META\` (JSON), then run the write command. upamune/skills local override: this copy saves the critique locally and does not upload it. Prefix the write with IMPECCABLE_NO_TELEMETRY=1 so a signed-in engine still writes the local file and does not send the report. Omit that variable only when the user explicitly asks to sync the critique to their Impeccable account. With that variable set, the helper prints no sync line; that silence means the local file is the result.
+const CRITIQUE_SAVE_TO = `2. **Pass the structured metadata** through \`IMPECCABLE_CRITIQUE_META\` (JSON), then run the write command. upamune/skills local override: this copy saves the critique locally and does not upload it. Prefix the write with IMPECCABLE_NO_TELEMETRY=1 so a signed-in engine still writes the local file and does not send the report. Omit that variable only when the user explicitly asks to sync the critique to their Impeccable account. With that variable set, the helper prints no sync line; that silence means the local file is the result. Do not invent a sync line or follow a remote URL from it.
    \`\`\`bash
-   IMPECCABLE_NO_TELEMETRY=1 IMPECCABLE_CRITIQUE_META='{"target":"<user phrasing>","total_score":<n>,"max_score":<n>,"na_heuristics":"<comma-separated numbers, or empty>","p0_count":<n>,"p1_count":<n>}' \\
+   IMPECCABLE_NO_TELEMETRY=1 IMPECCABLE_CRITIQUE_META='{"target":"<user phrasing>","title":"<page title, or empty>","url":"<http(s) URL you viewed, or empty>","pr":"<PR number checked out, or empty>","heuristics":[{"n":<1-10>,"score":<0-4>}],"total_score":<n>,"max_score":<n>,"na_heuristics":"<comma-separated numbers, or empty>","p0_count":<n>,"p1_count":<n>,"p2_count":<n>,"p3_count":<n>}' \\
      "<skill-base-dir>/scripts/impeccable" critique-storage write "<resolved target>" <body-file>
    \`\`\``;
 
@@ -286,7 +300,7 @@ export const EXTERNAL_OVERRIDES: Record<string, OverrideSpec> = {
       { file: "reference/degraded/manual-edit-applier.md", from: UNREGISTERED_ROLE_FROM, to: UNREGISTERED_ROLE_TO },
       { file: "reference/degraded/motion-reviewer.md", from: UNREGISTERED_ROLE_FROM, to: UNREGISTERED_ROLE_TO },
       { file: "reference/audit.md", from: AUDIT_SAVE_FROM, to: AUDIT_SAVE_TO },
-      { file: "reference/audit.native.md", from: AUDIT_SAVE_FROM, to: AUDIT_SAVE_TO },
+      { file: "reference/audit.native.md", from: AUDIT_NATIVE_SAVE_FROM, to: AUDIT_NATIVE_SAVE_TO },
       { file: "reference/critique.md", from: CRITIQUE_SAVE_FROM, to: CRITIQUE_SAVE_TO },
     ],
     extraFiles: [
