@@ -34,7 +34,7 @@
 | [emil-design-eng](./emil-design-eng/SKILL.md) | [emilkowalski/skills](https://github.com/emilkowalski/skills/tree/64eb3deb9a5fbfa041faf783e0bc3fd635872e9c/skills/emil-design-eng) | `default` | `64eb3de` |
 | [figure-it-out](./figure-it-out/SKILL.md) | [cursor/plugins](https://github.com/cursor/plugins/tree/b7b93c36be9bcc36a74db438e0fd385d660bc559/pstack/skills/figure-it-out) | `default` | `b7b93c3` |
 | [find-animation-opportunities](./find-animation-opportunities/SKILL.md) | [emilkowalski/skills](https://github.com/emilkowalski/skills/tree/64eb3deb9a5fbfa041faf783e0bc3fd635872e9c/skills/find-animation-opportunities) | `default` | `64eb3de` |
-| [first-reader](./first-reader/SKILL.md) | [Shubhamsaboo/awesome-llm-apps](https://github.com/Shubhamsaboo/awesome-llm-apps/tree/14c5f8ff0094659f321801385d2b52ccc65fea3b/agent_skills/first-reader) | `default` | `14c5f8f` |
+| [first-reader](./first-reader/SKILL.md) | [Shubhamsaboo/awesome-llm-apps](https://github.com/Shubhamsaboo/awesome-llm-apps/tree/e1b69da564c5721a1baffade073ebad43c7a2403/agent_skills/first-reader) | `default` | `e1b69da` |
 | [get-pr-comments](./get-pr-comments/SKILL.md) | [cursor/plugins](https://github.com/cursor/plugins/tree/b7b93c36be9bcc36a74db438e0fd385d660bc559/cursor-team-kit/skills/get-pr-comments) | `default` | `b7b93c3` |
 | [grill-me](./grill-me/SKILL.md) | [mattpocock/skills](https://github.com/mattpocock/skills/tree/bbadaa631c37af594e5a05c9cefacd9956136b18/skills/productivity/grill-me) | `default` | `bbadaa6` |
 | [grill-with-docs](./grill-with-docs/SKILL.md) | [mattpocock/skills](https://github.com/mattpocock/skills/tree/bbadaa631c37af594e5a05c9cefacd9956136b18/skills/engineering/grill-with-docs) | `default` | `bbadaa6` |
